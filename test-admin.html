@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Admin Refresh</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .container {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background: #89288f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background: #6b1f72;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🔑 Admin: Refresh Database</h2>
+        <p>Enter secret key to fetch latest data from Google Sheets</p>
+        
+        <input 
+            type="password" 
+            id="secretKey" 
+            placeholder="Enter secret key"
+            onkeypress="if(event.key==='Enter') refreshDatabase()"
+        >
+        
+        <button onclick="refreshDatabase()" id="refreshBtn">
+            🔄 Refresh from Google Sheets
+        </button>
+        
+        <div id="message"></div>
+        
+        <hr style="margin: 20px 0;">
+        
+        <h3>📝 Instructions:</h3>
+        <ul>
+            <li>Default secret key: <code>iitdh_faculty_secret_2024</code></li>
+            <li>Or visit: <a href="http://localhost:5000/api/fetchLatest/iitdh_faculty_secret_2024" target="_blank">http://localhost:5000/api/fetchLatest/iitdh_faculty_secret_2024</a></li>
+            <li>This will fetch latest data from Google Sheets</li>
+            <li>Database (facultyData.json) will be updated</li>
+            <li>All faculty pages will show updated data</li>
+        </ul>
+    </div>
+
+    <script>
+        async function refreshDatabase() {
+            const secretKey = document.getElementById('secretKey').value;
+            const messageDiv = document.getElementById('message');
+            const btn = document.getElementById('refreshBtn');
+            
+            if (!secretKey.trim()) {
+                messageDiv.className = 'message error';
+                messageDiv.textContent = '❌ Please enter the secret key';
+                return;
+            }
+            
+            btn.disabled = true;
+            btn.textContent = '⏳ Updating...';
+            messageDiv.textContent = '';
+            
+            try {
+                const response = await fetch('http://localhost:5000/api/fetch', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ secretKey }),
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    messageDiv.className = 'message success';
+                    messageDiv.innerHTML = `
+                        ✅ ${data.message}<br>
+                        📊 Total Faculty: ${data.totalFaculty}<br>
+                        🕐 Updated: ${new Date(data.timestamp).toLocaleString()}<br>
+                        📋 Faculty IDs: ${data.facultyIds.join(', ')}
+                    `;
+                    document.getElementById('secretKey').value = '';
+                } else {
+                    messageDiv.className = 'message error';
+                    messageDiv.textContent = '❌ ' + (data.message || 'Failed to update');
+                }
+            } catch (error) {
+                messageDiv.className = 'message error';
+                messageDiv.textContent = '❌ Network error: ' + error.message;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '🔄 Refresh from Google Sheets';
+            }
+        }
+    </script>
+</body>
+</html>

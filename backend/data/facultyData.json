@@ -1,0 +1,389 @@
+[
+  {
+    "faculty_id": "FAC001",
+    "facultyID": "FAC001",
+    "personalInfo": {
+      "faculty_id": "FAC001",
+      "name": "Dr. Rajesh Kumar Sharma",
+      "designation": "Associate Professor",
+      "department": "Department of Computer Science and Engineering",
+      "profileImage": "https://iitdh.ac.in/pbhui/pratyasa1.jpg",
+      "email": "rajesh.sharma@iitdh.ac.in",
+      "phone": "91-836-2277XXX",
+      "office": "Room 305, Block A",
+      "address": "IIT Dharwad, Permanent Campus, Chikkamalligawad, Dharwad - 580007, Karnataka, India",
+      "bio": "Dr. Rajesh Kumar Sharma is an Associate Professor in the Department of Computer Science and Engineering at IIT Dharwad. His research focuses on Machine Learning, Natural Language Processing, and Computer Vision. He has published over 50 papers in reputed international journals and conferences."
+    },
+    "about": {
+      "faculty_id": "FAC001",
+      "bio": "Dr. Rajesh Kumar Sharma is an Associate Professor in the Department of Computer Science and Engineering at IIT Dharwad. His research focuses on Machine Learning, Natural Language Processing, and Computer Vision. He has published over 50 papers in reputed international journals and conferences.",
+      "researchPositions": [
+        "Principal Investigator, SERB Core Research Grant (2023-2026)",
+        "Co-Investigator, DST-FIST Project (2022-2025)",
+        "Visiting Researcher, MIT Media Lab (Summer 2021)"
+      ],
+      "links": [
+        {
+          "faculty_id": "FAC001",
+          "name": "Google Scholar",
+          "url": "https://scholar.google.com/citations?user=abc123"
+        },
+        {
+          "faculty_id": "FAC001",
+          "name": "ResearchGate",
+          "url": "https://researchgate.net/profile/Rajesh-Sharma"
+        },
+        {
+          "faculty_id": "FAC001",
+          "name": "LinkedIn",
+          "url": "https://linkedin.com/in/rajesh-sharma"
+        },
+        {
+          "faculty_id": "FAC001",
+          "name": "GitHub",
+          "url": "https://github.com/rajesh-sharma"
+        }
+      ]
+    },
+    "biography": {
+      "experience": [
+        {
+          "faculty_id": "FAC001",
+          "position": "Associate Professor",
+          "institution": "IIT Dharwad",
+          "period": "July 2020 - Present",
+          "description": "Leading research in AI and ML"
+        },
+        {
+          "faculty_id": "FAC001",
+          "position": "Assistant Professor",
+          "institution": "IIT Dharwad",
+          "period": "December 2016 - June 2020",
+          "description": "Established AI research lab"
+        },
+        {
+          "faculty_id": "FAC001",
+          "position": "Postdoctoral Researcher",
+          "institution": "Stanford University, USA",
+          "period": "January 2015 - November 2016",
+          "description": "Worked on deep learning"
+        }
+      ],
+      "education": [
+        {
+          "faculty_id": "FAC001",
+          "degree": "Ph.D. in Computer Science",
+          "institution": "IIT Bombay",
+          "year": "2014",
+          "thesis": "Deep Learning Approaches for Natural Language Understanding"
+        },
+        {
+          "faculty_id": "FAC001",
+          "degree": "M.Tech. in Computer Science",
+          "institution": "IIT Delhi",
+          "year": "2009",
+          "thesis": ""
+        },
+        {
+          "faculty_id": "FAC001",
+          "degree": "B.Tech. in Computer Engineering",
+          "institution": "NIT Warangal",
+          "year": "2007",
+          "thesis": ""
+        }
+      ]
+    },
+    "courses": [
+      {
+        "faculty_id": "FAC001",
+        "code": "CS201",
+        "name": "Data Structures and Algorithms",
+        "semester": "Autumn 2024",
+        "credits": 4,
+        "level": "UG"
+      },
+      {
+        "faculty_id": "FAC001",
+        "code": "CS601",
+        "name": "Machine Learning",
+        "semester": "Autumn 2024",
+        "credits": 3,
+        "level": "PG"
+      },
+      {
+        "faculty_id": "FAC001",
+        "code": "CS701",
+        "name": "Advanced Deep Learning",
+        "semester": "Spring 2025",
+        "credits": 3,
+        "level": "PG"
+      }
+    ],
+    "research": {
+      "interests": [
+        "Machine Learning and Deep Learning",
+        "Natural Language Processing",
+        "Computer Vision and Image Processing",
+        "Explainable AI",
+        "Healthcare AI Applications"
+      ],
+      "fundingInfo": {
+        "faculty_id": "FAC001",
+        "field": "phdPositions",
+        "value": "2 positions available for January 2026 intake",
+        "requirements": [
+          "Strong programming skills in Python and C++",
+          "Solid background in mathematics and statistics",
+          "Prior research experience is a plus",
+          "GATE/NET qualification required for PhD"
+        ]
+      }
+    },
+    "publications": {
+      "patents": [
+        {
+          "faculty_id": "FAC001",
+          "title": "System and Method for Automated Medical Diagnosis using Deep Learning",
+          "number": "IN 202341012345",
+          "year": "2023",
+          "status": "Granted"
+        }
+      ],
+      "journals": [
+        {
+          "faculty_id": "FAC001",
+          "title": "Deep Contextual Embeddings for Clinical Text Classification",
+          "authors": "R. K. Sharma, A. Patel, M. Singh",
+          "journal": "IEEE Transactions on Medical Imaging",
+          "year": "2024",
+          "volume": "43(2)",
+          "pages": "456-470",
+          "doi": "10.1109/TMI.2024.1234567"
+        },
+        {
+          "faculty_id": "FAC001",
+          "title": "Attention-based Neural Networks for Natural Language Inference",
+          "authors": "R. K. Sharma, S. Kumar",
+          "journal": "Journal of Artificial Intelligence Research",
+          "year": "2023",
+          "volume": "78",
+          "pages": "123-145",
+          "doi": "10.1613/jair.1.12345"
+        }
+      ],
+      "conferences": [
+        {
+          "faculty_id": "FAC001",
+          "title": "Vision Transformers for Medical Image Segmentation",
+          "authors": "R. K. Sharma, N. Gupta",
+          "conference": "IEEE CVPR",
+          "year": "2024",
+          "location": "Seattle, USA"
+        },
+        {
+          "faculty_id": "FAC001",
+          "title": "Multi-modal Learning for Healthcare Applications",
+          "authors": "R. K. Sharma, A. Singh",
+          "conference": "ICML",
+          "year": "2023",
+          "location": "Honolulu, USA"
+        }
+      ]
+    },
+    "talks": [
+      {
+        "faculty_id": "FAC001",
+        "title": "The Future of AI in Healthcare",
+        "event": "National Conference on Emerging Technologies",
+        "location": "IIT Madras, Chennai",
+        "date": "March 15, 2024"
+      },
+      {
+        "faculty_id": "FAC001",
+        "title": "Deep Learning: From Theory to Practice",
+        "event": "Faculty Development Programme",
+        "location": "NIT Karnataka, Surathkal",
+        "date": "January 20, 2024"
+      }
+    ],
+    "students": {
+      "instructions": [
+        "Check eligibility on IIT Dharwad admissions page",
+        "Prepare a 2-page research statement",
+        "Email with subject: [PhD/MTech Application] Your Name",
+        "Attach CV, transcripts, GATE/NET scorecard",
+        "Shortlisted candidates will be interviewed",
+        "Deadline: November 30, 2025 for January 2026"
+      ],
+      "current": [
+        {
+          "faculty_id": "FAC001",
+          "name": "Priya Patel",
+          "program": "Ph.D.",
+          "topic": "Explainable AI for Medical Diagnosis",
+          "year": "2022 - Present"
+        },
+        {
+          "faculty_id": "FAC001",
+          "name": "Amit Kumar",
+          "program": "Ph.D.",
+          "topic": "Multi-modal Learning for Healthcare",
+          "year": "2021 - Present"
+        }
+      ],
+      "graduated": [
+        {
+          "faculty_id": "FAC001",
+          "name": "Dr. Vikram Singh",
+          "program": "Ph.D.",
+          "year": "2023",
+          "thesis": "Deep Learning for Clinical Text Analysis",
+          "placement": "Assistant Professor, NIT Trichy"
+        },
+        {
+          "faculty_id": "FAC001",
+          "name": "Anjali Sharma",
+          "program": "M.Tech.",
+          "year": "2023",
+          "thesis": "",
+          "placement": "Google Research, Bangalore"
+        }
+      ]
+    }
+  },
+  {
+    "faculty_id": "FAC002",
+    "facultyID": "FAC002",
+    "personalInfo": {
+      "faculty_id": "FAC002",
+      "name": "Lataksh",
+      "designation": "Associate Professor",
+      "department": "D",
+      "profileImage": "a",
+      "email": "a",
+      "phone": "a",
+      "office": "a",
+      "address": "address",
+      "bio": "a"
+    },
+    "about": {
+      "researchPositions": [],
+      "links": []
+    },
+    "biography": {
+      "experience": [],
+      "education": []
+    },
+    "courses": [],
+    "research": {
+      "interests": [],
+      "fundingInfo": {
+        "requirements": []
+      }
+    },
+    "publications": {
+      "patents": [],
+      "journals": [],
+      "conferences": [
+        {
+          "faculty_id": "FAC002",
+          "title": "AI-based Load Forecasting for Smart Grids",
+          "authors": "P. Mehta, K. Singh",
+          "conference": "IEEE PES General Meeting",
+          "year": "2024",
+          "location": "Orlando, USA"
+        }
+      ]
+    },
+    "talks": [],
+    "students": {
+      "instructions": [],
+      "current": [],
+      "graduated": []
+    }
+  },
+  {
+    "faculty_id": "FAC003",
+    "facultyID": "FAC003",
+    "personalInfo": {
+      "faculty_id": "FAC003",
+      "name": "b",
+      "designation": "b",
+      "department": "b",
+      "profileImage": "b",
+      "email": "b",
+      "phone": "b",
+      "office": "b",
+      "address": "b",
+      "bio": "b"
+    },
+    "about": {
+      "researchPositions": [],
+      "links": []
+    },
+    "biography": {
+      "experience": [],
+      "education": []
+    },
+    "courses": [],
+    "research": {
+      "interests": [],
+      "fundingInfo": {
+        "requirements": []
+      }
+    },
+    "publications": {
+      "patents": [],
+      "journals": [],
+      "conferences": []
+    },
+    "talks": [],
+    "students": {
+      "instructions": [],
+      "current": [],
+      "graduated": []
+    }
+  },
+  {
+    "faculty_id": "FAC004",
+    "facultyID": "FAC004",
+    "personalInfo": {
+      "faculty_id": "FAC004",
+      "name": "c",
+      "designation": "c",
+      "department": "c",
+      "profileImage": "c",
+      "email": "c",
+      "phone": "c",
+      "office": "c",
+      "address": "c",
+      "bio": "c"
+    },
+    "about": {
+      "researchPositions": [],
+      "links": []
+    },
+    "biography": {
+      "experience": [],
+      "education": []
+    },
+    "courses": [],
+    "research": {
+      "interests": [],
+      "fundingInfo": {
+        "requirements": []
+      }
+    },
+    "publications": {
+      "patents": [],
+      "journals": [],
+      "conferences": []
+    },
+    "talks": [],
+    "students": {
+      "instructions": [],
+      "current": [],
+      "graduated": []
+    }
+  }
+]
