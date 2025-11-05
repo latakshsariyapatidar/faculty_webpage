@@ -17,26 +17,23 @@ import React from 'react';
  * 
  * @returns {JSX.Element}
  */
+// Header.jsx
 function Header() {
   return (
-    <header className="bg-white border-b-2 border-gray-200">
-      <div className="max-w-6xl mx-auto px-6 py-6">
-        <div className="flex items-center gap-5">
+    <header className="bg-gradient-to-r from-purple-900 via-purple-800 to-purple-900 text-white shadow-lg border-b-4 border-amber-500">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex items-center gap-6">
           {/* Logo */}
-          <div className="w-16 h-16 bg-gray-50 rounded-lg p-2 border border-gray-200">
-            <img 
-              src="college-logo.png" 
-              alt="IIT Dharwad"
-              className="w-full h-full object-contain"
-            />
+          <div className="shrink-0 bg-white p-3 rounded-2xl shadow-xl">
+            <img src="college-logo.png" alt="IIT Dharwad Logo" className="w-16 h-16 object-cover" />
           </div>
           
           {/* Title section */}
-          <div>
-            <h1 className="text-2xl font-semibold text-gray-900">
+          <div className="flex-1">
+            <h1 className="text-2xl md:text-3xl font-bold text-amber-400 tracking-tight mb-2">
               Indian Institute of Technology Dharwad
             </h1>
-            <p className="text-sm text-gray-600 mt-1">
+            <p className="text-purple-200 text-sm md:text-base font-medium">
               भारतीय प्रौद्योगिकी संस्थान धारवाड़
             </p>
           </div>
@@ -45,5 +42,6 @@ function Header() {
     </header>
   );
 }
+
 
 export default Header;

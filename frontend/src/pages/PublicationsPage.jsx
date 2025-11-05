@@ -21,28 +21,28 @@ import React from 'react';
  */
 function PublicationsPage({ data }) {
   return (
-    <div className="w-full space-y-8">
+    <div className="w-full space-y-10">
       {/* Patents */}
       <section>
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Patents</h2>
+        <h2 className="text-3xl font-bold text-purple-900 mb-6 pb-3 border-b-4 border-amber-400 inline-block">Patents</h2>
         
-        <div className="space-y-4">
+        <div className="space-y-6">
           {data.patents.map((patent, i) => (
             <div 
               key={i} 
-              className="bg-white p-6 rounded-lg border-l-4 border-primary hover:border-primary-dark transition-colors"
+              className="bg-white p-6 rounded-2xl border-l-4 border-purple-600 hover:border-amber-500 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-x-1"
             >
-              <h3 className="text-lg font-semibold text-gray-900 mb-3 leading-tight">
+              <h3 className="text-xl font-bold text-purple-900 mb-4 leading-tight">
                 {patent.title}
               </h3>
-              <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 rounded bg-gray-100 text-primary text-sm font-medium">
+              <div className="flex flex-wrap gap-3">
+                <span className="px-4 py-2 rounded-lg bg-purple-100 text-purple-800 text-sm font-bold border-2 border-purple-200">
                   {patent.number}
                 </span>
-                <span className="px-3 py-1 rounded bg-gray-100 text-secondary text-sm font-medium">
+                <span className="px-4 py-2 rounded-lg bg-amber-100 text-amber-800 text-sm font-bold border-2 border-amber-200">
                   {patent.year}
                 </span>
-                <span className="px-3 py-1 rounded bg-green-50 text-green-700 text-sm font-medium">
+                <span className="px-4 py-2 rounded-lg bg-green-100 text-green-800 text-sm font-bold border-2 border-green-200">
                   {patent.status}
                 </span>
               </div>
@@ -53,26 +53,26 @@ function PublicationsPage({ data }) {
 
       {/* Journal Publications */}
       <section>
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Journal Publications</h2>
+        <h2 className="text-3xl font-bold text-purple-900 mb-6 pb-3 border-b-4 border-amber-400 inline-block">Journal Publications</h2>
         
-        <div className="space-y-4">
+        <div className="space-y-6">
           {data.journals.map((pub, i) => (
             <div 
               key={i} 
-              className="bg-white p-6 rounded-lg border-l-4 border-secondary hover:border-secondary-dark transition-colors"
+              className="bg-white p-6 rounded-2xl border-l-4 border-amber-500 hover:border-purple-600 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-x-1"
             >
-              <h3 className="text-lg font-semibold text-gray-900 mb-2 leading-tight">
+              <h3 className="text-xl font-bold text-purple-900 mb-3 leading-tight">
                 {pub.title}
               </h3>
-              <p className="text-sm text-gray-600 italic mb-2">{pub.authors}</p>
-              <p className="text-sm text-gray-700 mb-3">
-                {pub.journal}, {pub.volume}, pp. {pub.pages}, {pub.year}
+              <p className="text-sm text-gray-600 italic mb-2 font-medium">{pub.authors}</p>
+              <p className="text-sm text-gray-700 mb-4 bg-gray-50 inline-block px-3 py-2 rounded-lg">
+                <span className="font-bold">{pub.journal}</span>, {pub.volume}, pp. {pub.pages}, {pub.year}
               </p>
               <a 
                 href={`https://doi.org/${pub.doi}`} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="inline-block px-4 py-2 rounded bg-primary text-white text-sm font-medium hover:bg-primary-dark transition-colors"
+                className="inline-block px-5 py-2.5 rounded-lg bg-gradient-to-r from-purple-600 to-purple-700 text-white text-sm font-bold hover:from-purple-700 hover:to-purple-800 transition-all duration-200 shadow-lg hover:shadow-xl"
               >
                 DOI: {pub.doi}
               </a>
@@ -83,22 +83,22 @@ function PublicationsPage({ data }) {
 
       {/* Conference Publications */}
       <section>
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Conference Publications</h2>
+        <h2 className="text-3xl font-bold text-purple-900 mb-6 pb-3 border-b-4 border-amber-400 inline-block">Conference Publications</h2>
         
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-6">
           {data.conferences.map((conf, i) => (
             <div 
               key={i} 
-              className="bg-white p-5 rounded-lg border-t-4 border-primary hover:border-primary-dark transition-colors"
+              className="bg-white p-6 rounded-2xl border-t-4 border-purple-600 hover:border-amber-500 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
             >
-              <h3 className="text-base font-semibold text-gray-900 mb-2 leading-tight">
+              <h3 className="text-lg font-bold text-purple-900 mb-3 leading-tight">
                 {conf.title}
               </h3>
-              <p className="text-xs text-gray-600 italic mb-3">{conf.authors}</p>
-              <div className="flex flex-wrap gap-2 text-xs text-gray-700">
-                <span className="px-2 py-1 rounded bg-gray-100 font-medium">{conf.conference}</span>
-                <span className="px-2 py-1 rounded bg-gray-100 font-medium">{conf.location}</span>
-                <span className="px-2 py-1 rounded bg-primary/10 text-primary font-medium">{conf.year}</span>
+              <p className="text-xs text-gray-600 italic mb-4 font-medium">{conf.authors}</p>
+              <div className="flex flex-wrap gap-2 text-xs">
+                <span className="px-3 py-1.5 rounded-lg bg-purple-100 text-purple-800 font-bold border border-purple-200">{conf.conference}</span>
+                <span className="px-3 py-1.5 rounded-lg bg-amber-100 text-amber-800 font-bold border border-amber-200">{conf.location}</span>
+                <span className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-purple-600 to-purple-700 text-white font-bold shadow">{conf.year}</span>
               </div>
             </div>
           ))}
