@@ -16,10 +16,11 @@ import React from 'react';
  * @param {string} [props.size='large'] - Size variant: 'small', 'medium', 'large'
  * @returns {JSX.Element}
  */
+// LoadingSpinner.jsx
 const LoadingSpinner = ({ message = 'Loading...', size = 'large' }) => {
   const sizeClasses = {
     small: 'h-6 w-6',
-    medium: 'h-10 w-10',
+    medium: 'h-12 w-12',
     large: 'h-16 w-16'
   };
 
@@ -30,15 +31,13 @@ const LoadingSpinner = ({ message = 'Loading...', size = 'large' }) => {
   };
 
   return (
-    <div 
-      className="flex flex-col items-center justify-center min-h-screen"
-      role="status"
-      aria-live="polite"
-    >
-      <div className={`${sizeClasses[size]} border-4 border-gray-200 border-t-primary rounded-full animate-spin`}></div>
-      <p className={`mt-4 ${textSizeClasses[size]} text-gray-600 font-medium`}>
-        {message}
-      </p>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-white to-amber-50/30">
+      <div className="text-center">
+        <div className={`${sizeClasses[size]} mx-auto mb-6 border-4 border-purple-200 border-t-purple-600 rounded-full animate-spin`}></div>
+        <p className={`${textSizeClasses[size]} text-purple-700 font-medium`}>
+          {message}
+        </p>
+      </div>
     </div>
   );
 };
