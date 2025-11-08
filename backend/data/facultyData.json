@@ -4,12 +4,12 @@
     "facultyID": "FAC001",
     "personalInfo": {
       "faculty_id": "FAC001",
-      "name": "Dr. Rajesh Kumar Sharma",
+      "name": "Pratyasa Bhui",
       "designation": "Associate Professor",
-      "department": "Department of Computer Science and Engineering",
+      "department": "Department of Electrical Engineering",
       "profileImage": "https://iitdh.ac.in/pbhui/pratyasa1.jpg",
-      "email": "rajesh.sharma@iitdh.ac.in",
-      "phone": "91-836-2277XXX",
+      "email": "pbhui@iitdh.ac.in",
+      "phone": "+91-9380331051",
       "office": "Room 305, Block A",
       "address": "IIT Dharwad, Permanent Campus, Chikkamalligawad, Dharwad - 580007, Karnataka, India",
       "bio": "Dr. Rajesh Kumar Sharma is an Associate Professor in the Department of Computer Science and Engineering at IIT Dharwad. His research focuses on Machine Learning, Natural Language Processing, and Computer Vision. He has published over 50 papers in reputed international journals and conferences."

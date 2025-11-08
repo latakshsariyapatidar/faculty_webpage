@@ -21,23 +21,23 @@ import Navigation from '../Navigation/Navigation';
  * @param {Function} props.onTabChange - Tab change handler
  * @returns {JSX.Element}
  */
+// PageLayout.jsx
 const PageLayout = ({ children, activeTab, onTabChange }) => {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-purple-150 via-white to-amber-50/30">
       <Header />
       
-      <Navigation 
-        activeTab={activeTab} 
-        onTabChange={onTabChange} 
-      />
-
-      <main className="flex-1 max-w-6xl w-full mx-auto px-6 py-8">
+      <Navigation activeTab={activeTab} onTabChange={onTabChange} />
+      
+      <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {children}
       </main>
-
+      
       <Footer setActiveTab={onTabChange} />
     </div>
   );
 };
+
+
 
 export default PageLayout;

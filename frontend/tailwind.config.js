@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+// tailwind.config.js
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
@@ -6,36 +6,32 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Faculty Website Theme Colors
-        'primary': '#89288f',
-        'secondary': '#faa519',
-        'primary-dark': '#6d1f72',
-        'primary-light': '#a03a9f',
-        'secondary-dark': '#e89410',
-        'secondary-light': '#fbb84a',
-      },
-      animation: {
-        'fade-in': 'fadeIn 0.5s ease-in',
-        'slide-up': 'slideUp 0.4s ease-out',
-        'scale-in': 'scaleIn 0.3s ease-out',
-      },
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
+        purple: {
+          50: '#f9f6fb',
+          100: '#f1eaf6',
+          200: '#e3d5ee',
+          300: '#cdb4e1',
+          400: '#a87acc',
+          500: '#8a56b5',
+          600: '#9a077aff',
+          700: '#602971ff',
+          800: '#733287ff',
+          900: '#791075ff',
         },
-        slideUp: {
-          '0%': { transform: 'translateY(20px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
-        },
-        scaleIn: {
-          '0%': { transform: 'scale(0.95)', opacity: '0' },
-          '100%': { transform: 'scale(1)', opacity: '1' },
-        },
+        marigold: {
+          50: '#fffaf2',
+          100: '#fff2e0',
+          200: '#ffe2b8',
+          300: '#ffd28f',
+          400: '#ffc267',
+          500: '#ffad4a',
+          600: '#e6953a',
+          700: '#b3742e',
+          800: '#805423',
+          900: '#4d3315',
+        }
       },
     },
   },
   plugins: [],
 }
-
-

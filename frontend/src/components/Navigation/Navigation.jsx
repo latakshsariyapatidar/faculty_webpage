@@ -19,6 +19,7 @@ import { NAVIGATION_TABS } from '../../constants/navigationConfig';
  * @param {Function} props.onTabChange - Callback when tab is changed
  * @returns {JSX.Element}
  */
+// Navigation.jsx
 const Navigation = ({ activeTab, onTabChange }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -104,5 +105,6 @@ const Navigation = ({ activeTab, onTabChange }) => {
     </nav>
   );
 };
+
 
 export default Navigation;

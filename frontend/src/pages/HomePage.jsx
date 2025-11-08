@@ -25,26 +25,26 @@ function HomePage({ data }) {
   return (
     <div className="space-y-8">
       {/* Profile Section */}
-      <div className="bg-white rounded-lg border border-gray-200 p-8">
+      <div className="bg-white rounded-2xl border-2 border-purple-100 shadow-xl p-8">
         <div className="flex flex-col md:flex-row gap-8">
           {/* Profile Image */}
           <div className="shrink-0">
             <img 
               src={personalInfo.profileImage} 
               alt={personalInfo.name} 
-              className="w-40 h-40 rounded-lg object-cover border-2 border-gray-200"
+              className="w-48 h-48 rounded-2xl object-cover border-4 border-gradient-to-br from-purple-400 to-amber-400 shadow-2xl"
             />
           </div>
 
           {/* Profile Info */}
           <div className="flex-1">
-            <h1 className="text-3xl font-semibold text-gray-900 mb-1">
+            <h1 className="text-4xl font-bold text-purple-900 mb-2">
               {personalInfo.name}
             </h1>
-            <p className="text-lg text-primary font-medium mb-2">
+            <p className="text-xl text-amber-600 font-bold mb-2">
               {personalInfo.designation}
             </p>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 font-medium mb-6 text-lg">
               {personalInfo.department}
             </p>
             
@@ -52,26 +52,26 @@ function HomePage({ data }) {
             <div className="space-y-3 mb-6">
               <a 
                 href={`mailto:${personalInfo.email}`}
-                className="flex items-center gap-3 text-gray-700 hover:text-primary transition-colors"
+                className="flex items-center gap-3 text-gray-700 hover:text-purple-700 transition-colors bg-purple-50 px-4 py-3 rounded-lg border border-purple-100 hover:border-purple-300"
               >
-                <Mail size={18} />
-                <span className="text-sm">{personalInfo.email}</span>
+                <Mail size={20} className="text-purple-600" />
+                <span className="text-sm font-medium">{personalInfo.email}</span>
               </a>
               
-              <div className="flex items-center gap-3 text-gray-700">
-                <Phone size={18} />
-                <span className="text-sm">{personalInfo.phone}</span>
+              <div className="flex items-center gap-3 text-gray-700 bg-amber-50 px-4 py-3 rounded-lg border border-amber-100">
+                <Phone size={20} className="text-amber-600" />
+                <span className="text-sm font-medium">{personalInfo.phone}</span>
               </div>
               
-              <div className="flex items-center gap-3 text-gray-700">
-                <MapPin size={18} />
-                <span className="text-sm">{personalInfo.office}</span>
+              <div className="flex items-center gap-3 text-gray-700 bg-gray-50 px-4 py-3 rounded-lg border border-gray-200">
+                <MapPin size={20} className="text-purple-600" />
+                <span className="text-sm font-medium">{personalInfo.office}</span>
               </div>
             </div>
 
             {/* Address */}
-            <div className="bg-gray-50 p-4 rounded border border-gray-200">
-              <p className="text-sm text-gray-600">{personalInfo.address}</p>
+            <div className="bg-gradient-to-r from-purple-50 to-amber-50 p-4 rounded-lg border-2 border-purple-200">
+              <p className="text-sm text-gray-700 font-medium">{personalInfo.address}</p>
             </div>
           </div>
         </div>
@@ -79,21 +79,21 @@ function HomePage({ data }) {
 
       {/* About Me */}
       <section>
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">About</h2>
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <p className="text-gray-700 leading-relaxed">{about.bio}</p>
+        <h2 className="text-3xl font-bold text-purple-900 mb-4 pb-3 border-b-4 border-amber-400 inline-block">About</h2>
+        <div className="bg-white rounded-2xl border-2 border-purple-100 shadow-xl p-6">
+          <p className="text-gray-700 leading-relaxed text-lg">{about.bio}</p>
         </div>
       </section>
 
       {/* Research Positions */}
       <section>
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Current Research Positions</h2>
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <h2 className="text-3xl font-bold text-purple-900 mb-4 pb-3 border-b-4 border-amber-400 inline-block">Current Research Positions</h2>
+        <div className="bg-white rounded-2xl border-2 border-purple-100 shadow-xl p-6">
           <ul className="space-y-3">
             {about.researchPositions.map((pos, i) => (
-              <li key={i} className="flex gap-3 text-gray-700">
-                <span className="text-primary font-medium">•</span>
-                <span>{pos}</span>
+              <li key={i} className="flex gap-3 text-gray-700 items-start bg-gradient-to-r from-purple-50 to-amber-50 p-4 rounded-lg border border-purple-100">
+                <span className="text-amber-500 font-bold text-xl">•</span>
+                <span className="flex-1 leading-relaxed">{pos}</span>
               </li>
             ))}
           </ul>
@@ -102,7 +102,7 @@ function HomePage({ data }) {
 
       {/* Academic Links */}
       <section>
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Academic Profiles</h2>
+        <h2 className="text-3xl font-bold text-purple-900 mb-4 pb-3 border-b-4 border-amber-400 inline-block">Academic Profiles</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {about.links.map((link, i) => (
             <a 
@@ -110,10 +110,10 @@ function HomePage({ data }) {
               href={link.url} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="flex items-center justify-between bg-white p-4 rounded-lg border border-gray-200 hover:border-primary hover:bg-gray-50 transition-colors"
+              className="flex items-center justify-between bg-white p-5 rounded-xl border-2 border-purple-100 hover:border-amber-400 hover:bg-gradient-to-br hover:from-purple-50 hover:to-amber-50 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
-              <span className="font-medium text-gray-900">{link.name}</span>
-              <ExternalLink size={16} className="text-gray-400" />
+              <span className="font-bold text-purple-900">{link.name}</span>
+              <ExternalLink size={18} className="text-amber-500" />
             </a>
           ))}
         </div>
@@ -121,12 +121,13 @@ function HomePage({ data }) {
 
       {/* Note */}
       {about.note && (
-        <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
-          <p className="text-sm text-gray-700 italic">{about.note}</p>
+        <div className="bg-gradient-to-r from-amber-100 to-orange-100 border-l-4 border-amber-500 rounded-xl p-5 shadow-lg">
+          <p className="text-sm text-gray-800 italic font-medium leading-relaxed">{about.note}</p>
         </div>
       )}
     </div>
   );
 }
+
 
 export default HomePage;
