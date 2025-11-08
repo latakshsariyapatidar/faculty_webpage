@@ -67,6 +67,8 @@ const SHEETS = {
   personalInfo: "Personal_Info",
   about: "About",
   researchPositions: "Research_Positions",
+  news: "News",
+  image: "Image",
 };
 
 // Fetch sheet data
@@ -159,6 +161,12 @@ export async function generateAllFacultyJSON() {
   const graduatedRows = await fetchSheet(SHEETS.graduatedStudents);
   const graduatedStudents = rowsToObjects(graduatedRows);
 
+  const newsRows = await fetchSheet(SHEETS.news);
+  const news = rowsToObjects(newsRows);
+
+  const imageRows = await fetchSheet(SHEETS.image);
+  const images = rowsToObjects(imageRows);
+
   // Get unique faculty IDs from personalInfo
   const facultyIds = [...new Set(personal.map(p => p.faculty_id))];
 
@@ -195,7 +203,12 @@ export async function generateAllFacultyJSON() {
         instructions: instructions.filter(i => i.faculty_id === id).map(i => i.instruction || i.Instruction || i.field),
         current: currentStudents.filter(s => s.faculty_id === id),
         graduated: graduatedStudents.filter(s => s.faculty_id === id),
-      }
+      },
+      news: news.filter(n => n.faculty_id === id).map(n => n.news || n.News),
+      gallery: images.filter(img => img.faculty_id === id).map(img => ({
+        url: img.gallery_images || img.gallery_image,
+        alt: img.image_alternate_text || img.alt_text || ''
+      }))
     };
   });
 

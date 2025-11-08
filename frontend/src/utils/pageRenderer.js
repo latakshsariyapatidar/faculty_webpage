@@ -14,6 +14,8 @@ import ResearchPage from '../pages/ResearchPage';
 import PublicationsPage from '../pages/PublicationsPage';
 import TalksPage from '../pages/TalksPage';
 import StudentsPage from '../pages/StudentsPage';
+import NewsPage from '../pages/NewsPage';
+import GalleryPage from '../pages/GalleryPage';
 
 /**
  * Page component mapping
@@ -47,6 +49,14 @@ const PAGE_CONFIG = {
   students: {
     component: StudentsPage,
     dataKey: 'students',
+  },
+  news: {
+    component: NewsPage,
+    dataKey: 'news',
+  },
+  gallery: {
+    component: GalleryPage,
+    dataKey: 'gallery',
   },
 };
 
