@@ -96,36 +96,51 @@ function GalleryPage({ data }) {
       {/* Image Gallery Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {data.map((image, index) => (
-          <div 
-            key={index}
-            className="relative group cursor-pointer overflow-hidden rounded-lg border border-gray-200 bg-white hover:shadow-lg transition-shadow duration-300"
-            onClick={() => openLightbox(image, index)}
-          >
-            {/* Image Container with aspect ratio */}
-            <div className="aspect-square relative">
-              <img 
-                src={image.url} 
-                alt={image.alt || `Gallery image ${index + 1}`}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                loading="lazy"
-                onError={(e) => {
-                  e.target.src = 'https://via.placeholder.com/400x400?text=Image+Not+Found';
-                }}
-              />
-              
-              {/* Overlay on hover */}
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300 flex items-center justify-center">
-                <ImageIcon 
-                  size={32} 
-                  className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" 
-                />
+          <div key={index} className="space-y-3">
+            {/* Caption Before (if position is 'before') */}
+            {image.caption && image.caption_position === 'before' && (
+              <div className="bg-purple-50 p-3 rounded-lg border-l-4 border-purple-600">
+                <p className="text-sm text-gray-700 leading-relaxed">{image.caption}</p>
               </div>
-            </div>
+            )}
+            
+            {/* Image Container */}
+            <div 
+              className="relative group cursor-pointer overflow-hidden rounded-lg border border-gray-200 bg-white hover:shadow-lg transition-shadow duration-300"
+              onClick={() => openLightbox(image, index)}
+            >
+              <div className="aspect-square relative">
+                <img 
+                  src={image.url} 
+                  alt={image.alt || `Gallery image ${index + 1}`}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  loading="lazy"
+                  onError={(e) => {
+                    e.target.src = 'https://via.placeholder.com/400x400?text=Image+Not+Found';
+                  }}
+                />
+                
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300 flex items-center justify-center">
+                  <ImageIcon 
+                    size={32} 
+                    className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" 
+                  />
+                </div>
+              </div>
 
-            {/* Alt Text (if available) */}
-            {image.alt && (
-              <div className="p-2 text-xs text-gray-600 text-center bg-gray-50">
-                {image.alt}
+              {/* Alt Text (if available and no caption) */}
+              {image.alt && !image.caption && (
+                <div className="p-2 text-xs text-gray-600 text-center bg-gray-50">
+                  {image.alt}
+                </div>
+              )}
+            </div>
+            
+            {/* Caption After (if position is 'after' or default) */}
+            {image.caption && image.caption_position !== 'before' && (
+              <div className="bg-amber-50 p-3 rounded-lg border-l-4 border-amber-500">
+                <p className="text-sm text-gray-700 leading-relaxed">{image.caption}</p>
               </div>
             )}
           </div>

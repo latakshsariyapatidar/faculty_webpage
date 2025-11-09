@@ -12,7 +12,6 @@ import BiographyPage from '../pages/BiographyPage';
 import CoursesPage from '../pages/CoursesPage';
 import ResearchPage from '../pages/ResearchPage';
 import PublicationsPage from '../pages/PublicationsPage';
-import TalksPage from '../pages/TalksPage';
 import StudentsPage from '../pages/StudentsPage';
 import NewsPage from '../pages/NewsPage';
 import GalleryPage from '../pages/GalleryPage';
@@ -41,10 +40,6 @@ const PAGE_CONFIG = {
   publications: {
     component: PublicationsPage,
     dataKey: 'publications',
-  },
-  talks: {
-    component: TalksPage,
-    dataKey: 'talks',
   },
   students: {
     component: StudentsPage,
@@ -80,6 +75,16 @@ export const renderPage = (activeTab, facultyData) => {
 
   const PageComponent = config.component;
   const pageData = config.dataKey ? facultyData[config.dataKey] : facultyData;
+
+  // For ResearchPage, add faculty email from personalInfo
+  if (activeTab === 'research' && facultyData.personalInfo?.email) {
+    const enhancedData = {
+      ...pageData,
+      facultyEmail: facultyData.personalInfo.email,
+      facultyName: facultyData.personalInfo.name
+    };
+    return <PageComponent data={enhancedData} />;
+  }
 
   return <PageComponent data={pageData} />;
 };

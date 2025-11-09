@@ -19,15 +19,20 @@ import Navigation from '../Navigation/Navigation';
  * @param {React.ReactNode} props.children - Page content
  * @param {string} props.activeTab - Currently active tab
  * @param {Function} props.onTabChange - Tab change handler
+ * @param {Object} props.facultyData - Faculty data for professor name
  * @returns {JSX.Element}
  */
 // PageLayout.jsx
-const PageLayout = ({ children, activeTab, onTabChange }) => {
+const PageLayout = ({ children, activeTab, onTabChange, facultyData }) => {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-purple-150 via-white to-amber-50/30">
       <Header />
       
-      <Navigation activeTab={activeTab} onTabChange={onTabChange} />
+      <Navigation 
+        activeTab={activeTab} 
+        onTabChange={onTabChange}
+        facultyData={facultyData}
+      />
       
       <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {children}

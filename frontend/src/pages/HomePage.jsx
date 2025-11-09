@@ -89,11 +89,37 @@ function HomePage({ data }) {
       <section>
         <h2 className="text-3xl font-bold text-purple-900 mb-4 pb-3 border-b-4 border-amber-400 inline-block">Current Research Positions</h2>
         <div className="bg-white rounded-2xl border-2 border-purple-100 shadow-xl p-6">
-          <ul className="space-y-3">
+          <ul className="space-y-4">
             {about.researchPositions.map((pos, i) => (
-              <li key={i} className="flex gap-3 text-gray-700 items-start bg-gradient-to-r from-purple-50 to-amber-50 p-4 rounded-lg border border-purple-100">
-                <span className="text-amber-500 font-bold text-xl">•</span>
-                <span className="flex-1 leading-relaxed">{pos}</span>
+              <li key={i} className="bg-gradient-to-r from-purple-50 to-amber-50 p-5 rounded-lg border-2 border-purple-100 hover:border-amber-300 transition-all duration-300 shadow-sm hover:shadow-md">
+                <div className="flex gap-3 items-start">
+                  <span className="text-amber-500 font-bold text-xl">•</span>
+                  <div className="flex-1">
+                    <span className="text-gray-800 font-semibold leading-relaxed">
+                      {typeof pos === 'object' ? pos.position : pos}
+                    </span>
+                    
+                    {/* Application Link or Email Template */}
+                    {(typeof pos === 'object' && (pos.application_link || pos.email_template)) && (
+                      <div className="mt-3">
+                        {pos.application_link ? (
+                          <a
+                            href={pos.application_link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-block px-5 py-2.5 bg-gradient-to-r from-purple-600 to-purple-700 text-white text-sm font-bold rounded-lg hover:from-purple-700 hover:to-purple-800 transition-all duration-200 shadow-md hover:shadow-lg"
+                          >
+                            Apply Now →
+                          </a>
+                        ) : pos.email_template ? (
+                          <p className="text-sm text-gray-700 italic mt-2 bg-amber-100 p-4 rounded-lg border-l-4 border-amber-500 shadow-sm">
+                            📧 {pos.email_template.replace('{faculty_email}', personalInfo.email)}
+                          </p>
+                        ) : null}
+                      </div>
+                    )}
+                  </div>
+                </div>
               </li>
             ))}
           </ul>

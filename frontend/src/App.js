@@ -66,6 +66,7 @@ function App({ facultyId }) {
     <PageLayout 
       activeTab={activeTab} 
       onTabChange={setActiveTab}
+      facultyData={facultyData}
     >
       {renderPage(activeTab, facultyData)}
     </PageLayout>

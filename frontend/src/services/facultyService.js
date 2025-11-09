@@ -108,8 +108,9 @@ export const validateFacultyData = (data) => {
     'courses',
     'research',
     'publications',
-    'talks',
-    'students'
+    'students',
+    'news',
+    'gallery'
   ];
 
   return requiredFields.every(field => data && data.hasOwnProperty(field));
