@@ -9,24 +9,36 @@
       "department": "Department of Electrical Engineering",
       "profileImage": "https://iitdh.ac.in/pbhui/pratyasa1.jpg",
       "email": "pbhui@iitdh.ac.in",
-      "phone": "+91-9380331051",
+      "phone": "91-9380331051",
       "office": "Room 305, Block A",
-      "address": "IIT Dharwad, Permanent Campus, Chikkamalligawad, Dharwad - 580007, Karnataka, India",
-      "bio": "Dr. Rajesh Kumar Sharma is an Associate Professor in the Department of Computer Science and Engineering at IIT Dharwad. His research focuses on Machine Learning, Natural Language Processing, and Computer Vision. He has published over 50 papers in reputed international journals and conferences."
+      "address": "Indian Institute of Technology Dharwad\nWALMI campus, Near High Court\nPB Road, Anjaneya Nagar\nKarnataka 580011",
+      "bio": "I am an Associate Professor in the Department of Electrical, Electronics and Communication Engineering at Indian Institute of Technology Dharwad, Karnataka. I completed my M.Tech in Electrical Engineering from IIT Kharagpur and Ph.D in Electrical Engineering from Indian Institute of Technology Delhi, India. My current research interests include power system dynamics and control, synchrophasor based wide area monitoring systems, analysis amd improvement of stability of power system in presence of renewables, cyber security in smart grid."
     },
     "about": {
       "faculty_id": "FAC001",
       "bio": "Dr. Rajesh Kumar Sharma is an Associate Professor in the Department of Computer Science and Engineering at IIT Dharwad. His research focuses on Machine Learning, Natural Language Processing, and Computer Vision. He has published over 50 papers in reputed international journals and conferences.",
       "researchPositions": [
-        "Principal Investigator, SERB Core Research Grant (2023-2026)",
-        "Co-Investigator, DST-FIST Project (2022-2025)",
-        "Visiting Researcher, MIT Media Lab (Summer 2021)"
+        {
+          "position": "Principal Investigator, SERB Core Research Grant (2023-2026)",
+          "application_link": "",
+          "email_template": ""
+        },
+        {
+          "position": "Co-Investigator, DST-FIST Project (2022-2025)",
+          "application_link": "",
+          "email_template": ""
+        },
+        {
+          "position": "Visiting Researcher, MIT Media Lab (Summer 2021)",
+          "application_link": "",
+          "email_template": ""
+        }
       ],
       "links": [
         {
           "faculty_id": "FAC001",
           "name": "Google Scholar",
-          "url": "https://scholar.google.com/citations?user=abc123"
+          "url": "https://scholar.google.co.in/citations?user=ECoIVg4AAAAJ&hl=en"
         },
         {
           "faculty_id": "FAC001",
@@ -49,46 +61,53 @@
       "experience": [
         {
           "faculty_id": "FAC001",
-          "position": "Associate Professor",
-          "institution": "IIT Dharwad",
-          "period": "July 2020 - Present",
-          "description": "Leading research in AI and ML"
+          "position": "Associate Professor (Feb 2024- Today)",
+          "institution": "\nIndian Institute of Technology Dharwad",
+          "period": "August 2018 - Present",
+          "description": "Assistant Professor (August 2018- Feb 2024)\nDepartment of Electrical Engineering"
         },
         {
           "faculty_id": "FAC001",
-          "position": "Assistant Professor",
-          "institution": "IIT Dharwad",
-          "period": "December 2016 - June 2020",
-          "description": "Established AI research lab"
+          "position": "Post-doctoral Fellow",
+          "institution": "\nTexas A&M University, College Station, TX, USA.",
+          "period": "November 2017 - July 2018",
+          "description": "Smart Grid Center, Department of Electrical and Computer Engineering"
         },
         {
           "faculty_id": "FAC001",
-          "position": "Postdoctoral Researcher",
-          "institution": "Stanford University, USA",
-          "period": "January 2015 - November 2016",
-          "description": "Worked on deep learning"
+          "position": "Research Associate",
+          "institution": "Indian Institute of Technology Delhi, Delhi, India.",
+          "period": "July 2017 - November 2017",
+          "description": ""
+        },
+        {
+          "faculty_id": "FAC001",
+          "position": "Graduate Reseach Assistant",
+          "institution": "Indian Institute of Technology Delhi, Delhi, India",
+          "period": "July 2013 - July 2017",
+          "description": ""
         }
       ],
       "education": [
         {
           "faculty_id": "FAC001",
-          "degree": "Ph.D. in Computer Science",
-          "institution": "IIT Bombay",
-          "year": "2014",
-          "thesis": "Deep Learning Approaches for Natural Language Understanding"
+          "degree": "Ph.D. in Electrical Engineering",
+          "institution": " Indian Institute of Technology Delhi, Delhi, India.",
+          "year": "2017",
+          "thesis": "Data Driven Approaches for Monitoring of Power System Dynamics"
         },
         {
           "faculty_id": "FAC001",
-          "degree": "M.Tech. in Computer Science",
-          "institution": "IIT Delhi",
-          "year": "2009",
+          "degree": "M.Tech. in Electrical engineering",
+          "institution": "Indian Institute of Technology Kharagpur, India.",
+          "year": "2013",
           "thesis": ""
         },
         {
           "faculty_id": "FAC001",
-          "degree": "B.Tech. in Computer Engineering",
-          "institution": "NIT Warangal",
-          "year": "2007",
+          "degree": "B.Tech. in Electrical Engineering",
+          "institution": " Maulana Abul Kalam Azad University of Technology, Kolkata, India.",
+          "year": "2011",
           "thesis": ""
         }
       ]
@@ -96,46 +115,85 @@
     "courses": [
       {
         "faculty_id": "FAC001",
-        "code": "CS201",
-        "name": "Data Structures and Algorithms",
+        "code": "",
+        "name": "Introduction to Electrical Machines",
         "semester": "Autumn 2024",
         "credits": 4,
-        "level": "UG"
+        "level": "UG",
+        "status": "current"
       },
       {
         "faculty_id": "FAC001",
-        "code": "CS601",
-        "name": "Machine Learning",
+        "code": "",
+        "name": "Introduction to Power Systems",
         "semester": "Autumn 2024",
         "credits": 3,
-        "level": "PG"
+        "level": "PG,UG",
+        "status": "current"
       },
       {
         "faculty_id": "FAC001",
-        "code": "CS701",
-        "name": "Advanced Deep Learning",
-        "semester": "Spring 2025",
-        "credits": 3,
-        "level": "PG"
+        "code": "",
+        "name": "Introduction to Power Systems",
+        "semester": "Autumn 2022",
+        "credits": 4,
+        "level": "PG,UG",
+        "status": "past"
       }
     ],
     "research": {
       "interests": [
-        "Machine Learning and Deep Learning",
-        "Natural Language Processing",
-        "Computer Vision and Image Processing",
-        "Explainable AI",
-        "Healthcare AI Applications"
+        {
+          "title": "Wide area monitoring of power systems (WAMS)- monitoring",
+          "description": "",
+          "image": ""
+        },
+        {
+          "title": "Detection of Cyber Attacks in Smart Grid",
+          "description": "",
+          "image": ""
+        },
+        {
+          "title": "Game Theory Applications in Smart Grid- ancillary services with EVs, Renewables",
+          "description": "",
+          "image": ""
+        },
+        {
+          "title": "Dynamic State and Parameter Estimation",
+          "description": "",
+          "image": ""
+        },
+        {
+          "title": "Renewable Energy Integration in Power Systems- Grid forming Inverter, Stability analysis, etc.",
+          "description": "",
+          "image": ""
+        }
       ],
       "fundingInfo": {
-        "faculty_id": "FAC001",
-        "field": "phdPositions",
-        "value": "2 positions available for January 2026 intake",
+        "phdPositions": "2 positions available for January 2026 intake",
+        "mtechPositions": "Accepting M.Tech project students",
+        "note": "Send your CV, transcripts, and research statement to apply",
+        "phd_application_link": "https://www.iitdh.ac.in",
+        "phd_email_template": "To apply for this position, email your CV to {faculty_email}",
+        "mtech_application_link": "https://www.iitdh.ac.in",
+        "mtech_email_template": "To apply for this position, email your CV to {faculty_email}",
         "requirements": [
-          "Strong programming skills in Python and C++",
-          "Solid background in mathematics and statistics",
-          "Prior research experience is a plus",
-          "GATE/NET qualification required for PhD"
+          {
+            "position_id": "",
+            "requirement": "Strong programming skills in Python and C++"
+          },
+          {
+            "position_id": "",
+            "requirement": "Solid background in mathematics and statistics"
+          },
+          {
+            "position_id": "",
+            "requirement": "Prior research experience is a plus"
+          },
+          {
+            "position_id": "",
+            "requirement": "GATE/NET qualification required for PhD"
+          }
         ]
       }
     },
@@ -146,7 +204,9 @@
           "title": "System and Method for Automated Medical Diagnosis using Deep Learning",
           "number": "IN 202341012345",
           "year": "2023",
-          "status": "Granted"
+          "status": "Granted",
+          "pdf_link": "",
+          "external_link": ""
         }
       ],
       "journals": [
@@ -158,7 +218,9 @@
           "year": "2024",
           "volume": "43(2)",
           "pages": "456-470",
-          "doi": "10.1109/TMI.2024.1234567"
+          "doi": "10.1109/TMI.2024.1234567",
+          "pdf_link": "",
+          "external_link": ""
         },
         {
           "faculty_id": "FAC001",
@@ -168,7 +230,9 @@
           "year": "2023",
           "volume": "78",
           "pages": "123-145",
-          "doi": "10.1613/jair.1.12345"
+          "doi": "10.1613/jair.1.12345",
+          "pdf_link": "",
+          "external_link": ""
         }
       ],
       "conferences": [
@@ -178,7 +242,9 @@
           "authors": "R. K. Sharma, N. Gupta",
           "conference": "IEEE CVPR",
           "year": "2024",
-          "location": "Seattle, USA"
+          "location": "Seattle, USA",
+          "pdf_link": "",
+          "external_link": ""
         },
         {
           "faculty_id": "FAC001",
@@ -186,26 +252,13 @@
           "authors": "R. K. Sharma, A. Singh",
           "conference": "ICML",
           "year": "2023",
-          "location": "Honolulu, USA"
+          "location": "Honolulu, USA",
+          "pdf_link": "",
+          "external_link": ""
         }
-      ]
+      ],
+      "bookChapters": []
     },
-    "talks": [
-      {
-        "faculty_id": "FAC001",
-        "title": "The Future of AI in Healthcare",
-        "event": "National Conference on Emerging Technologies",
-        "location": "IIT Madras, Chennai",
-        "date": "March 15, 2024"
-      },
-      {
-        "faculty_id": "FAC001",
-        "title": "Deep Learning: From Theory to Practice",
-        "event": "Faculty Development Programme",
-        "location": "NIT Karnataka, Surathkal",
-        "date": "January 20, 2024"
-      }
-    ],
     "students": {
       "instructions": [
         "Check eligibility on IIT Dharwad admissions page",
@@ -221,14 +274,24 @@
           "name": "Priya Patel",
           "program": "Ph.D.",
           "topic": "Explainable AI for Medical Diagnosis",
-          "year": "2022 - Present"
+          "year": "2022 - Present",
+          "degree_type": "Ph.D.",
+          "photo": "",
+          "thesis_title": "Explainable AI for Medical Diagnosis",
+          "start_date": "",
+          "end_date": ""
         },
         {
           "faculty_id": "FAC001",
           "name": "Amit Kumar",
           "program": "Ph.D.",
           "topic": "Multi-modal Learning for Healthcare",
-          "year": "2021 - Present"
+          "year": "2021 - Present",
+          "degree_type": "Ph.D.",
+          "photo": "",
+          "thesis_title": "Multi-modal Learning for Healthcare",
+          "start_date": "",
+          "end_date": ""
         }
       ],
       "graduated": [
@@ -238,7 +301,12 @@
           "program": "Ph.D.",
           "year": "2023",
           "thesis": "Deep Learning for Clinical Text Analysis",
-          "placement": "Assistant Professor, NIT Trichy"
+          "placement": "Assistant Professor, NIT Trichy",
+          "degree_type": "Ph.D.",
+          "photo": "",
+          "thesis_title": "Deep Learning for Clinical Text Analysis",
+          "start_date": "",
+          "end_date": "2023"
         },
         {
           "faculty_id": "FAC001",
@@ -246,144 +314,23 @@
           "program": "M.Tech.",
           "year": "2023",
           "thesis": "",
-          "placement": "Google Research, Bangalore"
-        }
-      ]
-    }
-  },
-  {
-    "faculty_id": "FAC002",
-    "facultyID": "FAC002",
-    "personalInfo": {
-      "faculty_id": "FAC002",
-      "name": "Lataksh",
-      "designation": "Associate Professor",
-      "department": "D",
-      "profileImage": "a",
-      "email": "a",
-      "phone": "a",
-      "office": "a",
-      "address": "address",
-      "bio": "a"
-    },
-    "about": {
-      "researchPositions": [],
-      "links": []
-    },
-    "biography": {
-      "experience": [],
-      "education": []
-    },
-    "courses": [],
-    "research": {
-      "interests": [],
-      "fundingInfo": {
-        "requirements": []
-      }
-    },
-    "publications": {
-      "patents": [],
-      "journals": [],
-      "conferences": [
-        {
-          "faculty_id": "FAC002",
-          "title": "AI-based Load Forecasting for Smart Grids",
-          "authors": "P. Mehta, K. Singh",
-          "conference": "IEEE PES General Meeting",
-          "year": "2024",
-          "location": "Orlando, USA"
+          "placement": "Google Research, Bangalore",
+          "degree_type": "M.Tech.",
+          "photo": "",
+          "thesis_title": "",
+          "start_date": "",
+          "end_date": "2023"
         }
       ]
     },
-    "talks": [],
-    "students": {
-      "instructions": [],
-      "current": [],
-      "graduated": []
-    }
-  },
-  {
-    "faculty_id": "FAC003",
-    "facultyID": "FAC003",
-    "personalInfo": {
-      "faculty_id": "FAC003",
-      "name": "b",
-      "designation": "b",
-      "department": "b",
-      "profileImage": "b",
-      "email": "b",
-      "phone": "b",
-      "office": "b",
-      "address": "b",
-      "bio": "b"
-    },
-    "about": {
-      "researchPositions": [],
-      "links": []
-    },
-    "biography": {
-      "experience": [],
-      "education": []
-    },
-    "courses": [],
-    "research": {
-      "interests": [],
-      "fundingInfo": {
-        "requirements": []
+    "news": [],
+    "gallery": [
+      {
+        "url": "https://i.postimg.cc/zf43r8nS/DSC-0641.jpg",
+        "alt": "image1",
+        "caption": "lorem ipsum",
+        "caption_position": "after"
       }
-    },
-    "publications": {
-      "patents": [],
-      "journals": [],
-      "conferences": []
-    },
-    "talks": [],
-    "students": {
-      "instructions": [],
-      "current": [],
-      "graduated": []
-    }
-  },
-  {
-    "faculty_id": "FAC004",
-    "facultyID": "FAC004",
-    "personalInfo": {
-      "faculty_id": "FAC004",
-      "name": "c",
-      "designation": "c",
-      "department": "c",
-      "profileImage": "c",
-      "email": "c",
-      "phone": "c",
-      "office": "c",
-      "address": "c",
-      "bio": "c"
-    },
-    "about": {
-      "researchPositions": [],
-      "links": []
-    },
-    "biography": {
-      "experience": [],
-      "education": []
-    },
-    "courses": [],
-    "research": {
-      "interests": [],
-      "fundingInfo": {
-        "requirements": []
-      }
-    },
-    "publications": {
-      "patents": [],
-      "journals": [],
-      "conferences": []
-    },
-    "talks": [],
-    "students": {
-      "instructions": [],
-      "current": [],
-      "graduated": []
-    }
+    ]
   }
 ]

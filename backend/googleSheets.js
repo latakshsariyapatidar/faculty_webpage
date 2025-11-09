@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
-const SPREADSHEET_ID = process.env.GOOGLE_SPREADSHEET_ID || "1OAw8qiyztwOderMABXYoyrUja_dsQYqhMzLclrEGs0o";
+const SPREADSHEET_ID = process.env.GOOGLE_SPREADSHEET_ID || "1NJUIvdLLjdzpGRuMrH-d-MHhbZh6ishMWehDnJzLB5U";
 
 // Initialize Google Auth with environment variable or file
 function getGoogleAuth() {
@@ -60,7 +60,7 @@ const SHEETS = {
   patents: "Patents",
   journals: "Journals",
   conferences: "Conferences",
-  talks: "Talks",
+  bookChapters: "Book_Chapters",
   studentInstructions: "Student_Instructions",
   currentStudents: "Current_Students",
   graduatedStudents: "Graduated_Students",
@@ -149,8 +149,8 @@ export async function generateAllFacultyJSON() {
   const confRows = await fetchSheet(SHEETS.conferences);
   const conferences = rowsToObjects(confRows);
 
-  const talksRows = await fetchSheet(SHEETS.talks);
-  const talks = rowsToObjects(talksRows);
+  const bookChaptersRows = await fetchSheet(SHEETS.bookChapters);
+  const bookChapters = rowsToObjects(bookChaptersRows);
 
   const instrRows = await fetchSheet(SHEETS.studentInstructions);
   const instructions = rowsToObjects(instrRows);
@@ -178,36 +178,109 @@ export async function generateAllFacultyJSON() {
       personalInfo: personal.find(p => p.faculty_id === id) || {},
       about: {
         ...about.find(a => a.faculty_id === id),
-        researchPositions: research.filter(r => r.faculty_id === id).map(r => r.Position || r.position || r.field),
+        researchPositions: research.filter(r => r.faculty_id === id).map(r => ({
+          position: r.Position || r.position || r.field,
+          application_link: r.application_link || r.applicationLink || '',
+          email_template: r.email_template || r.emailTemplate || ''
+        })),
         links: links.filter(l => l.faculty_id === id),
       },
       biography: {
         experience: experience.filter(e => e.faculty_id === id),
         education: education.filter(e => e.faculty_id === id),
       },
-      courses: courses.filter(c => c.faculty_id === id),
+      courses: courses.filter(c => c.faculty_id === id).map(c => ({
+        ...c,
+        status: c.status || 'current' // 'current' or 'past'
+      })),
       research: {
-        interests: interests.filter(i => i.faculty_id === id).map(i => i.Interest || i.interest),
-        fundingInfo: {
-          ...funding.find(f => f.faculty_id === id),
-          requirements: requirements.filter(r => r.faculty_id === id).map(r => r.requirement || r.Requirement || r.field || r.value)
-        }
+        interests: interests.filter(i => i.faculty_id === id).map(i => ({
+          title: i.title || i.Title || i.Interest || i.interest,
+          description: i.description || i.Description || '',
+          image: i.image || i.Image || ''
+        })),
+        fundingInfo: (() => {
+          // Get all funding info rows for this faculty
+          const fundingRows = funding.filter(f => f.faculty_id === id);
+          const fundingObj = {};
+          
+          // Convert vertical format (field, value) to horizontal object
+          fundingRows.forEach(row => {
+            const field = row.field;
+            const value = row.value;
+            if (field && value) {
+              fundingObj[field] = value;
+            }
+            
+            // Also capture direct column values for application links/templates
+            if (row.phd_application_link) fundingObj.phd_application_link = row.phd_application_link;
+            if (row.phd_email_template) fundingObj.phd_email_template = row.phd_email_template;
+            if (row.mtech_application_link) fundingObj.mtech_application_link = row.mtech_application_link;
+            if (row.mtech_email_template) fundingObj.mtech_email_template = row.mtech_email_template;
+          });
+          
+          return {
+            phdPositions: fundingObj.phdPositions || '',
+            mtechPositions: fundingObj.mtechPositions || '',
+            note: fundingObj.note || '',
+            phd_application_link: fundingObj.phd_application_link || '',
+            phd_email_template: fundingObj.phd_email_template || '',
+            mtech_application_link: fundingObj.mtech_application_link || '',
+            mtech_email_template: fundingObj.mtech_email_template || '',
+            requirements: requirements.filter(r => r.faculty_id === id).map(r => ({
+              position_id: r.position_id || r.positionId || '',
+              requirement: r.requirement || r.Requirement || r.field || r.value
+            }))
+          };
+        })()
       },
       publications: {
-        patents: patents.filter(p => p.faculty_id === id),
-        journals: journals.filter(j => j.faculty_id === id),
-        conferences: conferences.filter(c => c.faculty_id === id),
+        patents: patents.filter(p => p.faculty_id === id).map(p => ({
+          ...p,
+          pdf_link: p.pdf_link || p.pdfLink || '',
+          external_link: p.external_link || p.externalLink || ''
+        })),
+        journals: journals.filter(j => j.faculty_id === id).map(j => ({
+          ...j,
+          pdf_link: j.pdf_link || j.pdfLink || '',
+          external_link: j.external_link || j.externalLink || ''
+        })),
+        conferences: conferences.filter(c => c.faculty_id === id).map(c => ({
+          ...c,
+          pdf_link: c.pdf_link || c.pdfLink || '',
+          external_link: c.external_link || c.externalLink || ''
+        })),
+        bookChapters: bookChapters.filter(b => b.faculty_id === id).map(b => ({
+          ...b,
+          pdf_link: b.pdf_link || b.pdfLink || '',
+          external_link: b.external_link || b.externalLink || ''
+        }))
       },
-      talks: talks.filter(t => t.faculty_id === id),
       students: {
         instructions: instructions.filter(i => i.faculty_id === id).map(i => i.instruction || i.Instruction || i.field),
-        current: currentStudents.filter(s => s.faculty_id === id),
-        graduated: graduatedStudents.filter(s => s.faculty_id === id),
+        current: currentStudents.filter(s => s.faculty_id === id).map(s => ({
+          ...s,
+          degree_type: s.degree_type || s.degreeType || s.program || 'PhD',
+          photo: s.photo || s.Photo || '',
+          thesis_title: s.thesis_title || s.thesisTitle || s.topic || '',
+          start_date: s.start_date || s.startDate || '',
+          end_date: s.end_date || s.endDate || ''
+        })),
+        graduated: graduatedStudents.filter(s => s.faculty_id === id).map(s => ({
+          ...s,
+          degree_type: s.degree_type || s.degreeType || s.program || 'PhD',
+          photo: s.photo || s.Photo || '',
+          thesis_title: s.thesis_title || s.thesisTitle || s.thesis || '',
+          start_date: s.start_date || s.startDate || '',
+          end_date: s.end_date || s.endDate || s.year || ''
+        })),
       },
       news: news.filter(n => n.faculty_id === id).map(n => n.news || n.News),
       gallery: images.filter(img => img.faculty_id === id).map(img => ({
         url: img.gallery_images || img.gallery_image,
-        alt: img.image_alternate_text || img.alt_text || ''
+        alt: img.image_alternate_text || img.alt_text || '',
+        caption: img.caption || img.Caption || '',
+        caption_position: img.caption_position || img.captionPosition || 'after' // 'before' or 'after'
       }))
     };
   });
