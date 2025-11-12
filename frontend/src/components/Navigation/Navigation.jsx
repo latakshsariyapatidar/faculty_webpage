@@ -25,37 +25,40 @@ const Navigation = ({ activeTab, onTabChange, facultyData }) => {
 
   const handleTabClick = (tabId) => {
     onTabChange(tabId);
-    setIsMobileMenuOpen(false); // Close mobile menu after selection
+    setIsMobileMenuOpen(false);
   };
 
-  // Get professor name from facultyData
   const professorName = facultyData?.personalInfo?.name || 'Faculty';
 
   return (
     <>
       <nav 
-        className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm"
+        className="bg-white border-b border-purple-200 sticky top-0 z-50 shadow-lg backdrop-blur-sm bg-white/95"
         role="navigation"
         aria-label="Main navigation"
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          {/* Mobile Header with Hamburger */}
-          <div className="flex items-center justify-between py-3 lg:hidden">
-            <div className="text-base font-medium text-gray-900 truncate pr-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Mobile Header with Enhanced Hamburger */}
+          <div className="flex items-center justify-between py-4 lg:hidden">
+            <div className="text-lg font-bold bg-gradient-to-r from-purple-700 to-purple-900 bg-clip-text text-transparent truncate pr-4">
               {professorName}
             </div>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-md text-gray-700 hover:bg-gray-100 transition-colors"
+              className="p-3 rounded-xl bg-gradient-to-br from-purple-50 to-amber-50 border-2 border-purple-200 text-purple-700 hover:from-purple-100 hover:to-amber-100 hover:border-purple-300 transition-all duration-300 shadow-sm hover:shadow-md"
               aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isMobileMenuOpen}
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMobileMenuOpen ? (
+                <X size={22} className="transform rotate-90 transition-transform duration-300" />
+              ) : (
+                <Menu size={22} className="transition-transform duration-300" />
+              )}
             </button>
           </div>
 
-          {/* Desktop Navigation - Pill style tabs */}
-          <div className="hidden lg:flex items-center gap-2 py-3 overflow-x-auto">
+          {/* Desktop Navigation - Enhanced Pill style */}
+          <div className="hidden lg:flex items-center gap-3 py-4 overflow-x-auto">
             {NAVIGATION_TABS.map(tab => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -64,16 +67,21 @@ const Navigation = ({ activeTab, onTabChange, facultyData }) => {
                 <button
                   key={tab.id}
                   onClick={() => handleTabClick(tab.id)}
-                  className={`flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full transition-all whitespace-nowrap ${
+                  className={`flex items-center gap-3 px-5 py-3 text-base font-semibold rounded-2xl transition-all duration-300 whitespace-nowrap transform hover:scale-105 active:scale-95 ${
                     isActive 
-                      ? 'bg-purple-700 text-white shadow-md' 
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      ? 'bg-gradient-to-br from-purple-600 to-purple-700 text-white shadow-xl shadow-purple-200 border-2 border-purple-500' 
+                      : 'bg-gradient-to-br from-gray-50 to-purple-50 text-gray-700 hover:from-purple-50 hover:to-amber-50 border-2 border-transparent hover:border-purple-200 shadow-md hover:shadow-lg'
                   }`}
                   aria-label={tab.ariaLabel}
                   aria-current={isActive ? 'page' : undefined}
                 >
-                  <Icon size={16} aria-hidden="true" />
-                  <span>{tab.label}</span>
+                  <Icon size={18} className={isActive ? "text-white" : "text-purple-600"} aria-hidden="true" />
+                  <span className="relative">
+                    {tab.label}
+                    {isActive && (
+                      <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-amber-400 rounded-full"></span>
+                    )}
+                  </span>
                 </button>
               );
             })}
@@ -81,19 +89,19 @@ const Navigation = ({ activeTab, onTabChange, facultyData }) => {
         </div>
       </nav>
 
-      {/* Mobile Navigation Menu - Overlay */}
+      {/* Enhanced Mobile Navigation Menu */}
       {isMobileMenuOpen && (
         <>
-          {/* Backdrop */}
+          {/* Enhanced Backdrop with blur */}
           <div 
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden animate-fadeIn"
             onClick={() => setIsMobileMenuOpen(false)}
             aria-hidden="true"
           />
           
-          {/* Menu Panel */}
-          <div className="fixed top-[57px] left-0 right-0 bg-white shadow-lg z-50 lg:hidden max-h-[calc(100vh-57px)] overflow-y-auto">
-            <div className="px-4 py-3 space-y-1">
+          {/* Enhanced Menu Panel with slide animation */}
+          <div className="fixed top-[73px] left-4 right-4 bg-gradient-to-b from-white to-purple-50/80 shadow-2xl rounded-2xl border-2 border-purple-200 z-50 lg:hidden max-h-[75vh] overflow-y-auto animate-slideDown">
+            <div className="px-2 py-4 space-y-2">
               {NAVIGATION_TABS.map(tab => {
                 const Icon = tab.icon;
                 const isActive = activeTab === tab.id;
@@ -102,23 +110,56 @@ const Navigation = ({ activeTab, onTabChange, facultyData }) => {
                   <button
                     key={tab.id}
                     onClick={() => handleTabClick(tab.id)}
-                    className={`w-full flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
+                    className={`w-full flex items-center gap-4 px-5 py-4 text-base font-semibold rounded-xl transition-all duration-300 transform hover:scale-[1.02] ${
                       isActive 
-                        ? 'bg-purple-700 text-white' 
-                        : 'text-gray-700 hover:bg-gray-100'
+                        ? 'bg-gradient-to-r from-purple-600 to-purple-700 text-white shadow-lg' 
+                        : 'text-gray-700 bg-white/80 hover:bg-gradient-to-r hover:from-purple-50 hover:to-amber-50 border border-purple-100'
                     }`}
                     aria-label={tab.ariaLabel}
                     aria-current={isActive ? 'page' : undefined}
                   >
-                    <Icon size={18} aria-hidden="true" />
+                    <Icon size={20} className={isActive ? "text-white" : "text-purple-600"} aria-hidden="true" />
                     <span>{tab.label}</span>
+                    {isActive && (
+                      <div className="ml-auto w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
+                    )}
                   </button>
                 );
               })}
             </div>
+            
+            {/* Menu Footer */}
+            <div className="px-5 py-4 border-t border-purple-200 bg-white/50 rounded-b-2xl">
+              <div className="text-sm text-center text-purple-600 font-medium">
+                {professorName}
+              </div>
+            </div>
           </div>
         </>
       )}
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes slideDown {
+          from { 
+            opacity: 0;
+            transform: translateY(-10px) scale(0.95);
+          }
+          to { 
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out;
+        }
+        .animate-slideDown {
+          animation: slideDown 0.3s ease-out;
+        }
+      `}</style>
     </>
   );
 };
