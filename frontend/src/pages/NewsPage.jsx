@@ -125,20 +125,25 @@ function NewsPage({ data }) {
         {/* News Items Container - Show 5 items at once with larger height */}
         <div className="relative h-80 overflow-hidden"> {/* Increased height */}
           <div className="animate-scroll h-full">
-            {data.map((news, index) => (
-              <div 
-                key={index}
-                className="flex items-start gap-4 px-8 py-5 h-1/5 border-b border-gray-100 last:border-b-0 group hover:bg-purple-50 transition-colors duration-200"
-              >
-                <span className="text-amber-500 text-xl flex-shrink-0 mt-1">📰</span>
-                <p className="text-gray-800 text-lg leading-relaxed flex-1 font-medium group-hover:text-purple-900 transition-colors duration-200">
-                  {news.title}
-                </p>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                  <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
+            {data.map((news, index) => {
+              // Handle both string and object formats
+              const newsText = typeof news === 'string' ? news : (news.title || news.content || news.text || news.description || '');
+              
+              return (
+                <div 
+                  key={index}
+                  className="flex items-start gap-4 px-8 py-5 h-1/5 border-b border-gray-100 last:border-b-0 group hover:bg-purple-50 transition-colors duration-200"
+                >
+                  <span className="text-amber-500 text-xl flex-shrink-0 mt-1">📰</span>
+                  <p className="text-gray-800 text-lg leading-relaxed flex-1 font-medium group-hover:text-purple-900 transition-colors duration-200">
+                    {newsText}
+                  </p>
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Gradient overlays */}
