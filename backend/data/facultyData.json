@@ -10,26 +10,26 @@
       "profileImage": "https://iitdh.ac.in/pbhui/pratyasa1.jpg",
       "email": "pbhui@iitdh.ac.in",
       "phone": "91-9380331051",
-      "office": "Room 305, Block A",
+      "office": "A1-418",
       "address": "Indian Institute of Technology Dharwad\nWALMI campus, Near High Court\nPB Road, Anjaneya Nagar\nKarnataka 580011",
       "bio": "I am an Associate Professor in the Department of Electrical, Electronics and Communication Engineering at Indian Institute of Technology Dharwad, Karnataka. I completed my M.Tech in Electrical Engineering from IIT Kharagpur and Ph.D in Electrical Engineering from Indian Institute of Technology Delhi, India. My current research interests include power system dynamics and control, synchrophasor based wide area monitoring systems, analysis amd improvement of stability of power system in presence of renewables, cyber security in smart grid."
     },
     "about": {
       "faculty_id": "FAC001",
-      "bio": "Dr. Rajesh Kumar Sharma is an Associate Professor in the Department of Computer Science and Engineering at IIT Dharwad. His research focuses on Machine Learning, Natural Language Processing, and Computer Vision. He has published over 50 papers in reputed international journals and conferences.",
+      "bio": "I am an Associate Professor in the Department of Electrical, Electronics and Communication Engineering at Indian Institute of Technology Dharwad, Karnataka. I completed my M.Tech in Electrical Engineering from IIT Kharagpur and Ph.D in Electrical Engineering from Indian Institute of Technology Delhi, India. My current research interests include power system dynamics and control, synchrophasor based wide area monitoring systems, analysis amd improvement of stability of power system in presence of renewables, cyber security in smart grid.",
       "researchPositions": [
         {
-          "position": "Principal Investigator, SERB Core Research Grant (2023-2026)",
+          "position": "Research Associate / Post Doc with expertise in Power Systems, Power Electronics and Renewable Energy",
           "application_link": "",
           "email_template": ""
         },
         {
-          "position": "Co-Investigator, DST-FIST Project (2022-2025)",
+          "position": "Project Associate or JRF in Power Systems, Renewable Energy",
           "application_link": "",
           "email_template": ""
         },
         {
-          "position": "Visiting Researcher, MIT Media Lab (Summer 2021)",
+          "position": "MS and PhD Fellowship  in Power Systems, Renewable Energy",
           "application_link": "",
           "email_template": ""
         }
@@ -43,17 +43,17 @@
         {
           "faculty_id": "FAC001",
           "name": "ResearchGate",
-          "url": "https://researchgate.net/profile/Rajesh-Sharma"
+          "url": "https://www.researchgate.net/profile/Pratyasa-Bhui"
         },
         {
           "faculty_id": "FAC001",
           "name": "LinkedIn",
-          "url": "https://linkedin.com/in/rajesh-sharma"
+          "url": "https://www.linkedin.com/in/pratyasa-bhui-078b3248/?originalSubdomain=in"
         },
         {
           "faculty_id": "FAC001",
           "name": "GitHub",
-          "url": "https://github.com/rajesh-sharma"
+          "url": "https://www.researchgate.net/profile/Pratyasa-Bhui"
         }
       ]
     },
@@ -61,23 +61,30 @@
       "experience": [
         {
           "faculty_id": "FAC001",
-          "position": "Associate Professor (Feb 2024- Today)",
+          "position": "Associate Professor ",
           "institution": "\nIndian Institute of Technology Dharwad",
           "period": "August 2018 - Present",
-          "description": "Assistant Professor (August 2018- Feb 2024)\nDepartment of Electrical Engineering"
+          "description": ""
+        },
+        {
+          "faculty_id": "FAC001",
+          "position": "Assistant Professor",
+          "institution": "\nIndian Institute of Technology Dharwad",
+          "period": "Aug 2019- Feb 2024",
+          "description": ""
         },
         {
           "faculty_id": "FAC001",
           "position": "Post-doctoral Fellow",
           "institution": "\nTexas A&M University, College Station, TX, USA.",
-          "period": "November 2017 - July 2018",
+          "period": "Nov 2017 - July 2018",
           "description": "Smart Grid Center, Department of Electrical and Computer Engineering"
         },
         {
           "faculty_id": "FAC001",
           "position": "Research Associate",
           "institution": "Indian Institute of Technology Delhi, Delhi, India.",
-          "period": "July 2017 - November 2017",
+          "period": "July 2017 - Nov 2017",
           "description": ""
         },
         {
@@ -94,7 +101,7 @@
           "degree": "Ph.D. in Electrical Engineering",
           "institution": " Indian Institute of Technology Delhi, Delhi, India.",
           "year": "2017",
-          "thesis": "Data Driven Approaches for Monitoring of Power System Dynamics"
+          "thesis": "Thesis Title: Data Driven Approaches for Monitoring of Power System Dynamics"
         },
         {
           "faculty_id": "FAC001",
@@ -116,27 +123,27 @@
       {
         "faculty_id": "FAC001",
         "code": "",
-        "name": "Introduction to Electrical Machines",
-        "semester": "Autumn 2024",
-        "credits": 4,
-        "level": "UG",
+        "name": "Power System Dynamics and Control",
+        "semester": "August 2025",
+        "credits": 6,
+        "level": "UG, PG",
         "status": "current"
       },
       {
         "faculty_id": "FAC001",
         "code": "",
-        "name": "Introduction to Power Systems",
-        "semester": "Autumn 2024",
-        "credits": 3,
+        "name": "Grid Interconnection of Inverter Based Resources",
+        "semester": "January 2025",
+        "credits": 6,
         "level": "PG,UG",
-        "status": "current"
+        "status": "past"
       },
       {
         "faculty_id": "FAC001",
         "code": "",
         "name": "Introduction to Power Systems",
-        "semester": "Autumn 2022",
-        "credits": 4,
+        "semester": "January 2025",
+        "credits": 3,
         "level": "PG,UG",
         "status": "past"
       }
@@ -144,29 +151,19 @@
     "research": {
       "interests": [
         {
-          "title": "Wide area monitoring of power systems (WAMS)- monitoring",
-          "description": "",
-          "image": ""
+          "title": "Grid Forming Inverters: ",
+          "description": "Grid-forming inverters (GFMs) are an emerging class of power-electronic converters designed to operate like traditional synchronous generators by establishing voltage, frequency, and phase references in the grid. Unlike conventional grid-following inverters, which depend on an existing grid to synchronize, GFMs can energize islands, support black-start operations, and provide synthetic inertia and damping. This makes them essential for future power systems with high renewable penetration, where conventional rotating machines are being displaced. My research focuses on improving the stability of GFM-dominated systems, developing robust control strategies (droop control, virtual synchronous machine control, and adaptive inertia emulation), managing short-circuit behavior and fault current limitation, compliance to grid codes like IEEE 2800-2022, and coordinating GFMs with conventional generators and grid-following inverters. We are also exploring protection challenges, interaction issues in multi-inverter systems, and the integration of GFMs in weak and islanded grids to ensure reliable, resilient, and secure power system operation.",
+          "image": "https://placehold.co/600x400"
         },
         {
-          "title": "Detection of Cyber Attacks in Smart Grid",
-          "description": "",
-          "image": ""
+          "title": "Detection of Cyber Attacks in Smart Grid: ",
+          "description": "Cybersecurity in smart grids has become a critical research area as increased digitalization, widespread deployment of communication-assisted controls, and integration of distributed energy resources expose power systems to sophisticated cyber threats. Present challenges include the vulnerability of measurement data, control signals, and communication networks to False Data Injection (FDI) attacks, Denial of Service (DoS) attacks, and coordinated cyber-physical intrusions that can compromise situational awareness and system stability. Current research focuses on developing high-fidelity cyber-physical models to capture attacker capabilities, system responses, and cascading impacts. Advanced data-driven and hybrid detection methods—such as machine learning, anomaly detection, state estimation residual analysis, and physics-informed AI—are being explored to identify stealthy FDI attacks. For DoS threats, researchers are investigating resilient communication protocols, adaptive control strategies, and distributed architectures that maintain system performance under delayed or lost data. Mitigation techniques include observer-based controllers, secure state estimators, encryption schemes optimized for low-latency grid operations, and robust control designs that ensure stability even under partially compromised measurements. My research aims to build self-healing, attack-resilient smart grids capable of maintaining reliability despite evolving cyber threats.",
+          "image": "https://placehold.co/600x400"
         },
         {
-          "title": "Game Theory Applications in Smart Grid- ancillary services with EVs, Renewables",
-          "description": "",
-          "image": ""
-        },
-        {
-          "title": "Dynamic State and Parameter Estimation",
-          "description": "",
-          "image": ""
-        },
-        {
-          "title": "Renewable Energy Integration in Power Systems- Grid forming Inverter, Stability analysis, etc.",
-          "description": "",
-          "image": ""
+          "title": "Green Hydrogen: ",
+          "description": "Green hydrogen, produced using renewable electricity through electrolysis, plays a pivotal role in enabling deeper grid integration of intermittent resources such as solar and wind. It requires DC voltage accross the electrolyzer which is obtained using rectification of the AC voltage or directly from PV sources which generates DC. By acting as a flexible and scalable energy storage medium, green hydrogen can absorb excess renewable generation during periods of high supply and low demand, thereby mitigating curtailment and smoothing variability. It can be reconverted to electricity through fuel cells or gas turbines. It can provide essential grid support services including firm capacity, frequency regulation, and long-duration storage. My current research interests include designing control strategies for the converters for grid support, controlling DC-DC converter for smooth operation of the electrolyzer and stability analysis of green hydrogen in presence of renewables and grid for varying operating conditions. ",
+          "image": "https://placehold.co/600x400"
         }
       ],
       "fundingInfo": {
@@ -201,9 +198,9 @@
       "patents": [
         {
           "faculty_id": "FAC001",
-          "title": "System and Method for Automated Medical Diagnosis using Deep Learning",
-          "number": "IN 202341012345",
-          "year": "2023",
+          "title": "A power interface system for online transmission line inspection robots and method thereof",
+          "number": "IN 567731",
+          "year": "2025",
           "status": "Granted",
           "pdf_link": "",
           "external_link": ""
@@ -212,25 +209,193 @@
       "journals": [
         {
           "faculty_id": "FAC001",
-          "title": "Deep Contextual Embeddings for Clinical Text Classification",
-          "authors": "R. K. Sharma, A. Patel, M. Singh",
-          "journal": "IEEE Transactions on Medical Imaging",
-          "year": "2024",
-          "volume": "43(2)",
-          "pages": "456-470",
-          "doi": "10.1109/TMI.2024.1234567",
+          "title": "Robust Decentralized Dissipative Controller-Based Tie-Line Power Flow Regulation in Multi-Area Power System Networks",
+          "authors": "Ajul Dinesh, Pratyasa Bhui, Ameer Mulla",
+          "journal": "IEEE Transactions on Industry Applications",
+          "year": "2025",
+          "volume": "Early Access",
+          "pages": "PP-PP",
+          "doi": "10.1109/TIA.2025.3604356",
+          "pdf_link": "https://ieeexplore.ieee.org/document/11145275",
+          "external_link": "https://ieeexplore.ieee.org/document/11145275"
+        },
+        {
+          "faculty_id": "FAC001",
+          "title": "Experiences with Controlled Islanding and Relay Coordination on Lalitpur Power System, India",
+          "authors": "H. Jakkula, P. Bhui, A. K. Sahoo, S. Basumallik, and M. Singh",
+          "journal": "IEEE Transactions on Industry Applications",
+          "year": "2025",
+          "volume": "Early Access",
+          "pages": "PP-PP",
+          "doi": "10.1109/TIA.2025.3600203",
+          "pdf_link": "https://ieeexplore.ieee.org/document/11129158",
+          "external_link": ""
+        },
+        {
+          "faculty_id": "FAC001",
+          "title": "Securing Wide-Area Damping Controller Against Cyber Attacks using Semi-Supervised Generative Adversarial Network and Support Vector Machine-Based Synthetic Minority Oversampling Technique",
+          "authors": "A. Saini and P. Bhui,",
+          "journal": "Journal of Modern Power Systems and Clean Energy, IEEE",
+          "year": "2025",
+          "volume": "Early Access",
+          "pages": "1-13",
+          "doi": "10.35833/MPCE.2024.000697",
+          "pdf_link": "https://ieeexplore.ieee.org/document/11045243",
+          "external_link": "https://ieeexplore.ieee.org/document/11045243"
+        },
+        {
+          "faculty_id": "FAC001",
+          "title": "",
+          "authors": "",
+          "journal": "",
+          "year": "",
+          "volume": "",
+          "pages": "",
+          "doi": "",
           "pdf_link": "",
           "external_link": ""
         },
         {
           "faculty_id": "FAC001",
-          "title": "Attention-based Neural Networks for Natural Language Inference",
-          "authors": "R. K. Sharma, S. Kumar",
-          "journal": "Journal of Artificial Intelligence Research",
-          "year": "2023",
-          "volume": "78",
-          "pages": "123-145",
-          "doi": "10.1613/jair.1.12345",
+          "title": "",
+          "authors": "",
+          "journal": "",
+          "year": "",
+          "volume": "",
+          "pages": "",
+          "doi": "",
+          "pdf_link": "",
+          "external_link": ""
+        },
+        {
+          "faculty_id": "FAC001",
+          "title": "",
+          "authors": "",
+          "journal": "",
+          "year": "",
+          "volume": "",
+          "pages": "",
+          "doi": "",
+          "pdf_link": "",
+          "external_link": ""
+        },
+        {
+          "faculty_id": "FAC001",
+          "title": "",
+          "authors": "",
+          "journal": "",
+          "year": "",
+          "volume": "",
+          "pages": "",
+          "doi": "",
+          "pdf_link": "",
+          "external_link": ""
+        },
+        {
+          "faculty_id": "FAC001",
+          "title": "",
+          "authors": "",
+          "journal": "",
+          "year": "",
+          "volume": "",
+          "pages": "",
+          "doi": "",
+          "pdf_link": "",
+          "external_link": ""
+        },
+        {
+          "faculty_id": "FAC001",
+          "title": "",
+          "authors": "",
+          "journal": "",
+          "year": "",
+          "volume": "",
+          "pages": "",
+          "doi": "",
+          "pdf_link": "",
+          "external_link": ""
+        },
+        {
+          "faculty_id": "FAC001",
+          "title": "",
+          "authors": "",
+          "journal": "",
+          "year": "",
+          "volume": "",
+          "pages": "",
+          "doi": "",
+          "pdf_link": "",
+          "external_link": ""
+        },
+        {
+          "faculty_id": "FAC001",
+          "title": "",
+          "authors": "",
+          "journal": "",
+          "year": "",
+          "volume": "",
+          "pages": "",
+          "doi": "",
+          "pdf_link": "",
+          "external_link": ""
+        },
+        {
+          "faculty_id": "FAC001",
+          "title": "",
+          "authors": "",
+          "journal": "",
+          "year": "",
+          "volume": "",
+          "pages": "",
+          "doi": "",
+          "pdf_link": "",
+          "external_link": ""
+        },
+        {
+          "faculty_id": "FAC001",
+          "title": "",
+          "authors": "",
+          "journal": "",
+          "year": "",
+          "volume": "",
+          "pages": "",
+          "doi": "",
+          "pdf_link": "",
+          "external_link": ""
+        },
+        {
+          "faculty_id": "FAC001",
+          "title": "",
+          "authors": "",
+          "journal": "",
+          "year": "",
+          "volume": "",
+          "pages": "",
+          "doi": "",
+          "pdf_link": "",
+          "external_link": ""
+        },
+        {
+          "faculty_id": "FAC001",
+          "title": "",
+          "authors": "",
+          "journal": "",
+          "year": "",
+          "volume": "",
+          "pages": "",
+          "doi": "",
+          "pdf_link": "",
+          "external_link": ""
+        },
+        {
+          "faculty_id": "FAC001",
+          "title": "",
+          "authors": "",
+          "journal": "",
+          "year": "",
+          "volume": "",
+          "pages": "",
+          "doi": "",
           "pdf_link": "",
           "external_link": ""
         }
@@ -261,35 +426,47 @@
     },
     "students": {
       "instructions": [
-        "Check eligibility on IIT Dharwad admissions page",
-        "Prepare a 2-page research statement",
-        "Email with subject: [PhD/MTech Application] Your Name",
-        "Attach CV, transcripts, GATE/NET scorecard",
-        "Shortlisted candidates will be interviewed",
-        "Deadline: November 30, 2025 for January 2026"
+        "Post Doc Application Link: https://iitdh.ac.in/research-associates-ra-opportunities",
+        "PhD Application Link: https://www.iitdh.ac.in/phd",
+        "Project Staff Applications Link: https://iitdh.ac.in/other-recruitments",
+        "MS/ MTech Applications Link: https://www.iitdh.ac.in/mtech-research",
+        "Internship Position: https://www.iitdh.ac.in/academic-internship",
+        "Send your CV to pbhui@iitdh.ac.in"
       ],
       "current": [
         {
           "faculty_id": "FAC001",
-          "name": "Priya Patel",
+          "name": "Hemasundar Jakkula",
           "program": "Ph.D.",
-          "topic": "Explainable AI for Medical Diagnosis",
-          "year": "2022 - Present",
-          "degree_type": "Ph.D.",
+          "topic": "Stability Analysis of Grid Forming Inverters",
+          "year": "Aug 2023- Present",
+          "degree_type": "PhD",
           "photo": "",
-          "thesis_title": "Explainable AI for Medical Diagnosis",
+          "thesis_title": "Stability Analysis of Grid Forming Inverters",
           "start_date": "",
           "end_date": ""
         },
         {
           "faculty_id": "FAC001",
-          "name": "Amit Kumar",
+          "name": "Tejaswi Timsani",
           "program": "Ph.D.",
-          "topic": "Multi-modal Learning for Healthcare",
-          "year": "2021 - Present",
-          "degree_type": "Ph.D.",
+          "topic": "Controller Design for Green Hydrogen",
+          "year": "Aug 2024- Present",
+          "degree_type": "PhD",
           "photo": "",
-          "thesis_title": "Multi-modal Learning for Healthcare",
+          "thesis_title": "Controller Design for Green Hydrogen",
+          "start_date": "",
+          "end_date": ""
+        },
+        {
+          "faculty_id": "FAC001",
+          "name": "Rashmi Rama",
+          "program": "MS",
+          "topic": "Modelling of Green Hydrogen",
+          "year": "Aug 2022- Present",
+          "degree_type": "MS",
+          "photo": "",
+          "thesis_title": "Modelling of Green Hydrogen",
           "start_date": "",
           "end_date": ""
         }
@@ -297,38 +474,93 @@
       "graduated": [
         {
           "faculty_id": "FAC001",
-          "name": "Dr. Vikram Singh",
+          "name": "Dr. Kotakonda Chakravarthi ",
           "program": "Ph.D.",
-          "year": "2023",
-          "thesis": "Deep Learning for Clinical Text Analysis",
-          "placement": "Assistant Professor, NIT Trichy",
-          "degree_type": "Ph.D.",
+          "year": "Aug 2019- Aug 2023",
+          "thesis": "Development of Line Power Flow Controllers",
+          "placement": "At the time of graduation: PostDoc offer from Khalifa University, IITB",
+          "degree_type": "PhD",
           "photo": "",
-          "thesis_title": "Deep Learning for Clinical Text Analysis",
+          "thesis_title": "Development of Line Power Flow Controllers",
           "start_date": "",
-          "end_date": "2023"
+          "end_date": "Aug 2019- Aug 2023"
         },
         {
           "faculty_id": "FAC001",
-          "name": "Anjali Sharma",
-          "program": "M.Tech.",
-          "year": "2023",
-          "thesis": "",
-          "placement": "Google Research, Bangalore",
-          "degree_type": "M.Tech.",
+          "name": "Dr. Abhishek Saini",
+          "program": "Ph.D.",
+          "year": "Jan 2021- April 2025",
+          "thesis": "Cyber Attack Detection and MItigation in Wide Area Damping Control",
+          "placement": "Post Doc at TU Delft",
+          "degree_type": "PhD",
           "photo": "",
-          "thesis_title": "",
+          "thesis_title": "Cyber Attack Detection and MItigation in Wide Area Damping Control",
           "start_date": "",
-          "end_date": "2023"
+          "end_date": "Jan 2021- April 2025"
+        },
+        {
+          "faculty_id": "FAC001",
+          "name": "Mr. Faheem Ul Haq",
+          "program": "MS",
+          "year": "Aug 2020- Feb 2023",
+          "thesis": "Game Theorectic Solutions for Ancillary Services from EVs",
+          "placement": "PhD Offer from University of Manchester",
+          "degree_type": "MS",
+          "photo": "",
+          "thesis_title": "Game Theorectic Solutions for Ancillary Services from EVs",
+          "start_date": "",
+          "end_date": "Aug 2020- Feb 2023"
+        },
+        {
+          "faculty_id": "FAC001",
+          "name": "Mr. Jack Benjamin",
+          "program": "MS",
+          "year": "Aug 2022- Feb 2025",
+          "thesis": "Fault Current Limitations in Grid Forming Inverters",
+          "placement": "Job at Toshiba",
+          "degree_type": "MS",
+          "photo": "",
+          "thesis_title": "Fault Current Limitations in Grid Forming Inverters",
+          "start_date": "",
+          "end_date": "Aug 2022- Feb 2025"
+        },
+        {
+          "faculty_id": "FAC001",
+          "name": "Mr. Souvik Das",
+          "program": "MS",
+          "year": "Jan 2022- Sept 2025",
+          "thesis": "Development of Power Extraction Module from Transmission Lines for Line Crawling Robots",
+          "placement": "PhD Offer from University of Pennsylvania, KU Luven, etc., Job/ Internship at GE, COMSOL.",
+          "degree_type": "MS",
+          "photo": "",
+          "thesis_title": "Development of Power Extraction Module from Transmission Lines for Line Crawling Robots",
+          "start_date": "",
+          "end_date": "Jan 2022- Sept 2025"
         }
       ]
     },
-    "news": [],
+    "news": [
+      "Applications are invited for the post of Research Associate or PDF. Interested candidates may email their CVs to pbhui@iitdh.ac.in with the subject 'Application for the post of RA/ PDF'.",
+      "Applications are invited for the post of Project Associate or JRF. Interested candidates may email their CVs to pbhui@iitdh.ac.in with the subject 'Application for the post of Project Associate/ JRF'.",
+      "Applications are invited for the post of PhD/ MS Student Fellowship. Interested candidates may email their CVs to pbhui@iitdh.ac.in with the subject 'Application for the post of PhD/ MS'."
+    ],
     "gallery": [
       {
         "url": "https://i.postimg.cc/zf43r8nS/DSC-0641.jpg",
         "alt": "image1",
-        "caption": "lorem ipsum",
+        "caption": "Dr. Pratyasa Bhui recently  delivered a talk at delta electronics as part of weekly InnoTechTalk series",
+        "caption_position": "after"
+      },
+      {
+        "url": "https://sanishtech.com/i/69138d25547a1-1762888997.jpg",
+        "alt": "",
+        "caption": "IIT Dharwad and Toshiba signed a MoU for research collaboration in renewable energy; Toshiba will provide CSR funding for the research.",
+        "caption_position": "after"
+      },
+      {
+        "url": "https://sanishtech.com/i/69138d56a4f90-1762889046.jpg",
+        "alt": "",
+        "caption": "IIT Dharwad and Toshiba signed a MoU for research collaboration in renewable energy; Toshiba will provide CSR funding for the research.",
         "caption_position": "after"
       }
     ]

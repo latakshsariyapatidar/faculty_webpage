@@ -275,7 +275,14 @@ export async function generateAllFacultyJSON() {
           end_date: s.end_date || s.endDate || s.year || ''
         })),
       },
-      news: news.filter(n => n.faculty_id === id).map(n => n.news || n.News),
+      news: news.filter(n => n.faculty_id === id).map(n => {
+        // Try multiple possible column names for news content
+        const newsContent = n.news || n.News || n.content || n.Content || 
+                           n.text || n.Text || n.announcement || n.Announcement ||
+                           n.value || n.Value || n.description || n.Description ||
+                           n.title || n.Title || n.message || n.Message;
+        return newsContent || '';
+      }).filter(Boolean), // Remove empty strings
       gallery: images.filter(img => img.faculty_id === id).map(img => ({
         url: img.gallery_images || img.gallery_image,
         alt: img.image_alternate_text || img.alt_text || '',
