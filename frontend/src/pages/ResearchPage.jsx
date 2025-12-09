@@ -57,7 +57,7 @@ function ResearchPage({ data }) {
                           <img 
                             src={image} 
                             alt={title}
-                            className="w-full h-52 object-cover rounded-lg shadow-sm border border-gray-100"
+                            className="w-full h-auto object-cover rounded-lg shadow-sm border border-gray-100"
                             onError={(e) => {
                               e.target.style.display = 'none';
                             }}
