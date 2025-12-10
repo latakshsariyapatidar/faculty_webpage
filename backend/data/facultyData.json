@@ -242,162 +242,6 @@
           "doi": "10.35833/MPCE.2024.000697",
           "pdf_link": "https://ieeexplore.ieee.org/document/11045243",
           "external_link": "https://ieeexplore.ieee.org/document/11045243"
-        },
-        {
-          "faculty_id": "FAC001",
-          "title": "",
-          "authors": "",
-          "journal": "",
-          "year": "",
-          "volume": "",
-          "pages": "",
-          "doi": "",
-          "pdf_link": "",
-          "external_link": ""
-        },
-        {
-          "faculty_id": "FAC001",
-          "title": "",
-          "authors": "",
-          "journal": "",
-          "year": "",
-          "volume": "",
-          "pages": "",
-          "doi": "",
-          "pdf_link": "",
-          "external_link": ""
-        },
-        {
-          "faculty_id": "FAC001",
-          "title": "",
-          "authors": "",
-          "journal": "",
-          "year": "",
-          "volume": "",
-          "pages": "",
-          "doi": "",
-          "pdf_link": "",
-          "external_link": ""
-        },
-        {
-          "faculty_id": "FAC001",
-          "title": "",
-          "authors": "",
-          "journal": "",
-          "year": "",
-          "volume": "",
-          "pages": "",
-          "doi": "",
-          "pdf_link": "",
-          "external_link": ""
-        },
-        {
-          "faculty_id": "FAC001",
-          "title": "",
-          "authors": "",
-          "journal": "",
-          "year": "",
-          "volume": "",
-          "pages": "",
-          "doi": "",
-          "pdf_link": "",
-          "external_link": ""
-        },
-        {
-          "faculty_id": "FAC001",
-          "title": "",
-          "authors": "",
-          "journal": "",
-          "year": "",
-          "volume": "",
-          "pages": "",
-          "doi": "",
-          "pdf_link": "",
-          "external_link": ""
-        },
-        {
-          "faculty_id": "FAC001",
-          "title": "",
-          "authors": "",
-          "journal": "",
-          "year": "",
-          "volume": "",
-          "pages": "",
-          "doi": "",
-          "pdf_link": "",
-          "external_link": ""
-        },
-        {
-          "faculty_id": "FAC001",
-          "title": "",
-          "authors": "",
-          "journal": "",
-          "year": "",
-          "volume": "",
-          "pages": "",
-          "doi": "",
-          "pdf_link": "",
-          "external_link": ""
-        },
-        {
-          "faculty_id": "FAC001",
-          "title": "",
-          "authors": "",
-          "journal": "",
-          "year": "",
-          "volume": "",
-          "pages": "",
-          "doi": "",
-          "pdf_link": "",
-          "external_link": ""
-        },
-        {
-          "faculty_id": "FAC001",
-          "title": "",
-          "authors": "",
-          "journal": "",
-          "year": "",
-          "volume": "",
-          "pages": "",
-          "doi": "",
-          "pdf_link": "",
-          "external_link": ""
-        },
-        {
-          "faculty_id": "FAC001",
-          "title": "",
-          "authors": "",
-          "journal": "",
-          "year": "",
-          "volume": "",
-          "pages": "",
-          "doi": "",
-          "pdf_link": "",
-          "external_link": ""
-        },
-        {
-          "faculty_id": "FAC001",
-          "title": "",
-          "authors": "",
-          "journal": "",
-          "year": "",
-          "volume": "",
-          "pages": "",
-          "doi": "",
-          "pdf_link": "",
-          "external_link": ""
-        },
-        {
-          "faculty_id": "FAC001",
-          "title": "",
-          "authors": "",
-          "journal": "",
-          "year": "",
-          "volume": "",
-          "pages": "",
-          "doi": "",
-          "pdf_link": "",
-          "external_link": ""
         }
       ],
       "conferences": [
@@ -540,9 +384,24 @@
       ]
     },
     "news": [
-      "Applications are invited for the post of Research Associate or PDF. Interested candidates may email their CVs to pbhui@iitdh.ac.in with the subject 'Application for the post of RA/ PDF'.",
-      "Applications are invited for the post of Project Associate or JRF. Interested candidates may email their CVs to pbhui@iitdh.ac.in with the subject 'Application for the post of Project Associate/ JRF'.",
-      "Applications are invited for the post of PhD/ MS Student Fellowship. Interested candidates may email their CVs to pbhui@iitdh.ac.in with the subject 'Application for the post of PhD/ MS'."
+      {
+        "title": "Applications are invited for the post of Research Associate or PDF.",
+        "description": "Applications are invited for the post of Research Associate or PDF. Interested candidates may email their CVs to pbhui@iitdh.ac.in with the subject 'Application for the post of RA/ PDF'.",
+        "image": "https://placehold.co/600x400",
+        "date": "11-12-2025"
+      },
+      {
+        "title": "Applications are invited for the post of Project Associate or JRF.",
+        "description": "Applications are invited for the post of Research Associate or PDF. Interested candidates may email their CVs to pbhui@iitdh.ac.in with the subject 'Application for the post of RA/ PDF'.",
+        "image": "https://placehold.co/600x400",
+        "date": "1-12-2025"
+      },
+      {
+        "title": "Applications are invited for the post of PhD/ MS Student Fellowship.",
+        "description": "Applications are invited for the post of PhD/ MS Student Fellowship. Interested candidates may email their CVs to pbhui@iitdh.ac.in with the subject 'Application for the post of PhD/ MS'.",
+        "image": "https://placehold.co/600x400",
+        "date": "31-12-2025"
+      }
     ],
     "gallery": [
       {

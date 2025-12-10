@@ -275,14 +275,14 @@ export async function generateAllFacultyJSON() {
           end_date: s.end_date || s.endDate || s.year || ''
         })),
       },
-      news: news.filter(n => n.faculty_id === id).map(n => {
-        // Try multiple possible column names for news content
-        const newsContent = n.news || n.News || n.content || n.Content || 
-                           n.text || n.Text || n.announcement || n.Announcement ||
-                           n.value || n.Value || n.description || n.Description ||
-                           n.title || n.Title || n.message || n.Message;
-        return newsContent || '';
-      }).filter(Boolean), // Remove empty strings
+      news: news.filter(n => n.faculty_id === id).map(n => ({
+        title: n.title || n.Title || '',
+        description: n.description || n.Description || n.content || n.Content || 
+                    n.news || n.News || n.text || n.Text || '',
+        image: n.image || n.Image || n.photo || n.Photo || '',
+        date: n.date || n.Date || n.published_date || n.publishedDate || 
+              n.published || n.Published || ''
+      })).filter(item => item.title || item.description), // Keep items with at least title or description
       gallery: images.filter(img => img.faculty_id === id).map(img => ({
         url: img.gallery_images || img.gallery_image,
         alt: img.image_alternate_text || img.alt_text || '',
