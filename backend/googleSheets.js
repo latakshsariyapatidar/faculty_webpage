@@ -69,6 +69,7 @@ const SHEETS = {
   researchPositions: "Research_Positions",
   news: "News",
   image: "Image",
+  stats: "Stats",
 };
 
 // Fetch sheet data
@@ -166,6 +167,9 @@ export async function generateAllFacultyJSON() {
 
   const imageRows = await fetchSheet(SHEETS.image);
   const images = rowsToObjects(imageRows);
+
+  const statsRows = await fetchSheet(SHEETS.stats);
+  const stats = rowsToObjects(statsRows);
 
   // Get unique faculty IDs from personalInfo
   const facultyIds = [...new Set(personal.map(p => p.faculty_id))];
@@ -288,6 +292,12 @@ export async function generateAllFacultyJSON() {
         alt: img.image_alternate_text || img.alt_text || '',
         caption: img.caption || img.Caption || '',
         caption_position: img.caption_position || img.captionPosition || 'after' // 'before' or 'after'
+      })),
+      statistics: stats.filter(s => s.faculty_id === id).map(s => ({
+        label: s.label || s.Label || s.name || s.Name || '',
+        value: s.value || s.Value || s.count || s.Count || '0',
+        icon: s.icon || s.Icon || '',
+        description: s.description || s.Description || ''
       }))
     };
   });

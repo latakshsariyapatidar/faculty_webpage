@@ -49,11 +49,6 @@
           "faculty_id": "FAC001",
           "name": "LinkedIn",
           "url": "https://www.linkedin.com/in/pratyasa-bhui-078b3248/?originalSubdomain=in"
-        },
-        {
-          "faculty_id": "FAC001",
-          "name": "GitHub",
-          "url": "https://www.researchgate.net/profile/Pratyasa-Bhui"
         }
       ]
     },
@@ -421,6 +416,38 @@
         "alt": "",
         "caption": "IIT Dharwad and Toshiba signed a MoU for research collaboration in renewable energy; Toshiba will provide CSR funding for the research.",
         "caption_position": "after"
+      }
+    ],
+    "statistics": [
+      {
+        "label": "PUBLICATIONS",
+        "value": "86",
+        "icon": "",
+        "description": "Total publications"
+      },
+      {
+        "label": "SPONSORED PROJECTS",
+        "value": "7",
+        "icon": "",
+        "description": "Funded research projects"
+      },
+      {
+        "label": "CONSULTANCY PROJECTS ",
+        "value": "2",
+        "icon": "",
+        "description": "Industry consultancy"
+      },
+      {
+        "label": "DOCTORAL STUDENTS",
+        "value": "11",
+        "icon": "",
+        "description": "PhD students supervised"
+      },
+      {
+        "label": "CONTINUING EDUCATION",
+        "value": "10",
+        "icon": "",
+        "description": "CE programs conducted"
       }
     ]
   }

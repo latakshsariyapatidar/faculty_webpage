@@ -1,18 +1,18 @@
 /**
  * Gallery Page Component
- * 
+ *
  * Displays faculty member's image gallery in a responsive grid layout.
  * Images are displayed with lightbox functionality for viewing.
- * 
+ *
  * @module pages/GalleryPage
  */
 
-import React, { useState } from 'react';
-import { Image as ImageIcon, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState } from "react";
+import { Image as ImageIcon, X, ChevronLeft, ChevronRight } from "lucide-react";
 
 /**
  * Gallery page component
- * 
+ *
  * @param {Object} props
  * @param {Array<Object>} props.data - Array of image objects with url and alt text
  * @returns {JSX.Element}
@@ -34,44 +34,50 @@ function GalleryPage({ data }) {
   };
 
   // Navigate to previous image
-  const previousImage = React.useCallback((e) => {
-    e.stopPropagation();
-    if (!data || data.length === 0) return;
-    setSelectedIndex(prevIndex => {
-      const newIndex = prevIndex > 0 ? prevIndex - 1 : data.length - 1;
-      setSelectedImage(data[newIndex]);
-      return newIndex;
-    });
-  }, [data]);
+  const previousImage = React.useCallback(
+    (e) => {
+      e.stopPropagation();
+      if (!data || data.length === 0) return;
+      setSelectedIndex((prevIndex) => {
+        const newIndex = prevIndex > 0 ? prevIndex - 1 : data.length - 1;
+        setSelectedImage(data[newIndex]);
+        return newIndex;
+      });
+    },
+    [data]
+  );
 
   // Navigate to next image
-  const nextImage = React.useCallback((e) => {
-    e.stopPropagation();
-    if (!data || data.length === 0) return;
-    setSelectedIndex(prevIndex => {
-      const newIndex = prevIndex < data.length - 1 ? prevIndex + 1 : 0;
-      setSelectedImage(data[newIndex]);
-      return newIndex;
-    });
-  }, [data]);
+  const nextImage = React.useCallback(
+    (e) => {
+      e.stopPropagation();
+      if (!data || data.length === 0) return;
+      setSelectedIndex((prevIndex) => {
+        const newIndex = prevIndex < data.length - 1 ? prevIndex + 1 : 0;
+        setSelectedImage(data[newIndex]);
+        return newIndex;
+      });
+    },
+    [data]
+  );
 
   // Add keyboard event listener
   React.useEffect(() => {
     const handleKeyDown = (e) => {
       if (!selectedImage) return;
-      
-      if (e.key === 'Escape') {
+
+      if (e.key === "Escape") {
         closeLightbox();
-      } else if (e.key === 'ArrowLeft') {
+      } else if (e.key === "ArrowLeft") {
         previousImage(e);
-      } else if (e.key === 'ArrowRight') {
+      } else if (e.key === "ArrowRight") {
         nextImage(e);
       }
     };
 
     if (selectedImage) {
-      window.addEventListener('keydown', handleKeyDown);
-      return () => window.removeEventListener('keydown', handleKeyDown);
+      window.addEventListener("keydown", handleKeyDown);
+      return () => window.removeEventListener("keydown", handleKeyDown);
     }
   }, [selectedImage, previousImage, nextImage]);
 
@@ -98,33 +104,34 @@ function GalleryPage({ data }) {
         {data.map((image, index) => (
           <div key={index} className="space-y-3">
             {/* Caption Before (if position is 'before') */}
-            {image.caption && image.caption_position === 'before' && (
+            {image.caption && image.caption_position === "before" && (
               <div className="bg-purple-50 p-3 rounded-lg border-l-4 border-purple-600">
-                <p className="text-sm text-gray-700 leading-relaxed">{image.caption}</p>
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  {image.caption}
+                </p>
               </div>
             )}
-            
+
             {/* Image Container */}
-            <div 
+            <div
               className="relative group cursor-pointer overflow-hidden rounded-lg border border-gray-200 bg-white hover:shadow-lg transition-shadow duration-300"
               onClick={() => openLightbox(image, index)}
             >
               <div className="aspect-square relative">
-                <img 
-                  src={image.url} 
+                <img
+                  src="https://drive.google.com/uc?export=view&id=1ak1lCZ4RBIDR8eRAp_RdGXT5aV-SHHAJ"
                   alt={image.alt || `Gallery image ${index + 1}`}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                  loading="lazy"
                   onError={(e) => {
-                    e.target.src = 'https://via.placeholder.com/400x400?text=Image+Not+Found';
+                    console.log(e);
                   }}
                 />
-                
+
                 {/* Overlay on hover */}
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300 flex items-center justify-center">
-                  <ImageIcon 
-                    size={32} 
-                    className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" 
+                  <ImageIcon
+                    size={32}
+                    className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   />
                 </div>
               </div>
@@ -136,11 +143,13 @@ function GalleryPage({ data }) {
                 </div>
               )}
             </div>
-            
+
             {/* Caption After (if position is 'after' or default) */}
-            {image.caption && image.caption_position !== 'before' && (
+            {image.caption && image.caption_position !== "before" && (
               <div className="bg-amber-50 p-3 rounded-lg border-l-4 border-amber-500">
-                <p className="text-sm text-gray-700 leading-relaxed">{image.caption}</p>
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  {image.caption}
+                </p>
               </div>
             )}
           </div>
@@ -149,7 +158,7 @@ function GalleryPage({ data }) {
 
       {/* Lightbox Modal */}
       {selectedImage && (
-        <div 
+        <div
           className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
           onClick={closeLightbox}
         >
@@ -174,16 +183,16 @@ function GalleryPage({ data }) {
           )}
 
           {/* Image Container */}
-          <div 
+          <div
             className="max-w-5xl max-h-[90vh] flex flex-col items-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <img 
-              src={selectedImage.url} 
+            <img
+              src={selectedImage.url}
               alt={selectedImage.alt || `Gallery image ${selectedIndex + 1}`}
               className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl"
             />
-            
+
             {/* Image Caption */}
             {selectedImage.alt && (
               <div className="mt-4 text-white text-center text-lg">

@@ -63,13 +63,17 @@ function PublicationsPage({ data }) {
       {/* Patents */}
       {data.patents && data.patents.length > 0 && (
         <section>
-          <h2 className="text-2xl font-bold text-purple-900 mb-4 pb-2 border-b-2 border-amber-400 inline-block">
-            Patents
-          </h2>
+          <div className="flex items-center gap-3 mb-6">
+            <div className="h-1 w-12 bg-gradient-to-r from-purple-600 to-amber-400 rounded-full"></div>
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-900 to-purple-700 bg-clip-text text-transparent">
+              Patents
+            </h2>
+            <div className="h-1 flex-1 bg-gradient-to-r from-amber-400 to-transparent rounded-full"></div>
+          </div>
           
-          <ol className="space-y-3 mt-4 list-decimal list-inside">
+          <ol className="space-y-4 mt-4 list-decimal list-inside">
             {data.patents.map((patent, i) => (
-              <li key={i} className="bg-white p-4 rounded-lg border-l-4 border-purple-600 hover:shadow-md transition-shadow">
+              <li key={i} className="glass-effect p-5 rounded-2xl border-l-4 border-purple-600 card-shadow hover:card-shadow-hover transition-all duration-300 transform hover:-translate-x-1">
                 <div className="inline">
                   <span className="font-semibold text-gray-900">{patent.title}</span>
                   <span className="text-sm text-gray-600 ml-2">
@@ -86,13 +90,17 @@ function PublicationsPage({ data }) {
       {/* Journal Publications */}
       {data.journals && data.journals.length > 0 && (
         <section>
-          <h2 className="text-2xl font-bold text-purple-900 mb-4 pb-2 border-b-2 border-amber-400 inline-block">
-            Journal Publications
-          </h2>
+          <div className="flex items-center gap-3 mb-6">
+            <div className="h-1 w-12 bg-gradient-to-r from-purple-600 to-amber-400 rounded-full"></div>
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-900 to-purple-700 bg-clip-text text-transparent">
+              Journal Publications
+            </h2>
+            <div className="h-1 flex-1 bg-gradient-to-r from-amber-400 to-transparent rounded-full"></div>
+          </div>
           
-          <ol className="space-y-3 mt-4 list-decimal list-inside">
+          <ol className="space-y-4 mt-4 list-decimal list-inside">
             {data.journals.map((pub, i) => (
-              <li key={i} className="bg-white p-4 rounded-lg border-l-4 border-amber-500 hover:shadow-md transition-shadow">
+              <li key={i} className="glass-effect p-5 rounded-2xl border-l-4 border-amber-500 card-shadow hover:card-shadow-hover transition-all duration-300 transform hover:-translate-x-1">
                 <div className="inline">
                   <span className="font-semibold text-gray-900">{pub.title}</span>
                   <span className="text-sm text-gray-700 ml-2">
@@ -109,13 +117,17 @@ function PublicationsPage({ data }) {
       {/* Conference Publications */}
       {data.conferences && data.conferences.length > 0 && (
         <section>
-          <h2 className="text-2xl font-bold text-purple-900 mb-4 pb-2 border-b-2 border-amber-400 inline-block">
-            Conference Publications
-          </h2>
+          <div className="flex items-center gap-3 mb-6">
+            <div className="h-1 w-12 bg-gradient-to-r from-purple-600 to-amber-400 rounded-full"></div>
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-900 to-purple-700 bg-clip-text text-transparent">
+              Conference Publications
+            </h2>
+            <div className="h-1 flex-1 bg-gradient-to-r from-amber-400 to-transparent rounded-full"></div>
+          </div>
           
-          <ol className="space-y-3 mt-4 list-decimal list-inside">
+          <ol className="space-y-4 mt-4 list-decimal list-inside">
             {data.conferences.map((conf, i) => (
-              <li key={i} className="bg-white p-4 rounded-lg border-l-4 border-green-500 hover:shadow-md transition-shadow">
+              <li key={i} className="glass-effect p-5 rounded-2xl border-l-4 border-green-500 card-shadow hover:card-shadow-hover transition-all duration-300 transform hover:-translate-x-1">
                 <div className="inline">
                   <span className="font-semibold text-gray-900">{conf.title}</span>
                   <span className="text-sm text-gray-700 ml-2">
@@ -132,13 +144,17 @@ function PublicationsPage({ data }) {
       {/* Book Chapters */}
       {data.bookChapters && data.bookChapters.length > 0 && (
         <section>
-          <h2 className="text-2xl font-bold text-purple-900 mb-4 pb-2 border-b-2 border-amber-400 inline-block">
-            Book Chapters
-          </h2>
+          <div className="flex items-center gap-3 mb-6">
+            <div className="h-1 w-12 bg-gradient-to-r from-purple-600 to-amber-400 rounded-full"></div>
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-900 to-purple-700 bg-clip-text text-transparent">
+              Book Chapters
+            </h2>
+            <div className="h-1 flex-1 bg-gradient-to-r from-amber-400 to-transparent rounded-full"></div>
+          </div>
           
-          <ol className="space-y-3 mt-4 list-decimal list-inside">
+          <ol className="space-y-4 mt-4 list-decimal list-inside">
             {data.bookChapters.map((chapter, i) => (
-              <li key={i} className="bg-white p-4 rounded-lg border-l-4 border-blue-500 hover:shadow-md transition-shadow">
+              <li key={i} className="glass-effect p-5 rounded-2xl border-l-4 border-blue-500 card-shadow hover:card-shadow-hover transition-all duration-300 transform hover:-translate-x-1">
                 <div className="inline">
                   <span className="font-semibold text-gray-900">{chapter.title}</span>
                   <span className="text-sm text-gray-700 ml-2">

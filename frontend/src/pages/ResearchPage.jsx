@@ -33,10 +33,11 @@ function ResearchPage({ data }) {
   return (
     <div className="space-y-12">
       {/* Research Interests */}
-      <section className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Research Interests</h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-purple-600 to-amber-500 rounded-full"></div>
+      <section className="glass-effect rounded-3xl card-shadow border border-purple-200/50 p-8">
+        <div className="flex items-center gap-3 mb-8">
+          <div className="h-1 w-12 bg-gradient-to-r from-purple-600 to-amber-400 rounded-full"></div>
+          <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-900 to-purple-700 bg-clip-text text-transparent">Research Interests</h2>
+          <div className="h-1 flex-1 bg-gradient-to-r from-amber-400 to-transparent rounded-full"></div>
         </div>
         
         <div className="space-y-6">
@@ -49,7 +50,7 @@ function ResearchPage({ data }) {
               <div key={i} className="group">
                 {/* With Image and Description */}
                 {(image || description) ? (
-                  <div className="bg-white rounded-xl p-6 border border-gray-200 hover:border-purple-300 transition-all duration-300 hover:shadow-md">
+                  <div className="glass-effect rounded-2xl p-6 border border-purple-200 hover:border-amber-300 transition-all duration-300 card-shadow hover:card-shadow-hover transform hover:-translate-y-1">
                     <div className="flex flex-col md:flex-row gap-6">
                       {/* Image */}
                       {image && (
@@ -57,7 +58,7 @@ function ResearchPage({ data }) {
                           <img 
                             src={image} 
                             alt={title}
-                            className="w-full h-auto object-cover rounded-lg shadow-sm border border-gray-100"
+                            className="w-full h-auto object-cover rounded-xl shadow-md border-2 border-purple-100"
                             onError={(e) => {
                               e.target.style.display = 'none';
                             }}
@@ -69,13 +70,13 @@ function ResearchPage({ data }) {
                       <div className="flex-1">
                         <div className="flex gap-4 items-start">
                           <div className="flex flex-col items-center">
-                            <span className="w-10 h-10 bg-gradient-to-br from-purple-600 to-purple-700 text-white rounded-lg flex items-center justify-center text-sm font-semibold mb-2">
+                            <span className="w-10 h-10 bg-gradient-to-br from-purple-600 to-purple-700 text-white rounded-xl flex items-center justify-center text-sm font-semibold mb-2 shadow-lg">
                               {i + 1}
                             </span>
                             <div className="w-0.5 h-full bg-gradient-to-b from-purple-200 to-transparent"></div>
                           </div>
                           <div className="flex-1">
-                            <h3 className="text-xl font-semibold text-gray-900 mb-3 leading-tight">{title}</h3>
+                            <h3 className="text-xl font-semibold text-purple-900 mb-3 leading-tight">{title}</h3>
                             {description && (
                               <p className="text-gray-700 leading-relaxed text-base">{description}</p>
                             )}
@@ -86,8 +87,8 @@ function ResearchPage({ data }) {
                   </div>
                 ) : (
                   /* Simple List Item */
-                  <div className="flex gap-4 items-center bg-gray-50 p-5 rounded-lg border border-gray-200 hover:border-purple-200 transition-all duration-300 group-hover:bg-white">
-                    <span className="w-10 h-10 bg-gradient-to-br from-purple-600 to-purple-700 text-white rounded-lg flex items-center justify-center text-sm font-semibold flex-shrink-0">
+                  <div className="flex gap-4 items-center glass-effect p-5 rounded-xl border border-purple-200 hover:border-amber-300 transition-all duration-300 card-shadow hover:card-shadow-hover transform hover:-translate-x-1">
+                    <span className="w-10 h-10 bg-gradient-to-br from-purple-600 to-purple-700 text-white rounded-xl flex items-center justify-center text-sm font-semibold flex-shrink-0 shadow-md">
                       {i + 1}
                     </span>
                     <span className="text-gray-800 text-base font-medium leading-relaxed">{title}</span>
