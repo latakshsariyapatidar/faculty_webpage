@@ -123,3 +123,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
+/* Add this to your global CSS or tailwind.config.js */
+.scroll-mt-24 {
+  scroll-margin-top: 6rem; /* Adjust based on your header height */
+}
+
+.min-h-screen {
+  min-height: auto;
+}

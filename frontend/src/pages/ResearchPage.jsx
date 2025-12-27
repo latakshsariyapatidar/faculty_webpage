@@ -1,340 +1,372 @@
 /**
- * Research Page Component
- * 
- * Displays research interests with images and descriptions,
- * student positions available with position-specific requirements.
+ * Research Page Component - Compact Reusable Layout
+ * Last research item expanded by default on page load
+ * Proper expand/collapse logic - only one expanded at a time
+ * Space-efficient design with no wasted areas
+ * Completely data-driven from JSON
  * 
  * @module pages/ResearchPage
  */
 
-import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, ExternalLink, Mail } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ChevronDown, ChevronUp, ExternalLink, Mail, Target, Users, Award } from 'lucide-react';
 
-/**
- * Research page component
- * 
- * @param {Object} props
- * @param {Object} props.data - Research data
- * @param {Array} props.data.interests - Research interests list with images
- * @param {Object} props.data.fundingInfo - Student position information
- * @returns {JSX.Element}
- */
 function ResearchPage({ data }) {
   const [selectedPosition, setSelectedPosition] = useState(null);
+  const [expandedResearch, setExpandedResearch] = useState(null);
 
+  // Get requirements for specific position
   const getRequirementsForPosition = (positionId) => {
     return data.fundingInfo.requirements
-      .filter(req => req.position_id === positionId || !req.position_id)
-      .map(req => typeof req === 'object' ? req.requirement : req);
+      ?.filter(req => req.position_id === positionId || !req.position_id)
+      ?.map(req => typeof req === 'object' ? req.requirement : req) || [];
   };
 
-  const facultyEmail = data?.facultyEmail || 'faculty@iitdh.ac.in';
+  const facultyEmail = data?.facultyEmail || '';
+
+  // Extract data safely
+  const researchInterests = data?.interests || [];
+  const fundingInfo = data?.fundingInfo || {};
+  const requirements = fundingInfo.requirements || [];
+
+  // Set the last research item as expanded by default on initial load
+  useEffect(() => {
+    if (researchInterests.length > 0) {
+      setExpandedResearch(researchInterests.length - 1); // Last item index
+    }
+  }, [researchInterests.length]);
+
+  // Handle research item click - only one can be expanded at a time
+  const handleResearchToggle = (index) => {
+    setExpandedResearch(expandedResearch === index ? null : index);
+  };
 
   return (
-    <div className="space-y-12">
-      {/* Research Interests */}
-      <section className="glass-effect rounded-3xl card-shadow border border-purple-200/50 p-8">
-        <div className="flex items-center gap-3 mb-8">
-          <div className="h-1 w-12 bg-gradient-to-r from-purple-600 to-amber-400 rounded-full"></div>
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-900 to-purple-700 bg-clip-text text-transparent">Research Interests</h2>
-          <div className="h-1 flex-1 bg-gradient-to-r from-amber-400 to-transparent rounded-full"></div>
+    <div className="min-h-screen bg-gray-50">
+      {/* Compact Header */}
+      <div className="bg-gradient-to-r from-purple-700 to-amber-600 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex items-center gap-3">
+            {/* <Target className="h-5 w-5" /> */}
+            <div>
+              <h1 className="text-lg font-bold">Research</h1>
+            </div>
+          </div>
         </div>
-        
-        <div className="space-y-6">
-          {data.interests.map((interest, i) => {
-            const title = typeof interest === 'object' ? interest.title : interest;
-            const description = typeof interest === 'object' ? interest.description : '';
-            const image = typeof interest === 'object' ? interest.image : '';
+      </div>
 
-            return (
-              <div key={i} className="group">
-                {/* With Image and Description */}
-                {(image || description) ? (
-                  <div className="glass-effect rounded-2xl p-6 border border-purple-200 hover:border-amber-300 transition-all duration-300 card-shadow hover:card-shadow-hover transform hover:-translate-y-1">
-                    <div className="flex flex-col md:flex-row gap-6">
-                      {/* Image */}
-                      {image && (
-                        <div className="md:w-2/5 shrink-0">
-                          <img 
-                            src={image} 
-                            alt={title}
-                            className="w-full h-auto object-cover rounded-xl shadow-md border-2 border-purple-100"
-                            onError={(e) => {
-                              e.target.style.display = 'none';
-                            }}
-                          />
-                        </div>
-                      )}
-                      
-                      {/* Content */}
-                      <div className="flex-1">
-                        <div className="flex gap-4 items-start">
-                          <div className="flex flex-col items-center">
-                            <span className="w-10 h-10 bg-gradient-to-br from-purple-600 to-purple-700 text-white rounded-xl flex items-center justify-center text-sm font-semibold mb-2 shadow-lg">
-                              {i + 1}
-                            </span>
-                            <div className="w-0.5 h-full bg-gradient-to-b from-purple-200 to-transparent"></div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        {/* Main Grid Layout */}
+        <div className="grid lg:grid-cols-3 gap-4">
+          
+          {/* Research Interests Section */}
+          <div className="lg:col-span-2">
+            <div className="bg-white rounded-lg shadow border border-gray-200">
+              <div className="p-4 border-b border-gray-200">
+                <div className="flex items-center gap-2">
+                  <Target className="h-5 w-5 text-purple-600" />
+                  <h2 className="font-bold text-gray-900">Research Interests</h2>
+                  {researchInterests.length > 0 && (
+                    <span className="text-xs text-gray-500">
+                      ({researchInterests.length} areas)
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <div className="p-4">
+                {researchInterests.length > 0 ? (
+                  <div className="space-y-2">
+                    {researchInterests.map((interest, index) => {
+                      const title = typeof interest === 'object' ? interest.title : interest;
+                      const description = typeof interest === 'object' ? interest.description : '';
+                      const image = typeof interest === 'object' ? interest.image : '';
+                      const isExpanded = expandedResearch === index;
+                      const isLastItem = index === researchInterests.length - 1;
+
+                      return (
+                        <div 
+                          key={index} 
+                          className={`border ${isExpanded ? 'border-purple-300' : 'border-gray-200'} rounded-md hover:border-purple-300 transition-colors cursor-pointer`}
+                          onClick={() => handleResearchToggle(index)}
+                        >
+                          {/* Compact Header - Always Visible */}
+                          <div className="p-3">
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-3">
+                                <div className={`w-6 h-6 rounded ${isExpanded ? 'bg-gradient-to-r from-purple-600 to-amber-600' : 'bg-gray-200'} flex items-center justify-center flex-shrink-0`}>
+                                  <span className={`text-xs font-bold ${isExpanded ? 'text-white' : 'text-gray-700'}`}>
+                                    {index + 1}
+                                  </span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  <h3 className="text-sm font-semibold text-gray-900 line-clamp-1">
+                                    {title}
+                                  </h3>
+                                </div>
+                              </div>
+                              {description && (
+                                <div className="flex items-center gap-1">
+                                  {isExpanded ? (
+                                    <ChevronUp className="h-4 w-4 text-purple-600" />
+                                  ) : (
+                                    <ChevronDown className="h-4 w-4 text-gray-500" />
+                                  )}
+                                </div>
+                              )}
+                            </div>
                           </div>
-                          <div className="flex-1">
-                            <h3 className="text-xl font-semibold text-purple-900 mb-3 leading-tight">{title}</h3>
-                            {description && (
-                              <p className="text-gray-700 leading-relaxed text-base">{description}</p>
-                            )}
-                          </div>
+
+                          {/* Expanded Content - Only shows when this item is expanded */}
+                          {isExpanded && description && (
+                            <div className="border-t border-gray-200 p-3 animate-fadeIn">
+                              <div className="space-y-3">
+                                {/* Description */}
+                                <div className="text-gray-700 text-sm">
+                                  {description}
+                                </div>
+                                
+                                {/* Image if exists */}
+                                {image && (
+                                  <div className="mt-2">
+                                    <img 
+                                      src={image} 
+                                      alt={title}
+                                      className="w-full h-40 object-cover rounded-md border border-gray-300"
+                                      onError={(e) => {
+                                        e.target.style.display = 'none';
+                                      }}
+                                    />
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          )}
                         </div>
-                      </div>
-                    </div>
+                      );
+                    })}
                   </div>
                 ) : (
-                  /* Simple List Item */
-                  <div className="flex gap-4 items-center glass-effect p-5 rounded-xl border border-purple-200 hover:border-amber-300 transition-all duration-300 card-shadow hover:card-shadow-hover transform hover:-translate-x-1">
-                    <span className="w-10 h-10 bg-gradient-to-br from-purple-600 to-purple-700 text-white rounded-xl flex items-center justify-center text-sm font-semibold flex-shrink-0 shadow-md">
-                      {i + 1}
-                    </span>
-                    <span className="text-gray-800 text-base font-medium leading-relaxed">{title}</span>
+                  <div className="text-center py-6">
+                    <p className="text-gray-500 text-sm">Research interests information available soon.</p>
                   </div>
                 )}
               </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Student Positions */}
-      <section className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Student Positions</h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-amber-500 to-purple-600 rounded-full"></div>
-        </div>
-        
-        <div className="space-y-8">
-          {/* Positions Available */}
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-gradient-to-br from-purple-50 to-purple-25 rounded-xl p-6 border border-purple-200 shadow-sm hover:shadow-md transition-shadow duration-300">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-3 h-3 bg-purple-600 rounded-full"></div>
-                <h3 className="text-lg font-semibold text-gray-900">PhD Positions</h3>
-              </div>
-              <p className="text-2xl font-bold text-purple-700 mb-2">{data.fundingInfo.phdPositions || 0}</p>
-              <p className="text-sm text-gray-600 font-medium">Available positions</p>
-            </div>
-            
-            <div className="bg-gradient-to-br from-amber-50 to-amber-25 rounded-xl p-6 border border-amber-200 shadow-sm hover:shadow-md transition-shadow duration-300">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-3 h-3 bg-amber-600 rounded-full"></div>
-                <h3 className="text-lg font-semibold text-gray-900">M.Tech Positions</h3>
-              </div>
-              <p className="text-2xl font-bold text-amber-700 mb-2">{data.fundingInfo.mtechPositions || 0}</p>
-              <p className="text-sm text-gray-600 font-medium">Available positions</p>
             </div>
           </div>
-          
-          {/* Position-Specific Requirements */}
-          <div className="space-y-6">
-            <div className="mb-4">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Position Requirements</h3>
-              <div className="w-12 h-0.5 bg-gray-300 rounded-full"></div>
-            </div>
-            
-            {/* PhD Requirements */}
-            <div className="border border-gray-300 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
-              <button
-                onClick={() => setSelectedPosition(selectedPosition === 'phd' ? null : 'phd')}
-                className="w-full bg-gradient-to-r from-purple-50 to-purple-25 p-5 flex items-center justify-between hover:from-purple-100 hover:to-purple-50 transition-all duration-300 border-b border-gray-200 group"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
-                  <span className="text-lg font-semibold text-gray-900">PhD Position Requirements</span>
+
+          {/* Sidebar - Positions & Requirements */}
+          <div className="space-y-4">
+            {/* Positions Card */}
+            <div className="bg-white rounded-lg shadow border border-gray-200">
+              <div className="p-4 border-b border-gray-200">
+                <div className="flex items-center gap-2">
+                  <Users className="h-5 w-5 text-amber-600" />
+                  <h2 className="font-bold text-gray-900">Available Positions</h2>
                 </div>
-                {selectedPosition === 'phd' ? 
-                  <ChevronUp size={20} className="text-purple-600 transform group-hover:scale-110 transition-transform" /> : 
-                  <ChevronDown size={20} className="text-purple-600 transform group-hover:scale-110 transition-transform" />
-                }
-              </button>
-              
-              {selectedPosition === 'phd' && (
-                <div className="p-6 bg-white animate-fadeIn">
-                  <div className="space-y-5">
-                    {/* Requirements List */}
-                    <div className="space-y-3">
-                      {getRequirementsForPosition('phd').map((req, i) => (
-                        <div key={i} className="flex gap-4 items-start bg-white p-4 rounded-lg border border-gray-100 hover:border-purple-200 transition-colors duration-200">
-                          <span className="flex-shrink-0 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-semibold mt-0.5 shadow-sm">
-                            ✓
-                          </span>
-                          <span className="flex-1 text-gray-700 text-base leading-relaxed">{req}</span>
-                        </div>
-                      ))}
-                    </div>
+              </div>
 
-                    {/* Application Options */}
-                    <div className="mt-6 pt-6 border-t border-gray-200">
-                      <h4 className="text-lg font-semibold text-gray-900 mb-4">How to Apply</h4>
-                      
-                      {/* Application Link Button */}
-                      {data.fundingInfo.phd_application_link && (
-                        <a
-                          href={data.fundingInfo.phd_application_link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-5 py-2.5 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-all duration-300 shadow-sm hover:shadow-md mb-4"
-                        >
-                          <ExternalLink size={18} />
-                          Apply for PhD Position
-                        </a>
-                      )}
-
-                      {/* Email Template */}
-                      {data.fundingInfo.phd_email_template && (
-                        <div className="bg-amber-50 p-4 rounded-lg border border-amber-200 mt-4">
-                          <div className="flex items-start gap-3">
-                            <Mail size={18} className="text-amber-600 mt-0.5 flex-shrink-0" />
-                            <p className="text-gray-700 text-base leading-relaxed">
-                              {data.fundingInfo.phd_email_template.replace('{faculty_email}', facultyEmail)}
-                            </p>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Default Contact Info */}
-                      {!data.fundingInfo.phd_application_link && !data.fundingInfo.phd_email_template && (
-                        <div className="space-y-4">
-                          <a
-                            href={`mailto:${facultyEmail}?subject=PhD Position Application`}
-                            className="inline-flex items-center gap-2 px-5 py-2.5 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-all duration-300 shadow-sm hover:shadow-md"
-                          >
-                            <Mail size={18} />
-                            Contact via Email
-                          </a>
-
-                          {data.fundingInfo.note && (
-                            <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
-                              <p className="text-gray-700 text-base leading-relaxed">
-                                <strong className="text-purple-700">Application Instructions:</strong> {data.fundingInfo.note}
-                              </p>
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* M.Tech Requirements */}
-            <div className="border border-gray-300 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
-              <button
-                onClick={() => setSelectedPosition(selectedPosition === 'mtech' ? null : 'mtech')}
-                className="w-full bg-gradient-to-r from-amber-50 to-amber-25 p-5 flex items-center justify-between hover:from-amber-100 hover:to-amber-50 transition-all duration-300 border-b border-gray-200 group"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-amber-600 rounded-full"></div>
-                  <span className="text-lg font-semibold text-gray-900">M.Tech Position Requirements</span>
-                </div>
-                {selectedPosition === 'mtech' ? 
-                  <ChevronUp size={20} className="text-amber-600 transform group-hover:scale-110 transition-transform" /> : 
-                  <ChevronDown size={20} className="text-amber-600 transform group-hover:scale-110 transition-transform" />
-                }
-              </button>
-              
-              {selectedPosition === 'mtech' && (
-                <div className="p-6 bg-white animate-fadeIn">
-                  <div className="space-y-5">
-                    {/* Requirements List */}
-                    <div className="space-y-3">
-                      {getRequirementsForPosition('mtech').map((req, i) => (
-                        <div key={i} className="flex gap-4 items-start bg-white p-4 rounded-lg border border-gray-100 hover:border-amber-200 transition-colors duration-200">
-                          <span className="flex-shrink-0 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-semibold mt-0.5 shadow-sm">
-                            ✓
-                          </span>
-                          <span className="flex-1 text-gray-700 text-base leading-relaxed">{req}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Application Options */}
-                    <div className="mt-6 pt-6 border-t border-gray-200">
-                      <h4 className="text-lg font-semibold text-gray-900 mb-4">How to Apply</h4>
-                      
-                      {/* Application Link Button */}
-                      {data.fundingInfo.mtech_application_link && (
-                        <a
-                          href={data.fundingInfo.mtech_application_link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-600 text-white font-semibold rounded-lg hover:bg-amber-700 transition-all duration-300 shadow-sm hover:shadow-md mb-4"
-                        >
-                          <ExternalLink size={18} />
-                          Apply for M.Tech Position
-                        </a>
-                      )}
-
-                      {/* Email Template */}
-                      {data.fundingInfo.mtech_email_template && (
-                        <div className="bg-purple-50 p-4 rounded-lg border border-purple-200 mt-4">
-                          <div className="flex items-start gap-3">
-                            <Mail size={18} className="text-purple-600 mt-0.5 flex-shrink-0" />
-                            <p className="text-gray-700 text-base leading-relaxed">
-                              {data.fundingInfo.mtech_email_template.replace('{faculty_email}', facultyEmail)}
-                            </p>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Default Contact Info */}
-                      {!data.fundingInfo.mtech_application_link && !data.fundingInfo.mtech_email_template && (
-                        <div className="space-y-4">
-                          <a
-                            href={`mailto:${facultyEmail}?subject=M.Tech Position Application`}
-                            className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-600 text-white font-semibold rounded-lg hover:bg-amber-700 transition-all duration-300 shadow-sm hover:shadow-md"
-                          >
-                            <Mail size={18} />
-                            Contact via Email
-                          </a>
-
-                          {data.fundingInfo.note && (
-                            <div className="bg-amber-50 p-4 rounded-lg border border-amber-200">
-                              <p className="text-gray-700 text-base leading-relaxed">
-                                <strong className="text-amber-700">Application Instructions:</strong> {data.fundingInfo.note}
-                              </p>
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* General Requirements */}
-            {getRequirementsForPosition('').length > 0 && (
-              <div className="bg-gradient-to-br from-gray-50 to-gray-25 rounded-xl p-6 border border-gray-200 shadow-sm">
-                <h4 className="text-lg font-semibold text-gray-900 mb-4">General Requirements</h4>
+              <div className="p-4">
                 <div className="space-y-3">
-                  {getRequirementsForPosition('').map((req, i) => (
-                    <div key={i} className="flex gap-4 items-start bg-white p-4 rounded-lg border border-gray-100 hover:border-gray-200 transition-colors duration-200">
-                      <span className="flex-shrink-0 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-semibold mt-0.5 shadow-sm">
-                        ✓
-                      </span>
-                      <span className="flex-1 text-gray-700 text-base leading-relaxed">{req}</span>
+                  {/* PhD Position */}
+                  <div className="border border-purple-200 rounded-md p-3">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                        <span className="font-semibold text-gray-900 text-sm">PhD Positions</span>
+                      </div>
+                      {fundingInfo.phdPositions && (
+                        <span className="font-bold text-purple-700">
+                          {fundingInfo.phdPositions}
+                        </span>
+                      )}
                     </div>
-                  ))}
+                    {fundingInfo.phd_application_link && (
+                      <a
+                        href={fundingInfo.phd_application_link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 w-full justify-center px-3 py-2 bg-purple-600 text-white text-xs font-medium rounded hover:bg-purple-700 transition-colors"
+                      >
+                        <ExternalLink className="h-3 w-3" />
+                        Apply
+                      </a>
+                    )}
+                  </div>
+
+                  {/* M.Tech Position */}
+                  <div className="border border-amber-200 rounded-md p-3">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-amber-600 rounded-full"></div>
+                        <span className="font-semibold text-gray-900 text-sm">M.Tech Positions</span>
+                      </div>
+                      {fundingInfo.mtechPositions && (
+                        <span className="font-bold text-amber-700">
+                          {fundingInfo.mtechPositions}
+                        </span>
+                      )}
+                    </div>
+                    {fundingInfo.mtech_application_link && (
+                      <a
+                        href={fundingInfo.mtech_application_link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 w-full justify-center px-3 py-2 bg-amber-600 text-white text-xs font-medium rounded hover:bg-amber-700 transition-colors"
+                      >
+                        <ExternalLink className="h-3 w-3" />
+                        Apply
+                      </a>
+                    )}
+                  </div>
+                </div>
+
+                {/* Application Note */}
+                {fundingInfo.note && (
+                  <div className="mt-3 p-3 bg-blue-50 rounded-md border border-blue-200">
+                    <p className="text-gray-700 text-xs">{fundingInfo.note}</p>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Requirements Card */}
+            <div className="bg-white rounded-lg shadow border border-gray-200">
+              <div className="p-4 border-b border-gray-200">
+                <div className="flex items-center gap-2">
+                  <Award className="h-5 w-5 text-gray-600" />
+                  <h2 className="font-bold text-gray-900">Requirements</h2>
                 </div>
               </div>
-            )}
+
+              <div className="p-4">
+                <div className="space-y-3">
+                  {/* Requirements Accordions */}
+                  <div className="border border-gray-300 rounded-md overflow-hidden">
+                    <button
+                      onClick={() => setSelectedPosition(selectedPosition === 'phd' ? null : 'phd')}
+                      className="w-full p-3 bg-gray-50 flex items-center justify-between hover:bg-gray-100 transition-colors"
+                    >
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                        <span className="font-medium text-gray-900 text-sm">PhD Requirements</span>
+                      </div>
+                      <ChevronDown className={`h-4 w-4 text-gray-600 transition-transform ${selectedPosition === 'phd' ? 'rotate-180' : ''}`} />
+                    </button>
+                    
+                    {selectedPosition === 'phd' && (
+                      <div className="p-3 bg-white border-t border-gray-300">
+                        <div className="space-y-2">
+                          {getRequirementsForPosition('phd').map((req, i) => (
+                            <div key={i} className="flex items-start gap-2">
+                              <span className="w-4 h-4 bg-green-500 text-white rounded-full flex items-center justify-center text-xs mt-0.5 flex-shrink-0">
+                                ✓
+                              </span>
+                              <span className="text-gray-700 text-xs">{req}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="border border-gray-300 rounded-md overflow-hidden">
+                    <button
+                      onClick={() => setSelectedPosition(selectedPosition === 'mtech' ? null : 'mtech')}
+                      className="w-full p-3 bg-gray-50 flex items-center justify-between hover:bg-gray-100 transition-colors"
+                    >
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-amber-600 rounded-full"></div>
+                        <span className="font-medium text-gray-900 text-sm">M.Tech Requirements</span>
+                      </div>
+                      <ChevronDown className={`h-4 w-4 text-gray-600 transition-transform ${selectedPosition === 'mtech' ? 'rotate-180' : ''}`} />
+                    </button>
+                    
+                    {selectedPosition === 'mtech' && (
+                      <div className="p-3 bg-white border-t border-gray-300">
+                        <div className="space-y-2">
+                          {getRequirementsForPosition('mtech').map((req, i) => (
+                            <div key={i} className="flex items-start gap-2">
+                              <span className="w-4 h-4 bg-green-500 text-white rounded-full flex items-center justify-center text-xs mt-0.5 flex-shrink-0">
+                                ✓
+                              </span>
+                              <span className="text-gray-700 text-xs">{req}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* General Requirements */}
+                  {getRequirementsForPosition('').length > 0 && (
+                    <div className="bg-gray-50 rounded-md p-3 border border-gray-200">
+                      <h4 className="font-medium text-gray-900 text-sm mb-2">General Requirements</h4>
+                      <div className="space-y-2">
+                        {getRequirementsForPosition('').map((req, i) => (
+                          <div key={i} className="flex items-start gap-2">
+                            <span className="w-4 h-4 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs mt-0.5 flex-shrink-0">
+                              •
+                            </span>
+                            <span className="text-gray-700 text-xs">{req}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Card */}
+            <div className="bg-gradient-to-r from-purple-600 to-amber-600 rounded-lg p-4 text-white shadow">
+              <div className="flex items-center gap-2 mb-2">
+                <Mail className="h-4 w-4" />
+                <h3 className="font-bold text-sm">Contact for Research</h3>
+              </div>
+              
+              {(fundingInfo.phd_email_template || fundingInfo.mtech_email_template) ? (
+                <div className="space-y-2">
+                  {fundingInfo.phd_email_template && (
+                    <span>
+                  <p className='font-semibold text-sm'>Phd:</p>
+                      <p className="text-xs">
+                      {fundingInfo.phd_email_template.replace('{faculty_email}', facultyEmail)}
+                    </p></span>
+                    
+                    // </div>
+                  )}
+                  {fundingInfo.mtech_email_template && (
+                    <span>
+                  <p className='font-semibold text-sm'>Mtech:</p>
+                     <span> <p className="text-xs">
+                      {fundingInfo.mtech_email_template.replace('{faculty_email}', facultyEmail)}
+                    </p></span>
+                    </span>
+                    
+                  )}
+                </div>
+              ) : (
+                <a
+                  href={`mailto:${facultyEmail}?subject=Research Position Inquiry`}
+                  className="inline-flex items-center gap-1 w-full justify-center px-3 py-2 bg-white text-gray-800 text-xs font-medium rounded hover:bg-gray-100 transition-colors mt-2"
+                >
+                  <Mail className="h-3 w-3" />
+                  Email Inquiry
+                </a>
+              )}
+            </div>
           </div>
         </div>
-      </section>
+      </div>
 
       <style jsx>{`
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(-10px); }
+          from { opacity: 0; transform: translateY(-5px); }
           to { opacity: 1; transform: translateY(0); }
         }
         .animate-fadeIn {
-          animation: fadeIn 0.3s ease-out;
+          animation: fadeIn 0.2s ease-out;
         }
       `}</style>
     </div>

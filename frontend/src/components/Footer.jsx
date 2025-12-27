@@ -1,94 +1,189 @@
-/**
- * Footer Component
- * 
- * Displays site footer with quick links, contact information,
- * and copyright notice.
- * 
- * @module components/Footer
- */
-
 import React from 'react';
+import { Mail, Phone, MapPin, ExternalLink, Building, GraduationCap } from 'lucide-react';
 
-/**
- * Footer component
- * 
- * @param {Object} props
- * @param {Function} props.setActiveTab - Function to change active tab
- * @returns {JSX.Element}
- */
-// Footer.jsx
-function Footer({ setActiveTab }) {
-  const handleNavigation = (tab) => {
+function Footer({ setActiveTab, facultyData = {} }) {
+  const professor = facultyData?.personalInfo || {};
+  
+  const handleTabClick = (tab) => {
     setActiveTab(tab);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Extract only essential info
+  const facultyName = professor.name || 'Faculty Member';
+  const facultyEmail = professor.email || '';
+  const facultyDept = professor.department || '';
+  const facultyOffice = professor.office || '';
+
   return (
-    <footer className="relative bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900 text-white mt-auto overflow-hidden">
-      {/* Decorative background */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-amber-500 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-600 rounded-full blur-3xl"></div>
-      </div>
-      
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          {/* About */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-500 pb-2">
-              IIT Dharwad
-            </h3>
-            <div className="h-1 w-16 bg-gradient-to-r from-amber-400 to-transparent rounded-full mb-3"></div>
-            <p className="text-purple-100 leading-relaxed text-sm">
-              Indian Institute of Technology Dharwad
-            </p>
-          </div>
+    <footer className="bg-gradient-to-br from-purple-900 via-gray-900 to-purple-900 text-white border-t border-gray-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           
-          {/* Quick Links */}
+          {/* Institute Information */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-500 pb-2">
-              Quick Links
-            </h3>
-            <div className="h-1 w-16 bg-gradient-to-r from-amber-400 to-transparent rounded-full mb-3"></div>
-            <div className="space-y-2 flex flex-col">
-              <a href="https://www.iitdh.ac.in" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 text-purple-100 hover:text-amber-300 transition-all text-sm font-medium duration-300">
-                <span className="w-0 group-hover:w-2 h-0.5 bg-amber-400 transition-all duration-300"></span>
-                <span className="group-hover:translate-x-1 transition-transform duration-300">IIT Dharwad Website</span>
-              </a>
-              <button onClick={() => handleNavigation('students')} className="group flex items-center gap-2 text-left text-purple-100 hover:text-amber-300 transition-all text-sm font-medium duration-300">
-                <span className="w-0 group-hover:w-2 h-0.5 bg-amber-400 transition-all duration-300"></span>
-                <span className="group-hover:translate-x-1 transition-transform duration-300">Students</span>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center">
+                <Building className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <h3 className="font-bold text-white text-lg">IIT Dharwad</h3>
+                <p className="text-gray-400 text-sm">Institute of National Importance</p>
+              </div>
+            </div>
+            
+            <div className="space-y-2 text-sm text-gray-400">
+              <div className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" />
+                <span> Dharwad, Karnataka 580011</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Faculty Quick Access */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <GraduationCap className="w-5 h-5 text-amber-500" />
+              <h4 className="font-bold text-white">Faculty Access</h4>
+            </div>
+            
+            <div className="space-y-2">
+              <button
+                onClick={() => handleTabClick('biography')}
+                className="block w-full text-left text-gray-400 hover:text-white transition-colors text-sm py-1"
+              >
+                Biography & Experience
               </button>
-              <button onClick={() => handleNavigation('research')} className="group flex items-center gap-2 text-left text-purple-100 hover:text-amber-300 transition-all text-sm font-medium duration-300">
-                <span className="w-0 group-hover:w-2 h-0.5 bg-amber-400 transition-all duration-300"></span>
-                <span className="group-hover:translate-x-1 transition-transform duration-300">Research</span>
+              
+              <button
+                onClick={() => handleTabClick('research')}
+                className="block w-full text-left text-gray-400 hover:text-white transition-colors text-sm py-1"
+              >
+                Research Areas
+              </button>
+              
+              <button
+                onClick={() => handleTabClick('publications')}
+                className="block w-full text-left text-gray-400 hover:text-white transition-colors text-sm py-1"
+              >
+                Publications
+              </button>
+              
+              <button
+                onClick={() => handleTabClick('students')}
+                className="block w-full text-left text-gray-400 hover:text-white transition-colors text-sm py-1"
+              >
+                Students & Openings
               </button>
             </div>
           </div>
-          
-          {/* Contact */}
+
+          {/* Faculty Contact */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-500 pb-2">
-              Contact
-            </h3>
-            <div className="h-1 w-16 bg-gradient-to-r from-amber-400 to-transparent rounded-full mb-3"></div>
-            <div className="space-y-3 text-sm text-purple-100">
-              <p className="font-medium leading-relaxed">IIT Dharwad, Karnataka, India</p>
-              <a href="mailto:pro@iitdh.ac.in" className="inline-block px-4 py-2 bg-amber-500 hover:bg-amber-400 text-white font-semibold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-                pro@iitdh.ac.in
+            <h4 className="font-bold text-white">Contact Faculty</h4>
+            
+            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-lg p-4 border border-gray-800">
+              <div className="mb-3">
+                <p className="font-medium text-white text-sm">{facultyName}</p>
+                {facultyDept && (
+                  <p className="text-gray-400 text-xs">{facultyDept}</p>
+                )}
+                {facultyOffice && (
+                  <p className="text-gray-500 text-xs mt-1">Office: {facultyOffice}</p>
+                )}
+              </div>
+              
+              {facultyEmail && (
+                <a
+                  href={`mailto:${facultyEmail}`}
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white rounded-lg text-sm font-medium transition-all duration-200"
+                >
+                  <Mail className="w-4 h-4" />
+                  <span>Email Professor</span>
+                </a>
+              )}
+            </div>
+          </div>
+
+          {/* Institute Links */}
+          <div className="space-y-4">
+            <h4 className="font-bold text-white">Institute Links</h4>
+            
+            <div className="space-y-2">
+              <a
+                href="https://www.iitdh.ac.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm"
+              >
+                <ExternalLink className="w-4 h-4" />
+                <span>Official Website</span>
+              </a>
+              
+              <a
+                href="https://www.iitdh.ac.in/academics"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-gray-400 hover:text-white transition-colors text-sm"
+              >
+                Academics
+              </a>
+              
+              <a
+                href="https://www.iitdh.ac.in/research"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-gray-400 hover:text-white transition-colors text-sm"
+              >
+                Research
+              </a>
+              
+              <a
+                href="https://www.iitdh.ac.in/admissions"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-gray-400 hover:text-white transition-colors text-sm"
+              >
+                Admissions
               </a>
             </div>
           </div>
         </div>
-        
-        {/* Bottom */}
-        <div className="border-t border-purple-700/50 pt-8 mt-8">
-          <p className="text-center text-purple-200 text-sm font-medium">
-            © 2025 IIT Dharwad. All rights reserved.
-          </p>
+
+        {/* Divider */}
+        <div className="my-8 h-px bg-gradient-to-r from-transparent via-gray-800 to-transparent"></div>
+
+        {/* Footer Bottom */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="text-sm text-gray-500">
+            <p>© {new Date().getFullYear()} Indian Institute of Technology Dharwad</p>
+            <p className="mt-1 text-gray-600 text-xs">This faculty profile is part of the official IIT Dharwad website</p>
+          </div>
+          
+          <div className="flex items-center gap-4 text-xs text-gray-600">
+            <a
+              href="https://www.iitdh.ac.in/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-amber-500 transition-colors"
+            >
+              Privacy Policy
+            </a>
+            <span>•</span>
+            <a
+              href="https://www.iitdh.ac.in/accessibility"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-amber-500 transition-colors"
+            >
+              Accessibility
+            </a>
+          </div>
         </div>
       </div>
     </footer>
   );
 }
+
 export default Footer;

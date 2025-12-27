@@ -1,57 +1,67 @@
-/**
- * Page Layout Component
- * 
- * Provides consistent layout structure for all pages.
- * Includes header, navigation, main content area, and footer.
- * 
- * @module components/Layout/PageLayout
- */
-
-import React from 'react';
+// [file name]: PageLayout.jsx (SIMPLIFIED)
+import React, { useState, useEffect, useRef } from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
 import Navigation from '../Navigation/Navigation';
 
-/**
- * Page layout wrapper component
- * 
- * @param {Object} props
- * @param {React.ReactNode} props.children - Page content
- * @param {string} props.activeTab - Currently active tab
- * @param {Function} props.onTabChange - Tab change handler
- * @param {Object} props.facultyData - Faculty data for professor name
- * @returns {JSX.Element}
- */
-// PageLayout.jsx
 const PageLayout = ({ children, activeTab, onTabChange, facultyData }) => {
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const mainRef = useRef(null);
+
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-purple-50 via-white to-amber-50/40 relative">
-      {/* Decorative background elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-amber-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style={{animationDelay: '1s'}}></div>
-        <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float" style={{animationDelay: '2s'}}></div>
-      </div>
-      
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50">
       <Header />
-      
-      <Navigation 
-        activeTab={activeTab} 
-        onTabChange={onTabChange}
-        facultyData={facultyData}
-      />
-      
-      <main className="relative flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div className="animate-slide-in-up">
-          {children}
+
+      <div className="flex pt-16">
+        {/* Desktop Sidebar - Fixed position, correctly offset from header */}
+        <div className="hidden lg:block">
+          <aside
+            className={`
+              fixed top-16 left-0
+              h-[calc(100vh-4rem)] /* Match viewport minus header */
+              transition-all duration-300 ease-in-out
+              z-30
+              ${isSidebarCollapsed ? 'w-20' : 'w-64'}
+            `}
+          >
+            <Navigation
+              activeTab={activeTab}
+              onTabChange={onTabChange}
+              facultyData={facultyData}
+              isCollapsed={isSidebarCollapsed}
+              toggleCollapse={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+            />
+          </aside>
+          
+          {/* Spacer to push main content right */}
+          <div 
+            className={`transition-all duration-300 ease-in-out ${
+              isSidebarCollapsed ? 'w-20' : 'w-64'
+            }`}
+          />
         </div>
-      </main>
+
+        {/* Main Content - Responsive padding */}
+        <main
+          ref={mainRef}
+          className={`
+            flex-1 min-h-[calc(100vh-4rem)]
+            pb-32
+            ${isSidebarCollapsed ? 'lg:ml-20' : 'lg:ml-64'}
+            transition-all duration-300 ease-in-out
+          `}
+        >
+          <div className="p-4 sm:p-6 lg:p-8">
+            {React.cloneElement(children, { facultyData })}
+          </div>
+        </main>
+      </div>
+
+      {/* Mobile Navigation is rendered by Navigation component itself */}
       
-      <Footer setActiveTab={onTabChange} />
+      <Footer setActiveTab={onTabChange} facultyData={facultyData} />
     </div>
   );
 };
-
-
 
 export default PageLayout;

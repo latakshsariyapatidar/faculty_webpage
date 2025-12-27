@@ -1,186 +1,271 @@
 /**
- * Home Page Component
- * 
- * Displays faculty member's profile information, contact details,
- * about section, research positions, and academic profile links.
- * 
- * @module pages/HomePage
+ * Home Page – Academic Faculty Profile
+ * Professional layout with working counting animation for statistics
  */
 
-import React from 'react';
-import { Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Mail, Phone, MapPin, ExternalLink, BookOpen, Award, Building, Globe, Users } from 'lucide-react';
 
-/**
- * Home page component
- * 
- * @param {Object} props
- * @param {Object} props.data - Complete faculty data object
- * @param {Object} props.data.personalInfo - Personal information
- * @param {Object} props.data.about - About section data
- * @returns {JSX.Element}
- */
-function HomePage({ data }) {
-  const { personalInfo, about } = data;
+// Fixed AnimatedCounter - WILL count from 0
+const AnimatedCounter = ({ value }) => {
+  const [count, setCount] = useState(0);
+  const v = parseInt(value) || 0;
+
+  useEffect(() => {
+    // Always reset to 0 when value changes
+    setCount(0);
+    
+    // Calculate animation timing
+    const duration = 2000; // 2 seconds
+    const frameRate = 60; // 60fps
+    const totalFrames = Math.round(duration / (1000 / frameRate));
+    const increment = v / totalFrames;
+    
+    let currentFrame = 0;
+    
+    const counter = setInterval(() => {
+      currentFrame++;
+      const newCount = Math.min(v, Math.floor(increment * currentFrame));
+      setCount(newCount);
+      
+      if (currentFrame >= totalFrames) {
+        setCount(v);
+        clearInterval(counter);
+      }
+    }, 1000 / frameRate);
+    
+    return () => clearInterval(counter);
+  }, [v]); // Re-run when value changes
+
+  return <span>{count}</span>;
+};
+
+function HomePage({ facultyData }) {
+  if (!facultyData) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <p className="text-gray-600">Loading faculty profile...</p>
+      </div>
+    );
+  }
+
+  const personalInfo = facultyData.personalInfo || {};
+  const about = facultyData.about || {};
+  const statistics = facultyData.statistics || [];
 
   return (
-    <div className="space-y-8">
-      {/* Profile Section */}
-      <div className="glass-effect rounded-3xl border border-purple-200/50 card-shadow hover:card-shadow-hover transition-all duration-500 p-8 transform hover:scale-[1.01]">
-        <div className="flex flex-col md:flex-row gap-8">
-          {/* Profile Image */}
-          <div className="shrink-0 relative group">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-amber-400 rounded-3xl blur-xl opacity-40 group-hover:opacity-60 transition-opacity duration-500 animate-pulse-glow"></div>
-            <img 
-              src={personalInfo.profileImage} 
-              alt={personalInfo.name} 
-              className="relative w-48 h-48 rounded-3xl object-cover border-4 border-white shadow-2xl ring-4 ring-purple-400 ring-opacity-30 transform transition-transform duration-500 group-hover:scale-105 group-hover:rotate-2"
-            />
-          </div>
-
-          {/* Profile Info */}
-          <div className="flex-1">
-            <h1 className="text-4xl font-bold text-purple-900 mb-2">
-              {personalInfo.name}
-            </h1>
-            <p className="text-xl text-amber-600 font-bold mb-2">
-              {personalInfo.designation}
-            </p>
-            <p className="text-gray-600 font-medium mb-6 text-lg">
-              {personalInfo.department}
-            </p>
-            
-            {/* Contact Information */}
-            <div className="space-y-3 mb-6">
-              <a 
-                href={`mailto:${personalInfo.email}`}
-                className="flex items-center gap-3 text-gray-700 hover:text-purple-700 transition-all duration-300 bg-gradient-to-r from-purple-50 to-purple-100 px-5 py-3 rounded-xl border border-purple-200 hover:border-purple-400 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 group"
-              >
-                <div className="p-2 bg-purple-500 rounded-lg shadow-md group-hover:bg-purple-600 transition-colors">
-                  <Mail size={18} className="text-white" />
-                </div>
-                <span className="text-sm font-medium">{personalInfo.email}</span>
-              </a>
-              
-              <div className="flex items-center gap-3 text-gray-700 bg-gradient-to-r from-amber-50 to-amber-100 px-5 py-3 rounded-xl border border-amber-200 shadow-sm group">
-                <div className="p-2 bg-amber-500 rounded-lg shadow-md">
-                  <Phone size={18} className="text-white" />
-                </div>
-                <span className="text-sm font-medium">{personalInfo.phone}</span>
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
+      <div className=" mx-auto px-4 sm:px-6 lg:px-8 py-7">
+        {/* Top Profile Section */}
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-8 border border-gray-200">
+          <div className="md:flex">
+            {/* Left Column - Photo */}
+            <div className="md:w-1/3 lg:w-1/4 p-8 flex flex-col items-center justify-center bg-gradient-to-br from-purple-50 to-amber-50">
+              <div className="w-4/5 h-7/9 rounded-2 overflow-hidden border-4 border-white shadow-lg mb-4">
+                {personalInfo.profileImage ? (
+                  <img
+                    src={personalInfo.profileImage}
+                    alt={personalInfo.name}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-r from-purple-600 to-amber-600 flex items-center justify-center">
+                    <span className="text-4xl font-bold text-white">
+                      {personalInfo.name?.charAt(0) || 'P'}
+                    </span>
+                  </div>
+                )}
               </div>
               
-              <div className="flex items-center gap-3 text-gray-700 bg-gradient-to-r from-gray-50 to-purple-50 px-5 py-3 rounded-xl border border-gray-300 shadow-sm group">
-                <div className="p-2 bg-purple-600 rounded-lg shadow-md">
-                  <MapPin size={18} className="text-white" />
-                </div>
-                <span className="text-sm font-medium">{personalInfo.office}</span>
+              <h1 className="text-2xl font-bold text-gray-900 text-center mb-1">
+                {personalInfo.name}
+              </h1>
+              
+              <div className="text-center mb-4">
+                <p className="text-purple-700 font-medium">{personalInfo.designation}</p>
+                {personalInfo.department && (
+                  <p className="text-gray-600 text-sm">{personalInfo.department}</p>
+                )}
               </div>
             </div>
 
-            {/* Address */}
-            <div className="relative overflow-hidden bg-gradient-to-br from-purple-50 via-purple-100 to-amber-50 p-5 rounded-xl border-2 border-purple-300 shadow-md">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-amber-300 rounded-full blur-2xl opacity-20"></div>
-              <p className="relative text-sm text-gray-700 font-medium leading-relaxed">{personalInfo.address}</p>
+            {/* Right Column - Contact and Stats */}
+            <div className="md:w-2/3 lg:w-3/4 p-8">
+              <div className="mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">Contact Information</h2>
+                
+                <div className="grid md:grid-cols-2 gap-4 mb-4">
+                  {personalInfo.email && (
+                    <div className="flex items-center gap-3">
+                      <Mail className="h-5 w-5 text-purple-600" />
+                      <div>
+                        <p className="text-sm text-gray-500">Email</p>
+                        <a 
+                          href={`mailto:${personalInfo.email}`}
+                          className="text-purple-700 font-medium hover:text-purple-800"
+                        >
+                          {personalInfo.email}
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {personalInfo.phone && (
+                    <div className="flex items-center gap-3">
+                      <Phone className="h-5 w-5 text-amber-600" />
+                      <div>
+                        <p className="text-sm text-gray-500">Phone</p>
+                        <a 
+                          href={`tel:${personalInfo.phone}`}
+                          className="text-amber-700 font-medium hover:text-amber-800"
+                        >
+                          {personalInfo.phone}
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {personalInfo.office && (
+                    <div className="flex items-center gap-3">
+                      <Building className="h-5 w-5 text-gray-600" />
+                      <div>
+                        <p className="text-sm text-gray-500">Office</p>
+                        <p className="text-gray-800 font-medium">{personalInfo.office}</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                
+                {personalInfo.address && (
+                  <div className="mt-4 flex items-start gap-3">
+                    <MapPin className="h-5 w-5 text-gray-600 mt-1" />
+                    <div>
+                      <p className="text-sm text-gray-500">Address</p>
+                      <p className="text-gray-800 font-medium whitespace-pre-line">{personalInfo.address}</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Statistics Section - Fixed Animation */}
+              {statistics.length > 0 && (
+                <div className="border-t border-gray-200 pt-8">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-6">Research Statistics</h3>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                    {statistics.map((stat, index) => (
+                      <div 
+                        key={index} 
+                        className="bg-gradient-to-b from-gray-50 to-white rounded-lg p-4 border border-gray-200 text-center hover:border-purple-300 hover:shadow-md transition-all duration-300"
+                      >
+                        <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-amber-600 mb-2">
+                          {/* This WILL count from 0 now */}
+                          <AnimatedCounter value={stat.value} />
+                        </div>
+                        <div className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          {stat.label}
+                        </div>
+                        <div className="text-sm font-semibold text-gray-500 tracking-wide">
+                          {stat.description}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
+        </div>
+
+        {/* About Section */}
+        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-8 mb-8">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-purple-600 to-amber-600 flex items-center justify-center">
+              <BookOpen className="h-6 w-6 text-white" />
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900">About</h2>
+              <p className="text-gray-600">Professional Biography</p>
+            </div>
+          </div>
+          
+          {about.bio ? (
+            <div className="text-gray-700 leading-relaxed">
+              {about.bio.split('\n').filter(p => p.trim()).map((paragraph, idx) => (
+                <p key={idx} className="mb-4">{paragraph}</p>
+              ))}
+            </div>
+          ) : (
+            <p className="text-gray-500 italic">No biography information available.</p>
+          )}
+        </div>
+
+        {/* Bottom Sections */}
+        <div className="grid md:grid-cols-2 gap-8">
+          {about.links && about.links.length > 0 && (
+            <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <Globe className="h-5 w-5 text-purple-600" />
+                Academic Profiles
+              </h3>
+              <div className="space-y-3">
+                {about.links.map((link, idx) => (
+                  <a
+                    key={idx}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-3 rounded-lg border border-gray-200 hover:border-purple-300 hover:bg-purple-50 transition-colors"
+                  >
+                    <span className="font-medium text-gray-800">{link.name}</span>
+                    <ExternalLink className="h-4 w-4 text-gray-400" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {about.researchPositions && about.researchPositions.length > 0 && (
+            <div className="bg-gradient-to-r from-amber-50 to-amber-100 rounded-xl border border-amber-200 p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 flex items-center justify-center">
+                  <Users className="h-5 w-5 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-gray-800">Research Positions Available</h3>
+                  <p className="text-sm text-amber-700">{about.researchPositions.length} position(s)</p>
+                </div>
+              </div>
+              
+              <div className="space-y-3">
+                {about.researchPositions.map((position, idx) => (
+                  <div key={idx} className="bg-white rounded-lg p-4 border border-amber-200">
+                    <p className="font-semibold text-gray-800">{position.position}</p>
+                    {position.application_link ? (
+                      <a 
+                        href={position.application_link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-sm text-amber-600 hover:text-amber-700 font-medium mt-2"
+                      >
+                        Apply <ExternalLink className="h-3 w-3" />
+                      </a>
+                    ) : personalInfo.email ? (
+                      <a 
+                        href={`mailto:${personalInfo.email}`}
+                        className="inline-flex items-center gap-1 text-sm text-amber-600 hover:text-amber-700 font-medium mt-2"
+                      >
+                        Email to apply <Mail className="h-3 w-3" />
+                      </a>
+                    ) : null}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
-
-      {/* About Me */}
-      <section>
-        <div className="flex items-center gap-3 mb-6">
-          <div className="h-1 w-12 bg-gradient-to-r from-purple-600 to-amber-400 rounded-full"></div>
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-900 to-purple-700 bg-clip-text text-transparent">About</h2>
-          <div className="h-1 flex-1 bg-gradient-to-r from-amber-400 to-transparent rounded-full"></div>
-        </div>
-        <div className="glass-effect rounded-3xl border border-purple-200/50 card-shadow p-8 hover:card-shadow-hover transition-all duration-500">
-          <p className="text-gray-700 leading-relaxed text-lg">{about.bio}</p>
-        </div>
-      </section>
-
-      {/* Research Positions */}
-      <section>
-        <div className="flex items-center gap-3 mb-6">
-          <div className="h-1 w-12 bg-gradient-to-r from-purple-600 to-amber-400 rounded-full"></div>
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-900 to-purple-700 bg-clip-text text-transparent">Current Research Positions</h2>
-          <div className="h-1 flex-1 bg-gradient-to-r from-amber-400 to-transparent rounded-full"></div>
-        </div>
-        <div className="glass-effect rounded-3xl border border-purple-200/50 card-shadow p-8">
-          <ul className="space-y-4">
-            {about.researchPositions.map((pos, i) => (
-              <li key={i} className="relative overflow-hidden bg-gradient-to-br from-purple-50 via-white to-amber-50 p-6 rounded-2xl border-2 border-purple-200 hover:border-amber-400 transition-all duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-1 group">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-amber-300 to-purple-300 rounded-full blur-3xl opacity-20 group-hover:opacity-30 transition-opacity"></div>
-                <div className="relative flex gap-4 items-start">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-lg">
-                    <span className="text-white font-bold text-sm">{i + 1}</span>
-                  </div>
-                  <div className="flex-1">
-                    <span className="text-gray-800 font-semibold leading-relaxed">
-                      {typeof pos === 'object' ? pos.position : pos}
-                    </span>
-                    
-                    {/* Application Link or Email Template */}
-                    {(typeof pos === 'object' && (pos.application_link || pos.email_template)) && (
-                      <div className="mt-3">
-                        {pos.application_link ? (
-                          <a
-                            href={pos.application_link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-block px-5 py-2.5 bg-gradient-to-r from-purple-600 to-purple-700 text-white text-sm font-bold rounded-lg hover:from-purple-700 hover:to-purple-800 transition-all duration-200 shadow-md hover:shadow-lg"
-                          >
-                            Apply Now →
-                          </a>
-                        ) : pos.email_template ? (
-                          <p className="text-sm text-gray-700 italic mt-2 bg-amber-100 p-4 rounded-lg border-l-4 border-amber-500 shadow-sm">
-                            📧 {pos.email_template.replace('{faculty_email}', personalInfo.email)}
-                          </p>
-                        ) : null}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* Academic Links */}
-      <section>
-        <div className="flex items-center gap-3 mb-6">
-          <div className="h-1 w-12 bg-gradient-to-r from-purple-600 to-amber-400 rounded-full"></div>
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-900 to-purple-700 bg-clip-text text-transparent">Academic Profiles</h2>
-          <div className="h-1 flex-1 bg-gradient-to-r from-amber-400 to-transparent rounded-full"></div>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-          {about.links.map((link, i) => (
-            <a 
-              key={i} 
-              href={link.url} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="group relative overflow-hidden flex items-center justify-between glass-effect p-6 rounded-2xl border-2 border-purple-200 hover:border-amber-400 transition-all duration-300 card-shadow hover:card-shadow-hover transform hover:-translate-y-2 hover:scale-105"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-amber-400 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-              <span className="relative font-bold text-purple-900 group-hover:text-purple-700 transition-colors">{link.name}</span>
-              <div className="relative p-2 rounded-full bg-amber-100 group-hover:bg-amber-400 transition-colors duration-300">
-                <ExternalLink size={18} className="text-amber-600 group-hover:text-white transition-colors" />
-              </div>
-            </a>
-          ))}
-        </div>
-      </section>
-
-      {/* Note */}
-      {about.note && (
-        <div className="relative overflow-hidden bg-gradient-to-br from-amber-50 via-amber-100 to-orange-100 border-l-4 border-amber-500 rounded-2xl p-6 shadow-xl">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-amber-300 rounded-full blur-3xl opacity-30"></div>
-          <p className="relative text-sm text-gray-800 italic font-medium leading-relaxed">{about.note}</p>
-        </div>
-      )}
     </div>
   );
 }
-
 
 export default HomePage;

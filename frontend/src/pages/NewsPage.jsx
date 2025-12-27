@@ -1,322 +1,432 @@
 /**
- * News Page Component
- * 
- * Displays faculty member's news and announcements in a clean list format.
- * Each news item shows title and brief description, with modal for full details.
- * 
- * @module pages/NewsPage
+ * News Page Component - Enhanced Appearance
+ * Modern, elegant design with smooth auto-scrolling
  */
 
-import React, { useState, useEffect } from 'react';
-import { Newspaper, ChevronUp, ChevronDown, Calendar, X, ExternalLink } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Newspaper, Calendar, X, ChevronRight, ChevronLeft, Pause, Play, ExternalLink } from 'lucide-react';
 
-/**
- * News page component
- * 
- * @param {Object} props
- * @param {Array<Object>} props.data - Array of news items
- * @returns {JSX.Element}
- */
 function NewsPage({ data }) {
-  const [isAutoPlaying, setIsAutoPlaying] = useState(false);
   const [selectedNews, setSelectedNews] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoScroll, setIsAutoScroll] = useState(true);
+  const [isHovering, setIsHovering] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const autoScrollRef = useRef(null);
   
-  const itemsToShow = 5; // Show 6 news items at once
-
-  // Auto-scroll functionality
+  const itemsPerPage = 4;
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+  
+  // Get current page news
+  const getCurrentNews = () => {
+    const start = currentIndex * itemsPerPage;
+    const end = start + itemsPerPage;
+    return data.slice(start, end);
+  };
+  
+  // Smooth transition function
+  const transitionToPage = (newIndex) => {
+    setIsTransitioning(true);
+    setCurrentIndex(newIndex);
+    
+    // Reset transition state after animation
+    setTimeout(() => {
+      setIsTransitioning(false);
+    }, 10);
+  };
+  
+  // Auto scroll functionality - Starts automatically
   useEffect(() => {
-    if (!data || data.length <= itemsToShow || !isAutoPlaying) return;
-
-    const ticker = document.querySelector('.animate-scroll');
-    if (!ticker) return;
-
-    let animation;
-    let isScrolling = true;
-
-    const startScrolling = () => {
-      const itemHeight = 100 / itemsToShow;
-      animation = ticker.animate(
-        [
-          { transform: 'translateY(0)' },
-          { transform: `translateY(-${itemHeight}%)` }
-        ],
-        {
-          duration: 3000, // Slower scroll for readability
-          easing: 'ease-in-out',
-          fill: 'forwards'
-        }
-      );
-
-      animation.onfinish = () => {
-        if (data.length > itemsToShow) {
-          setTimeout(() => {
-            if (isScrolling && isAutoPlaying) {
-              const firstItem = ticker.firstElementChild;
-              ticker.appendChild(firstItem);
-              ticker.style.transform = 'translateY(0)';
-              startScrolling();
-            }
-          }, 3000);
-        }
-      };
-    };
-
-    if (isAutoPlaying) {
-      startScrolling();
-    }
-
+    if (!isAutoScroll || isHovering) return;
+    
+    autoScrollRef.current = setInterval(() => {
+      const nextIndex = (currentIndex + 1) % totalPages;
+      transitionToPage(nextIndex);
+    }, 2000); // 2 seconds per page
+    
     return () => {
-      isScrolling = false;
-      if (animation) {
-        animation.cancel();
+      if (autoScrollRef.current) {
+        clearInterval(autoScrollRef.current);
       }
     };
-  }, [data, isAutoPlaying, itemsToShow]);
-
-  // Handle news item click
-  const handleNewsClick = (news) => {
-    // If it's just a string without additional info, don't open modal
-    if (typeof news === 'string' || (!news.image && !news.description && news.title)) {
-      return;
-    }
-    
-    setSelectedNews(news);
-    setIsModalOpen(true);
-    setIsAutoPlaying(false); // Pause auto-scroll when modal opens
+  }, [isAutoScroll, isHovering, totalPages, currentIndex]);
+  
+  const handleNext = () => {
+    const nextIndex = (currentIndex + 1) % totalPages;
+    transitionToPage(nextIndex);
+  };
+  
+  const handlePrev = () => {
+    const prevIndex = (currentIndex - 1 + totalPages) % totalPages;
+    transitionToPage(prevIndex);
+  };
+  
+  const goToPage = (index) => {
+    if (index === currentIndex) return;
+    transitionToPage(index);
+  };
+  
+  const toggleAutoScroll = () => {
+    setIsAutoScroll(!isAutoScroll);
   };
 
-  const handleManualScroll = (direction) => {
-    setIsAutoPlaying(false);
-    const ticker = document.querySelector('.animate-scroll');
-    if (!ticker) return;
-
-    const itemHeight = 100 / itemsToShow;
-
-    if (direction === 'up') {
-      const lastItem = ticker.lastElementChild;
-      ticker.insertBefore(lastItem, ticker.firstElementChild);
-      ticker.style.transform = `translateY(${itemHeight}%)`;
-      setTimeout(() => {
-        ticker.style.transition = 'transform 0.5s ease-in-out';
-        ticker.style.transform = 'translateY(0)';
-      }, 50);
-    } else {
-      ticker.style.transition = 'transform 0.5s ease-in-out';
-      ticker.style.transform = `translateY(-${itemHeight}%)`;
-      setTimeout(() => {
-        const firstItem = ticker.firstElementChild;
-        ticker.appendChild(firstItem);
-        ticker.style.transition = 'none';
-        ticker.style.transform = 'translateY(0)';
-      }, 500);
-    }
-  };
-
-  const toggleAutoPlay = () => {
-    setIsAutoPlaying(!isAutoPlaying);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedNews(null);
-  };
-
-  // Handle case when no news data is available
   if (!data || data.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[400px] bg-white rounded-xl p-8">
-        <div className="text-gray-300 mb-4">
-          <Newspaper size={64} />
+      <div className="min-h-screen bg-gradient-to-br from-white to-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="relative inline-block mb-4">
+            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-amber-50 to-purple-50 flex items-center justify-center mx-auto shadow-sm">
+              <Newspaper className="w-10 h-10 text-amber-500" />
+            </div>
+            <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center shadow-md">
+              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              </svg>
+            </div>
+          </div>
+          <h3 className="text-xl font-semibold text-gray-900 mb-2">No News Available</h3>
+          <p className="text-gray-600 text-sm">Check back later for updates.</p>
         </div>
-        <h3 className="text-xl font-semibold text-gray-700 mb-2">No News Available</h3>
-        <p className="text-gray-500">Check back later for updates and announcements.</p>
       </div>
     );
   }
 
+  const currentNews = getCurrentNews();
+
   return (
-    <>
-      <div className="w-full space-y-8">
-        {/* Header */}
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900 mb-3">News & Announcements</h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Latest updates, research opportunities, and announcements from the department
-          </p>
-        </div>
-
-        {/* News Container */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm">
-          {/* News List */}
-          <div className="relative h-[480px] overflow-hidden">
-            <div className="animate-scroll h-full">
-              {data.map((news, index) => {
-                const isStringNews = typeof news === 'string';
-                const hasDetails = !isStringNews && (news.image || news.description);
-                
-                return (
-                  <div 
-                    key={index}
-                    onClick={() => hasDetails && handleNewsClick(news)}
-                    className={`flex items-start gap-4 px-8 py-5 h-1/${itemsToShow} border-b border-gray-100 last:border-b-0 transition-all duration-200 ${
-                      hasDetails ? 'cursor-pointer hover:bg-blue-50' : ''
-                    } ${hasDetails ? 'group' : ''}`}
-                  >
-                    {/* Date Badge */}
-                    {!isStringNews && news.date && (
-                      <div className="flex-shrink-0">
-                        <div className="bg-gray-100 rounded-lg px-3 py-1.5 text-center">
-                          <div className="text-xs text-gray-500 uppercase"></div>
-                          <div className="text-sm font-semibold text-gray-800">{news.date}</div>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* News Content */}
-                    <div className="flex-1 min-w-0">
-                      {/* Title */}
-                      <h3 className="text-lg font-semibold text-gray-900 mb-1.5 group-hover:text-blue-600 transition-colors">
-                        {isStringNews ? news : (news.title || 'Announcement')}
-                      </h3>
-                      
-                      {/* Brief Description (single line) */}
-                      <p className="text-gray-600 text-sm line-clamp-1">
-                        {isStringNews ? '' : (news.description || 'Click to view details...')}
-                      </p>
-                    </div>
-
-                    {/* Click Indicator */}
-                    {hasDetails && (
-                      <div className="flex-shrink-0 text-gray-400 group-hover:text-blue-500 transition-colors">
-                        <ExternalLink size={18} />
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Gradient overlays */}
-            <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-white to-transparent pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
-          </div>
-
-          {/* Controls */}
-          <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200 bg-gray-50/50">
-            <div className="text-sm text-gray-600">
-              <span className="font-medium">{Math.min(itemsToShow, data.length)}</span> of{' '}
-              <span className="font-medium">{data.length}</span> items
-              {isAutoPlaying && ' • Auto-scrolling'}
-            </div>
-
-            <div className="flex items-center gap-3">
-              <button
-                onClick={toggleAutoPlay}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  isAutoPlaying 
-                    ? 'bg-white-100 text-white-700 hover:bg-white-200' 
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                {isAutoPlaying ? '⏸ Pause' : '▶'}
-              </button>
-              
-              <div className="flex gap-1">
-                <button
-                  onClick={() => handleManualScroll('up')}
-                  className="p-2 rounded-lg bg-white border border-gray-300 hover:bg-gray-50 transition-colors"
-                  aria-label="Scroll up"
-                >
-                  <ChevronUp size={20} />
-                </button>
-                <button
-                  onClick={() => handleManualScroll('down')}
-                  className="p-2 rounded-lg bg-white border border-gray-300 hover:bg-gray-50 transition-colors"
-                  aria-label="Scroll down"
-                >
-                  <ChevronDown size={20} />
-                </button>
+    <div className="min-h-screen bg-gradient-to-br from-white to-gray-50">
+      {/* Enhanced Header */}
+      <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <div className="w-8 h-1 bg-gradient-to-r from-amber-500 to-purple-500 rounded-full"></div>
+                <span className="text-xs font-medium text-amber-700 uppercase tracking-wider">Latest Updates</span>
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Help Text */}
-        <p className="text-center text-sm text-gray-500">
-          Click on any news item with additional details to view complete information
-        </p>
-      </div>
-
-      {/* News Detail Modal */}
-      {isModalOpen && selectedNews && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div 
-            className="bg-white rounded-xl shadow-lg max-w-2xl w-full max-h-[90vh] overflow-hidden animate-fadeIn"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Modal Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200">
-              <div>
-                <h2 className="text-2xl font-bold text-gray-900">{selectedNews.title}</h2>
-                {selectedNews.date && (
-                  <div className="flex items-center gap-2 mt-2 text-gray-600">
-                    <Calendar size={16} />
-                    <span className="text-sm">Published: {selectedNews.date}</span>
+              <h1 className="text-2xl font-bold text-gray-900">News & Announcements</h1>
+              <div className="flex items-center gap-2 mt-2">
+                <div className="px-2.5 py-0.5 bg-gray-100 rounded-md text-sm text-gray-700">
+                  {data.length} announcement{data.length !== 1 ? 's' : ''}
+                </div>
+                <div className="px-2.5 py-0.5 bg-amber-50 rounded-md text-sm text-amber-800">
+                  Page {currentIndex + 1} of {totalPages}
+                </div>
+                {isAutoScroll && (
+                  <div className="px-2.5 py-0.5 bg-gradient-to-r from-amber-100 to-amber-50 rounded-md text-sm text-amber-800 border border-amber-200 animate-pulse">
+                    Auto-scrolling
                   </div>
                 )}
               </div>
-              <button
-                onClick={closeModal}
-                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                aria-label="Close"
-              >
-                <X size={24} />
-              </button>
             </div>
-
-            {/* Modal Content */}
-            <div className="p-6 overflow-y-auto max-h-[calc(90vh-200px)]">
-              {/* Image */}
-              {selectedNews.image && (
-                <div className="mb-6">
-                  <img 
-                    src={selectedNews.image} 
-                    alt={selectedNews.title}
-                    className="w-full h-64 object-cover rounded-lg"
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                    }}
-                  />
-                </div>
+            
+            {/* Enhanced Navigation Controls */}
+            <div className="flex items-center gap-3">
+              {/* Auto-scroll Toggle */}
+              <button
+                onClick={toggleAutoScroll}
+                className={`relative w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 shadow-sm ${isAutoScroll ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-amber-200' : 'bg-white border border-gray-300 text-gray-600 hover:border-amber-300 hover:shadow-md'}`}
+                title={isAutoScroll ? 'Pause auto-scroll' : 'Enable auto-scroll'}
+              >
+                {isAutoScroll ? (
+                  <Pause className="w-4 h-4" />
+                ) : (
+                  <Play className="w-4 h-4" />
+                )}
+                {/* {isAutoScroll && (
+                  <div className="absolute -top-1 -right-1 w-3 h-3  bg-white border border-amber-600"></div>
+                )} */}
+              </button>
+              
+              {totalPages > 1 && (
+                <>
+                  <div className="h-8 w-px bg-gray-300"></div>
+                  
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={handlePrev}
+                      disabled={isTransitioning}
+                      className="w-9 h-9 rounded-lg bg-white border border-gray-300 hover:border-amber-400 hover:bg-gradient-to-r hover:from-white hover:to-amber-50 flex items-center justify-center transition-all duration-300 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <ChevronLeft className="w-4 h-4 text-gray-600" />
+                    </button>
+                    
+                    <div className="flex items-center gap-1.5 px-2">
+                      {Array.from({ length: Math.min(totalPages, 6) }).map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => goToPage(index)}
+                          disabled={isTransitioning}
+                          className={`w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-300 shadow-sm ${currentIndex === index ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-white scale-110' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'} ${isTransitioning ? 'opacity-50' : ''}`}
+                          aria-label={`Go to page ${index + 1}`}
+                        >
+                          <span className="text-xs font-medium">{index + 1}</span>
+                        </button>
+                      ))}
+                    </div>
+                    
+                    <button
+                      onClick={handleNext}
+                      disabled={isTransitioning}
+                      className="w-9 h-9 rounded-lg bg-white border border-gray-300 hover:border-amber-400 hover:bg-gradient-to-r hover:from-white hover:to-amber-50 flex items-center justify-center transition-all duration-300 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <ChevronRight className="w-4 h-4 text-gray-600" />
+                    </button>
+                  </div>
+                </>
               )}
+            </div>
+          </div>
+        </div>
+      </div>
 
-              {/* Description */}
-              <div className="prose prose-blue max-w-none">
-                <p className="text-gray-700 leading-relaxed">
-                  {selectedNews.description}
-                </p>
+      {/* News Grid with Enhanced Design */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Visual Progress Indicator */}
+        {/* {isAutoScroll && totalPages > 1 && (
+          <div className="mb-6">
+            <div className="flex items-center justify-center gap-2 text-xs text-gray-500 mb-2">
+              <div className="flex items-center gap-1">
+                <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></div>
+                <span>Auto-scroll active</span>
+              </div>
+              <span>•</span>
+              <span>Hover to pause</span>
+            </div>
+            <div className="h-1 bg-gradient-to-r from-gray-200 via-gray-200 to-gray-200 rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 rounded-full transition-all duration-2000"
+                style={{ 
+                  width: isHovering ? '0%' : '100%',
+                  animation: isHovering ? 'none' : 'progress 2s ease-in-out infinite'
+                }}
+              ></div>
+            </div>
+          </div>
+        )} */}
+
+        {/* Enhanced News Grid */}
+        <div 
+          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 ${isTransitioning ? 'opacity-95' : 'opacity-100'} transition-opacity duration-300`}
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
+        >
+          {currentNews.map((news, index) => (
+            <div
+              key={index}
+              onClick={() => setSelectedNews(news)}
+              className={`group relative bg-white rounded-xl border border-gray-200 hover:border-amber-300 hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden flex flex-col h-full transform ${isTransitioning ? 'scale-[0.98]' : 'scale-100'}`}
+            >
+              {/* Card accent */}
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-400 to-purple-500"></div>
+              
+              {/* Content */}
+              <div className="p-5 flex-1 flex flex-col">
+                {/* Date with enhanced design */}
+                {news.date && (
+                  <div className="flex items-center gap-2 text-xs text-gray-500 mb-4">
+                    <div className="flex items-center justify-center w-6 h-6 rounded-full bg-amber-50">
+                      <Calendar className="w-3 h-3 text-amber-600" />
+                    </div>
+                    <span className="font-medium">{news.date}</span>
+                  </div>
+                )}
+                
+                {/* Title with gradient effect */}
+                <h3 className="text-lg font-semibold text-gray-900 mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-amber-600 group-hover:to-purple-600 transition-all duration-300 leading-tight line-clamp-2">
+                  {news.title}
+                </h3>
+                
+                {/* Description with enhanced typography */}
+                {news.description && (
+                  <div className="flex-1 mb-4">
+                    <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
+                      {news.description}
+                    </p>
+                  </div>
+                )}
+                
+                {/* Enhanced Read More */}
+                <div className="mt-auto pt-4 border-t border-gray-100">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-medium text-gray-500 group-hover:text-amber-600 transition-colors">
+                      View full announcement
+                    </span>
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-gray-100 to-gray-50 group-hover:from-amber-100 group-hover:to-amber-50 flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+                      <ExternalLink className="w-3.5 h-3.5 text-gray-400 group-hover:text-amber-600 transition-colors" />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+          ))}
+        </div>
 
-            {/* Modal Footer */}
-            <div className="p-6 border-t border-gray-200 bg-gray-50">
-              <div className="flex justify-between items-center">
-                <div className="text-sm text-gray-600">
-                  For more information, contact: pbhui@iitdh.ac.in
+        {/* Enhanced Footer Info */}
+        {totalPages > 1 && (
+          <div className="mt-12 pt-8 border-t border-gray-200">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="text-center sm:text-left">
+                <div className="text-sm text-gray-600 mb-1">
+                  Showing {currentNews.length} of {data.length} announcements
                 </div>
+                <div className="text-xs text-gray-500">
+                  {isAutoScroll ? 'Auto-scroll enabled • 2 seconds per page' : 'Manual navigation'}
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-3">
                 <button
-                  onClick={closeModal}
-                  className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                  onClick={handlePrev}
+                  disabled={isTransitioning}
+                  className="px-5 py-2.5 text-sm border border-gray-300 rounded-lg hover:border-amber-400 hover:bg-gradient-to-r hover:from-white hover:to-amber-50 flex items-center gap-2 transition-all duration-300 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Close
+                  <ChevronLeft className="w-4 h-4" />
+                  <span className="font-medium">Previous</span>
+                </button>
+                
+                <div className="px-4 py-2 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
+                  <div className="text-sm font-medium text-gray-700">
+                    <span className="text-amber-600">{currentIndex + 1}</span>
+                    <span className="text-gray-400 mx-1">/</span>
+                    <span>{totalPages}</span>
+                  </div>
+                </div>
+                
+                <button
+                  onClick={handleNext}
+                  disabled={isTransitioning}
+                  className="px-5 py-2.5 text-sm border border-gray-300 rounded-lg hover:border-amber-400 hover:bg-gradient-to-r hover:from-white hover:to-amber-50 flex items-center gap-2 transition-all duration-300 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <span className="font-medium">Next</span>
+                  <ChevronRight className="w-4 h-4" />
                 </button>
               </div>
             </div>
           </div>
+        )}
+      </div>
+
+      {/* Enhanced News Detail Modal */}
+      {/* Fixed News Detail Modal */}
+{selectedNews && (
+  <div 
+    className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4"
+    onClick={() => setSelectedNews(null)}
+  >
+    <div 
+      className="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden border border-gray-200"
+      onClick={(e) => e.stopPropagation()}
+    >
+      {/* Modal Header */}
+      <div className="p-5 border-b border-gray-200 bg-white">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 mb-2">
+              <div className="flex items-center justify-center w-6 h-6 rounded-full bg-amber-100">
+                <Calendar className="w-3 h-3 text-amber-600" />
+              </div>
+              {selectedNews.date && (
+                <span className="text-sm font-medium text-gray-600">{selectedNews.date}</span>
+              )}
+            </div>
+            <h2 className="text-xl font-semibold text-gray-900 leading-tight pr-8">
+              {selectedNews.title}
+            </h2>
+          </div>
+          <button
+            onClick={() => setSelectedNews(null)}
+            className="flex-shrink-0 w-8 h-8 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors duration-200"
+            aria-label="Close"
+          >
+            <X className="w-4 h-4 text-gray-700" />
+          </button>
         </div>
-      )}
-    </>
+      </div>
+
+      {/* Modal Content */}
+      <div className="overflow-y-auto max-h-[calc(90vh-140px)]">
+        {/* Image */}
+        {selectedNews.image && selectedNews.image !== 'https://placehold.co/600x400' && (
+          <div className="p-5 pb-0">
+            <div className="rounded-lg overflow-hidden border border-gray-200">
+              <img 
+                src={selectedNews.image} 
+                alt={selectedNews.title}
+                className="w-full h-2/5 object-cover"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                }}
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Description */}
+        <div className="p-5">
+          <div className="text-gray-700 leading-relaxed whitespace-pre-line text-sm">
+            {selectedNews.description}
+          </div>
+        </div>
+      </div>
+
+      {/* Modal Footer */}
+      {/* <div className="p-5 border-t border-gray-200 bg-gray-50">
+        <button
+          onClick={() => setSelectedNews(null)}
+          className="w-full py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors duration-200 font-medium text-sm shadow-sm hover:shadow"
+        >
+          Close Announcement
+        </button>
+      </div> */}
+    </div>
+  </div>
+)}
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            backdrop-filter: blur(0px);
+          }
+          to {
+            opacity: 1;
+            backdrop-filter: blur(4px);
+          }
+        }
+        
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px) scale(0.98);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+        
+        @keyframes progress {
+          0% {
+            width: 0%;
+          }
+          50% {
+            width: 100%;
+          }
+          100% {
+            width: 0%;
+          }
+        }
+        
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out;
+        }
+        
+        .animate-slideUp {
+          animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+      `}</style>
+    </div>
   );
 }
 
