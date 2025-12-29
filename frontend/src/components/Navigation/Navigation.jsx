@@ -115,11 +115,20 @@ const Navigation = ({ activeTab, onTabChange, facultyData, isCollapsed, toggleCo
               {/* Professor Info in Modal */}
               {professor.name && (
                 <div className="mt-4 flex items-center gap-3 p-3 bg-white/5 rounded-xl">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-400 to-purple-500 flex items-center justify-center">
-                    <span className="text-white text-lg font-bold">
-                      {professor.name.charAt(0)}
-                    </span>
-                  </div>
+                  <div className="w-13 h-13 rounded-full overflow-hidden bg-purple-700 flex items-center justify-center">
+  {professor.profileImage ? (
+    <img
+      src={professor.profileImage}
+      alt={professor.name}
+      className="w-full h-full object-cover"
+    />
+  ) : (
+    <span className="text-white text-lg font-bold">
+      {professor.name?.charAt(0)}
+    </span>
+  )}
+</div>
+
                   <div>
                     <p className="text-sm font-semibold text-white">{professor.name}</p>
                     <p className="text-xs text-purple-300">{professor.designation}</p>
@@ -219,11 +228,20 @@ const Navigation = ({ activeTab, onTabChange, facultyData, isCollapsed, toggleCo
       {/* Professor Card */}
       {!isCollapsed && professor.name && (
         <div className="px-4 py-5 border-b border-purple-700/40 text-center">
-          <div className="mx-auto w-16 h-16 rounded-full bg-gradient-to-br from-amber-400 to-purple-500 flex items-center justify-center shadow-lg mb-3">
-            <span className="text-white text-xl font-bold">
-              {professor.name.charAt(0)}
-            </span>
-          </div>
+          <div className="mx-auto w-16 h-16 rounded-full overflow-hidden shadow-lg mb-3 bg-purple-700 flex items-center justify-center">
+  {professor.profileImage ? (
+    <img
+      src={professor.profileImage}
+      alt={professor.name}
+      className="w-full h-full object-cover"
+    />
+  ) : (
+    <span className="text-white text-xl font-bold">
+      {professor.name?.charAt(0)}
+    </span>
+  )}
+</div>
+
           <h3 className="text-sm font-semibold text-white">{professor.name}</h3>
           <p className="text-xs text-purple-300">{professor.designation}</p>
         </div>
