@@ -1,7 +1,8 @@
+// [file name]: Footer.jsx (FINAL FIXED - ALIGNED WITH SIDEBAR)
 import React from 'react';
 import { Mail, Phone, MapPin, ExternalLink, Building, GraduationCap } from 'lucide-react';
 
-function Footer({ setActiveTab, facultyData = {} }) {
+function Footer({ setActiveTab, facultyData = {}, isSidebarCollapsed = false, isMobile = false }) {
   const professor = facultyData?.personalInfo || {};
   
   const handleTabClick = (tab) => {
@@ -9,22 +10,33 @@ function Footer({ setActiveTab, facultyData = {} }) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Extract only essential info
   const facultyName = professor.name || 'Faculty Member';
   const facultyEmail = professor.email || '';
   const facultyDept = professor.department || '';
   const facultyOffice = professor.office || '';
 
   return (
-    <footer className="bg-gradient-to-br from-purple-900 via-gray-900 to-purple-900 text-white border-t border-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <footer 
+      className={`
+        w-full bg-gradient-to-br from-purple-900 via-gray-900 to-purple-900 
+        text-white border-t border-gray-800
+        transition-all duration-300
+        ${isMobile 
+          ? 'ml-0 pb-20' 
+          : isSidebarCollapsed 
+            ? 'ml-20' 
+            : 'ml-64'
+        }
+      `}
+    >
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-12">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           
           {/* Institute Information */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center flex-shrink-0">
                 <Building className="w-5 h-5 text-white" />
               </div>
               <div>
@@ -36,7 +48,7 @@ function Footer({ setActiveTab, facultyData = {} }) {
             <div className="space-y-2 text-sm text-gray-400">
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-amber-500 mt-0.5 flex-shrink-0" />
-                <span> Dharwad, Karnataka 580011</span>
+                <span>Dharwad, Karnataka 580011</span>
               </div>
             </div>
           </div>
@@ -85,9 +97,9 @@ function Footer({ setActiveTab, facultyData = {} }) {
             
             <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-lg p-4 border border-gray-800">
               <div className="mb-3">
-                <p className="font-medium text-white text-sm">{facultyName}</p>
+                <p className="font-medium text-white text-sm break-words">{facultyName}</p>
                 {facultyDept && (
-                  <p className="text-gray-400 text-xs">{facultyDept}</p>
+                  <p className="text-gray-400 text-xs break-words">{facultyDept}</p>
                 )}
                 {facultyOffice && (
                   <p className="text-gray-500 text-xs mt-1">Office: {facultyOffice}</p>
@@ -99,7 +111,7 @@ function Footer({ setActiveTab, facultyData = {} }) {
                   href={`mailto:${facultyEmail}`}
                   className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white rounded-lg text-sm font-medium transition-all duration-200"
                 >
-                  <Mail className="w-4 h-4" />
+                  <Mail className="w-4 h-4 flex-shrink-0" />
                   <span>Email Professor</span>
                 </a>
               )}
@@ -117,7 +129,7 @@ function Footer({ setActiveTab, facultyData = {} }) {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm"
               >
-                <ExternalLink className="w-4 h-4" />
+                <ExternalLink className="w-4 h-4 flex-shrink-0" />
                 <span>Official Website</span>
               </a>
               

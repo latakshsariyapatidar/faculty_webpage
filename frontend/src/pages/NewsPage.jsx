@@ -94,10 +94,10 @@ function NewsPage({ data }) {
   const currentNews = getCurrentNews();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-gray-50">
+    <div className=" w-full min-h-screen bg-gradient-to-br from-white to-gray-50">
       {/* Enhanced Header */}
       <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <div className="flex items-center gap-2 mb-1">
@@ -181,7 +181,7 @@ function NewsPage({ data }) {
       </div>
 
       {/* News Grid with Enhanced Design */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Visual Progress Indicator */}
         {/* {isAutoScroll && totalPages > 1 && (
           <div className="mb-6">

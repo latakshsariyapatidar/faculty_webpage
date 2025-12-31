@@ -42,7 +42,7 @@ function ResearchPage({ data }) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="w-full min-h-screen bg-gray-50">
       {/* Compact Header */}
       <div className="bg-gradient-to-r from-purple-700 to-amber-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -55,7 +55,7 @@ function ResearchPage({ data }) {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-4">
         {/* Main Grid Layout */}
         <div className="grid lg:grid-cols-3 gap-4">
           

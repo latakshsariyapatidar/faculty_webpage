@@ -21,7 +21,7 @@ function BiographyPage({ data }) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className=" w-full min-h-screen bg-gray-50">
       <div className=" mx-auto px-4 sm:px-6 lg:px-8 py-1">
         {/* Header */}
         <div className="mb-8">
@@ -49,16 +49,18 @@ function BiographyPage({ data }) {
                     <div className="absolute -left-2 top-0 w-4 h-4 rounded-full bg-gradient-to-br from-purple-600 to-amber-600 border-2 border-white"></div>
                     
                     <div className="bg-gradient-to-br from-purple-50 to-amber-50 rounded-lg p-4 border border-purple-100">
-                      <h3 className="font-bold text-gray-900 mb-1">{exp.position}</h3>
+                      {/* Position and Period side by side */}
+                      <div className="flex items-start justify-between gap-3 mb-2">
+                        <h3 className="font-bold text-gray-900 flex-1">{exp.position}</h3>
+                        <div className="flex items-center gap-1.5 px-3 py-1 bg-purple-100 text-black text-xs font-bold rounded-full">
+                          <Calendar className="h-3 w-3" />
+                          {exp.period}
+                        </div>
+                      </div>
                       
                       <div className="flex items-start gap-2 text-sm text-gray-700 mb-2">
                         <MapPin className="h-4 w-4 flex-shrink-0 mt-0.5 text-purple-600" />
                         <span className="flex-1">{exp.institution}</span>
-                      </div>
-                      
-                      <div className="flex items-center gap-2 text-xs text-gray-600 bg-white rounded px-3 py-1.5 inline-flex mb-2">
-                        <Calendar className="h-3.5 w-3.5 text-amber-600" />
-                        <span className="font-medium">{exp.period}</span>
                       </div>
                       
                       {exp.description && (
@@ -116,30 +118,6 @@ function BiographyPage({ data }) {
             </div>
           )}
         </div>
-
-        {/* Summary Stats */}
-        {/* <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="bg-gradient-to-br from-purple-600 to-purple-700 rounded-xl p-5 text-white shadow-lg">
-            <p className="text-3xl font-bold mb-1">{experience.length}</p>
-            <p className="text-sm opacity-90">Positions Held</p>
-          </div>
-          <div className="bg-gradient-to-br from-amber-600 to-amber-700 rounded-xl p-5 text-white shadow-lg">
-            <p className="text-3xl font-bold mb-1">{education.length}</p>
-            <p className="text-sm opacity-90">Academic Degrees</p>
-          </div>
-          <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl p-5 text-white shadow-lg">
-            <p className="text-3xl font-bold mb-1">
-              {education.filter(e => e.degree.includes('Ph.D')).length}
-            </p>
-            <p className="text-sm opacity-90">Doctoral Degree</p>
-          </div>
-          <div className="bg-gradient-to-br from-green-600 to-green-700 rounded-xl p-5 text-white shadow-lg">
-            <p className="text-3xl font-bold mb-1">
-              {new Date().getFullYear() - (education[0]?.year ? parseInt(education[0].year) : 0)}+
-            </p>
-            <p className="text-sm opacity-90">Years Experience</p>
-          </div>
-        </div> */}
       </div>
     </div>
   );

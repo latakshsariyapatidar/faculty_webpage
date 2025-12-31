@@ -399,8 +399,8 @@ function PublicationsPage({ data }) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-purple-50/10">
-      <div className="max-w-8xl mx-auto p-4 md:p-6 lg:p-8">
+    <div className=" w- full min-h-screen bg-gradient-to-br from-gray-50 via-white to-purple-50/10">
+      <div className="w-full mx-auto p-4 md:p-6 lg:p-8">
         {/* Header */}
         <div className="mb-8">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
