@@ -55,7 +55,7 @@ function HomePage({ facultyData }) {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8 py-7">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-7">
         {/* Top Profile Section */}
         <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-8 border border-gray-200">
           <div className="md:flex">
@@ -94,57 +94,55 @@ function HomePage({ facultyData }) {
               <div className="mb-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Contact Information</h2>
                 
-                <div className="grid md:grid-cols-2 gap-4 mb-4">
-                  {personalInfo.email && (
-                    <div className="flex items-center gap-3">
-                      <Mail className="h-5 w-5 text-purple-600" />
-                      <div>
-                        <p className="text-sm text-gray-500">Email</p>
+                {/* Clean inline contact info - No boxes, just icons and text */}
+                <div className="space-y-4">
+                  {/* First line: Email, Phone, Office (if available) */}
+                  <div className="flex flex-wrap items-center gap-4">
+                    {personalInfo.email && (
+                      <div className="flex items-center gap-2">
+                        <Mail className="h-4 w-4 text-purple-600 flex-shrink-0" />
                         <a 
                           href={`mailto:${personalInfo.email}`}
-                          className="text-purple-700 font-medium hover:text-purple-800"
+                          className="text-gray-800 hover:text-purple-700 font-medium text-sm md:text-base"
+                          title={personalInfo.email}
                         >
                           {personalInfo.email}
                         </a>
                       </div>
-                    </div>
-                  )}
-                  
-                  {personalInfo.phone && (
-                    <div className="flex items-center gap-3">
-                      <Phone className="h-5 w-5 text-amber-600" />
-                      <div>
-                        <p className="text-sm text-gray-500">Phone</p>
+                    )}
+                    
+                    {personalInfo.phone && (
+                      <div className="flex items-center gap-2">
+                        <Phone className="h-4 w-4 text-amber-600 flex-shrink-0" />
                         <a 
                           href={`tel:${personalInfo.phone}`}
-                          className="text-amber-700 font-medium hover:text-amber-800"
+                          className="text-gray-800 hover:text-amber-700 font-medium text-sm md:text-base"
                         >
                           {personalInfo.phone}
                         </a>
                       </div>
-                    </div>
-                  )}
-                  
-                  {personalInfo.office && (
-                    <div className="flex items-center gap-3">
-                      <Building className="h-5 w-5 text-gray-600" />
-                      <div>
-                        <p className="text-sm text-gray-500">Office</p>
-                        <p className="text-gray-800 font-medium">{personalInfo.office}</p>
+                    )}
+                    
+                    {personalInfo.office && (
+                      <div className="flex items-center gap-2">
+                        <Building className="h-4 w-4 text-gray-600 flex-shrink-0" />
+                        <span className="text-gray-800 font-medium text-sm md:text-base">
+                          {personalInfo.office}
+                        </span>
                       </div>
+                    )}
+                  </div>
+                  
+                  {/* Second line: Address (if available) */}
+                  {personalInfo.address && (
+                    <div className="flex items-start gap-2">
+                      <MapPin className="h-4 w-4 text-gray-600 mt-0.5 flex-shrink-0" />
+                      <p className="text-gray-800 font-medium text-sm md:text-base leading-relaxed">
+                        {personalInfo.address}
+                      </p>
                     </div>
                   )}
                 </div>
-                
-                {personalInfo.address && (
-                  <div className="mt-4 flex items-start gap-3">
-                    <MapPin className="h-5 w-5 text-gray-600 mt-1" />
-                    <div>
-                      <p className="text-sm text-gray-500">Address</p>
-                      <p className="text-gray-800 font-medium whitespace-pre-line">{personalInfo.address}</p>
-                    </div>
-                  </div>
-                )}
               </div>
 
               {/* Statistics Section - Fixed Animation */}
@@ -177,14 +175,14 @@ function HomePage({ facultyData }) {
         </div>
 
         {/* About Section */}
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-8 mb-8">
+        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-5 mb-5">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-purple-600 to-amber-600 flex items-center justify-center">
-              <BookOpen className="h-6 w-6 text-white" />
+            <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-purple-600 to-amber-600 flex items-center justify-center">
+              <BookOpen className="h-4 w-4 text-white" />
             </div>
             <div>
               <h2 className="text-2xl font-bold text-gray-900">About</h2>
-              <p className="text-gray-600">Professional Biography</p>
+              {/* <p className="text-gray-600">Professional Biography</p> */}
             </div>
           </div>
           
