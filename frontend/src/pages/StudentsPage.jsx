@@ -118,26 +118,26 @@ function StudentsPage({ data }) {
 
     return (
       <div 
-        className="relative bg-white rounded-lg border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px] group"
+        className="relative bg-white rounded-lg border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-md hover:translate-y-[-1px] group"
         style={style}
       >
         {/* Header with program tag */}
-        <div className="p-5">
-          <div className="flex items-start justify-between mb-4">
+        <div className="p-3">
+          <div className="flex items-start justify-between">
             <div className="flex-1">
-              <div className="flex items-center gap-3 mb-3">
+              <div className="flex items-center gap-2 mb-2">
                 <div 
-                  className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                  className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
                   style={{ backgroundColor: `${style.iconBg}15` }}
                 >
-                  <Icon className="w-5 h-5" style={{ color: style.iconBg }} />
+                  <Icon className="w-4 h-4" style={{ color: style.iconBg }} />
                 </div>
-                <div>
-                  <h3 className="font-medium text-gray-900 text-lg">{name}</h3>
+                <div className="flex-1">
+                  <h3 className="font-medium text-gray-900 text-sm">{name}</h3>
                   {program && (
-                    <div className="flex flex-wrap gap-2 mt-1">
+                    <div className="flex flex-wrap gap-1.5 mt-0.5">
                       <span 
-                        className="text-xs font-medium px-3 py-1 rounded-full"
+                        className="text-xs font-medium px-2 py-0.5 rounded-full"
                         style={{ 
                           backgroundColor: `${style.iconBg}15`,
                           color: style.iconBg
@@ -146,8 +146,8 @@ function StudentsPage({ data }) {
                         {program}
                       </span>
                       {isCurrent && (
-                        <span className="inline-flex items-center gap-1 text-xs font-medium text-green-600 bg-green-50 px-2.5 py-1 rounded-full">
-                          <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                        <span className="inline-flex items-center gap-1 text-xs font-medium text-green-600 bg-green-50 px-1.5 py-0.5 rounded-full">
+                          <div className="w-1 h-1 rounded-full bg-green-500"></div>
                           Active
                         </span>
                       )}
@@ -158,22 +158,22 @@ function StudentsPage({ data }) {
 
               {/* Year */}
               {year && (
-                <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
-                  <Calendar className="w-4 h-4 text-gray-400" />
+                <div className="flex items-center gap-1.5 text-xs text-gray-600 mb-2">
+                  <Calendar className="w-3 h-3 text-gray-400" />
                   <span>{year}</span>
                 </div>
               )}
 
               {/* Topic/Thesis */}
               {topic && (
-                <div className="mb-4">
-                  <div className="flex items-start gap-2">
-                    <BookOpen className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
+                <div className="mb-2">
+                  <div className="flex items-start gap-1.5">
+                    <BookOpen className="w-3 h-3 text-gray-400 mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="text-sm font-medium text-gray-700 mb-1">
+                      <p className="text-xs font-medium text-gray-700 mb-0.5">
                         {isCurrent ? 'Research Topic' : 'Thesis'}
                       </p>
-                      <p className="text-sm text-gray-600 leading-relaxed">
+                      <p className="text-xs text-gray-600 leading-relaxed">
                         {topic}
                       </p>
                     </div>
@@ -183,12 +183,12 @@ function StudentsPage({ data }) {
 
               {/* Placement for graduated students */}
               {!isCurrent && placement && (
-                <div className="mt-4 pt-4 border-t border-gray-100">
-                  <div className="flex items-center gap-2">
-                    <Briefcase className="w-4 h-4 text-gray-400" />
+                <div className="mt-2 pt-2 border-t border-gray-100">
+                  <div className="flex items-center gap-1.5">
+                    <Briefcase className="w-3 h-3 text-gray-400" />
                     <div>
-                      <p className="text-sm font-medium text-gray-700">Placement</p>
-                      <p className="text-sm text-gray-600 mt-1">{placement}</p>
+                      <p className="text-xs font-medium text-gray-700">Placement</p>
+                      <p className="text-xs text-gray-600 mt-0.5">{placement}</p>
                     </div>
                   </div>
                 </div>
@@ -212,42 +212,42 @@ function StudentsPage({ data }) {
     if (!data.instructions || data.instructions.length === 0) return null;
 
     return (
-      <div className="mb-10">
-        <div className="relative overflow-hidden rounded-xl border border-gray-200 bg-gradient-to-r from-purple-50 to-amber-50 p-6">
+      <div className="mb-4">
+        <div className="relative overflow-hidden rounded-lg border border-gray-200 bg-gradient-to-r from-purple-50 to-amber-50 p-4">
           {/* Decorative elements */}
-          <div className="absolute top-0 right-0 w-32 h-32 opacity-10"
+          <div className="absolute top-0 right-0 w-24 h-24 opacity-10"
                style={{
                  background: `radial-gradient(circle, ${theme.primary} 0%, transparent 70%)`
                }}>
           </div>
           
           <div className="relative">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-amber-500 flex items-center justify-center shadow-lg">
-                <Mail className="w-6 h-6 text-white" />
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-purple-500 to-amber-500 flex items-center justify-center">
+                <Mail className="w-4 h-4 text-white" />
               </div>
               <div>
-                <h2 className="text-xl font-medium text-gray-900">Application & Contact Information</h2>
-                <p className="text-sm text-gray-600 mt-1">Opportunities for research positions and collaboration</p>
+                <h2 className="text-base font-medium text-gray-900">Application & Contact</h2>
+                <p className="text-xs text-gray-600 mt-0.5">Research position opportunities</p>
               </div>
             </div>
             
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid md:grid-cols-2 gap-3">
               {data.instructions.map((inst, i) => {
                 const hasLink = inst.includes('http') || inst.includes('https');
                 
                 return (
                   <div 
                     key={i}
-                    className="bg-white/80 backdrop-blur-sm rounded-lg p-4 border border-gray-200/50 hover:border-purple-200 transition-colors group"
+                    className="bg-white/80 backdrop-blur-sm rounded-lg p-3 border border-gray-200/50 hover:border-purple-200 transition-colors group"
                   >
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                    <div className="flex items-start gap-2">
+                      <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
                            style={{ backgroundColor: `${theme.primary}15` }}>
-                        <ExternalLink className="w-4 h-4" style={{ color: theme.primary }} />
+                        <ExternalLink className="w-3 h-3" style={{ color: theme.primary }} />
                       </div>
                       <div className="flex-1">
-                        <p className="text-sm text-gray-700 leading-relaxed">
+                        <p className="text-xs text-gray-700 leading-relaxed">
                           {inst}
                           {hasLink && (
                             <span className="inline-flex items-center gap-1 ml-2 text-purple-600">
@@ -344,16 +344,16 @@ function StudentsPage({ data }) {
       : 'No students have graduated under supervision yet.';
 
     return (
-      <div className="text-center py-16 px-4">
-        <div className="w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center"
+      <div className="text-center py-8 px-4">
+        <div className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center"
              style={{ backgroundColor: `${theme.primary}10` }}>
           {React.createElement(icon, { 
-            className: "w-12 h-12",
+            className: "w-8 h-8",
             style: { color: theme.primary }
           })}
         </div>
-        <h3 className="text-xl font-medium text-gray-900 mb-3">{title}</h3>
-        <p className="text-gray-600 max-w-md mx-auto mb-8">{description}</p>
+        <h3 className="text-base font-medium text-gray-900 mb-2">{title}</h3>
+        <p className="text-sm text-gray-600 max-w-md mx-auto mb-4">{description}</p>
         {isCurrent && data.instructions && data.instructions.length > 0 && (
           <p className="text-sm text-gray-500">
             Check application information above for opportunities.
@@ -386,30 +386,27 @@ function StudentsPage({ data }) {
         ];
 
     return (
-      <div className="space-y-10">
+      <div className="space-y-4">
         {studentGroups.map((group, groupIndex) => 
           group.students.length > 0 && (
-            <div key={groupIndex} className="space-y-5">
+            <div key={groupIndex} className="space-y-3">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <div className="w-3 h-8 rounded-full" style={{ backgroundColor: group.color }}></div>
+                <div className="flex items-center gap-2">
+                  <div className="w-1 h-6 rounded-full" style={{ backgroundColor: group.color }}></div>
                   <div>
-                    <h2 className="text-xl font-medium text-gray-900">{group.title}</h2>
-                    <p className="text-sm text-gray-600 mt-1">
-                      {isCurrentTab ? 'Currently supervised' : 'Successfully graduated'}
-                    </p>
+                    <h2 className="text-base font-medium text-gray-900">{group.title}</h2>
                   </div>
                 </div>
-                <span className="text-sm font-medium px-3 py-1 rounded-full"
+                <span className="text-xs font-medium px-2 py-0.5 rounded-full"
                       style={{ 
                         backgroundColor: `${group.color}15`,
                         color: group.color
                       }}>
-                  {group.students.length} {group.students.length === 1 ? 'student' : 'students'}
+                  {group.students.length}
                 </span>
               </div>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
                 {group.students.map((student, index) => (
                   <StudentCard 
                     key={index} 
@@ -428,22 +425,22 @@ function StudentsPage({ data }) {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-4">
         {/* Header */}
-        <div className="mb-10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
-            <div className="space-y-4">
-              <div className="flex items-center gap-4">
+        <div className="mb-4">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-4">
+            <div className="space-y-2">
+              <div className="flex items-center gap-3">
                 <div className="relative">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-amber-500 flex items-center justify-center shadow-lg">
-                    <GraduationCap className="w-7 h-7 text-white" />
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-amber-500 flex items-center justify-center">
+                    <GraduationCap className="w-5 h-5 text-white" />
                   </div>
                   {/* <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-gradient-to-br from-amber-400 to-purple-400 flex items-center justify-center">
                     <Sparkles className="w-3 h-3 text-white" />
                   </div> */}
                 </div>
                 <div>
-                  <h1 className="text-3xl font-bold text-gray-900">Student Supervison</h1>
+                  <h1 className="text-xl font-bold text-gray-900">Student Supervison</h1>
                   {/* <p className="text-gray-600 mt-2">Research guidance and academic mentorship</p> */}
                 </div>
               </div>
@@ -461,10 +458,10 @@ function StudentsPage({ data }) {
         {/* <StatisticsBanner /> */}
 
         {/* Main Content */}
-        <div className="flex space-x-2 bg-white p-1.5 rounded-xl border border-gray-200 shadow-sm">
+        <div className="flex space-x-1.5 bg-white p-1 rounded-lg border border-gray-200 shadow-sm">
               <button
                 onClick={() => setActiveTab('current')}
-                className={`px-5 py-3 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
+                className={`px-3 py-2 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 ${
                   activeTab === 'current'
                     ? 'bg-gradient-to-r from-purple-500 to-amber-500 text-white shadow-md'
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
@@ -484,7 +481,7 @@ function StudentsPage({ data }) {
               </button>
               <button
                 onClick={() => setActiveTab('graduated')}
-                className={`px-5 py-3 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
+                className={`px-3 py-2 rounded-lg text-xs font-medium transition-all flex items-center gap-1.5 ${
                   activeTab === 'graduated'
                     ? 'bg-gradient-to-r from-purple-500 to-amber-500 text-white shadow-md'
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
@@ -503,7 +500,7 @@ function StudentsPage({ data }) {
                 )}
               </button>
             </div>
-        <div className="mb-12">
+        <div className="mb-4 mt-4">
           {renderContent()}
         </div>
 
