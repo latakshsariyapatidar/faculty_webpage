@@ -11,6 +11,7 @@ import {
   Image,
   Mail,
   Phone,
+  PhoneCall,
   ChevronLeft,
   ChevronRight,
   Sparkles,
@@ -329,6 +330,13 @@ const Navigation = ({ activeTab, onTabChange, facultyData, isCollapsed, toggleCo
             <div className="flex items-center gap-3 text-sm text-purple-300 mt-2">
               <Phone size={16} />
               <span>{professor.phone}</span>
+            </div>
+          )}
+          
+          {professor.landline && (
+            <div className="flex items-center gap-3 text-sm text-green-300 mt-2">
+              <PhoneCall size={16} />
+              <span>{professor.landline}</span>
             </div>
           )}
         </div>

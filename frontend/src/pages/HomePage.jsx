@@ -4,7 +4,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { Mail, Phone, MapPin, ExternalLink, BookOpen, Award, Building, Globe, Users } from 'lucide-react';
+import { Mail, Phone, MapPin, ExternalLink, BookOpen, Award, Building, Globe, Users, PhoneCall } from 'lucide-react';
 
 // Fixed AnimatedCounter - WILL count from 0
 const AnimatedCounter = ({ value }) => {
@@ -96,7 +96,7 @@ function HomePage({ facultyData }) {
                 
                 {/* Clean inline contact info - No boxes, just icons and text */}
                 <div className="space-y-4">
-                  {/* First line: Email, Phone, Office (if available) */}
+                  {/* First line: Email, Phone, Landline, Office (if available) */}
                   <div className="flex flex-wrap items-center gap-4">
                     {personalInfo.email && (
                       <div className="flex items-center gap-2">
@@ -119,6 +119,19 @@ function HomePage({ facultyData }) {
                           className="text-gray-800 hover:text-amber-700 font-medium text-sm md:text-base"
                         >
                           {personalInfo.phone}
+                        </a>
+                      </div>
+                    )}
+                    
+                    {personalInfo.landline && (
+                      <div className="flex items-center gap-2">
+                        <PhoneCall className="h-4 w-4 text-green-600 flex-shrink-0" />
+                        <a 
+                          href={`tel:${personalInfo.landline}`}
+                          className="text-gray-800 hover:text-green-700 font-medium text-sm md:text-base"
+                          title="Landline"
+                        >
+                          {personalInfo.landline}
                         </a>
                       </div>
                     )}
