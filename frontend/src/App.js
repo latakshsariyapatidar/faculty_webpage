@@ -14,6 +14,7 @@ import ResearchPage from './pages/ResearchPage';
 import PublicationsPage from './pages/PublicationsPage';
 import StudentsPage from './pages/StudentsPage';
 import NewsPage from './pages/NewsPage';
+import ResourcesPage from './pages/ResourcesPage';
 import GalleryPage from './pages/GalleryPage';
 
 function App({ facultyId }) {
@@ -40,6 +41,7 @@ function App({ facultyId }) {
     'publications',
     'students',
     'news',
+    'resources',
     'gallery'
   ].filter(id => {
     if (id === 'home') return true;
@@ -49,6 +51,7 @@ function App({ facultyId }) {
     if (id === 'publications') return facultyData?.publications;
     if (id === 'students') return facultyData?.students;
     if (id === 'news') return facultyData?.news?.length > 0;
+    if (id === 'resources') return facultyData?.resources?.length > 0;
     if (id === 'gallery') return facultyData?.gallery?.length > 0;
     return false;
   });
@@ -183,6 +186,15 @@ function App({ facultyId }) {
           <section id="news" className="scroll-mt-24 min-h-screen bg-gradient-to-br from-violet-50 via-white to-pink-50">
             <div className="p-6 lg:p-8">
               <NewsPage data={facultyData.news} />
+            </div>
+          </section>
+        )}
+
+        {/* Resources Section */}
+        {facultyData.resources && facultyData.resources.length > 0 && (
+          <section id="resources" className="scroll-mt-24 min-h-screen bg-gradient-to-br from-teal-50 via-white to-sky-50">
+            <div className="p-6 lg:p-8">
+              <ResourcesPage data={facultyData.resources} />
             </div>
           </section>
         )}

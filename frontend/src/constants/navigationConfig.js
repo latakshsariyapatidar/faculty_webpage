@@ -7,7 +7,7 @@
  * @module constants/navigationConfig
  */
 
-import { Users, Briefcase, BookOpen, Award, FileText, GraduationCap, Newspaper, Image } from 'lucide-react';
+import { Users, Briefcase, BookOpen, Award, FileText, GraduationCap, Newspaper, Image, FolderOpen } from 'lucide-react';
 
 export const NAVIGATION_TABS = [
   { 
@@ -51,6 +51,12 @@ export const NAVIGATION_TABS = [
     label: 'News', 
     icon: Newspaper,
     ariaLabel: 'View latest news and announcements'
+  },
+  { 
+    id: 'resources', 
+    label: 'Resources', 
+    icon: FolderOpen,
+    ariaLabel: 'View academic resources and materials'
   },
   { 
     id: 'gallery', 

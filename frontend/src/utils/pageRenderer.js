@@ -14,6 +14,7 @@ import ResearchPage from '../pages/ResearchPage';
 import PublicationsPage from '../pages/PublicationsPage';
 import StudentsPage from '../pages/StudentsPage';
 import NewsPage from '../pages/NewsPage';
+import ResourcesPage from '../pages/ResourcesPage';
 import GalleryPage from '../pages/GalleryPage';
 
 /**
@@ -48,6 +49,10 @@ const PAGE_CONFIG = {
   news: {
     component: NewsPage,
     dataKey: 'news',
+  },
+  resources: {
+    component: ResourcesPage,
+    dataKey: 'resources',
   },
   gallery: {
     component: GalleryPage,

@@ -450,6 +450,15 @@
         "icon": "",
         "description": "CE programs conducted"
       }
+    ],
+    "resources": [
+      {
+        "title": "Lecture ",
+        "description": "google link",
+        "link": "https://www.google.com",
+        "category": "Lecture Notes",
+        "date": "06-01-2026"
+      }
     ]
   }
 ]

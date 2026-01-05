@@ -70,6 +70,7 @@ const SHEETS = {
   news: "News",
   image: "Image",
   stats: "Stats",
+  resources: "Resources",
 };
 
 // Fetch sheet data
@@ -170,6 +171,9 @@ export async function generateAllFacultyJSON() {
 
   const statsRows = await fetchSheet(SHEETS.stats);
   const stats = rowsToObjects(statsRows);
+
+  const resourcesRows = await fetchSheet(SHEETS.resources);
+  const resources = rowsToObjects(resourcesRows);
 
   // Get unique faculty IDs from personalInfo
   const facultyIds = [...new Set(personal.map(p => p.faculty_id))];
@@ -298,7 +302,14 @@ export async function generateAllFacultyJSON() {
         value: s.value || s.Value || s.count || s.Count || '0',
         icon: s.icon || s.Icon || '',
         description: s.description || s.Description || ''
-      }))
+      })),
+      resources: resources.filter(r => r.faculty_id === id).map(r => ({
+        title: r.title || r.Title || '',
+        description: r.description || r.Description || '',
+        link: r.link || r.Link || r.drive_link || r.driveLink || '',
+        category: r.category || r.Category || r.type || r.Type || '',
+        date: r.date || r.Date || r.uploaded_date || r.uploadedDate || ''
+      })).filter(r => r.title || r.link) // Keep items with at least title or link
     };
   });
 
