@@ -191,19 +191,20 @@ function App({ facultyId }) {
         )}
 
         {/* Resources Section */}
-        {facultyData.resources && facultyData.resources.length > 0 && (
-          <section id="resources" className="scroll-mt-24 min-h-screen bg-gradient-to-br from-teal-50 via-white to-sky-50">
-            <div className="p-6 lg:p-8">
-              <ResourcesPage data={facultyData.resources} />
-            </div>
-          </section>
-        )}
+        
 
         {/* Gallery Section */}
         {facultyData.gallery && facultyData.gallery.length > 0 && (
           <section id="gallery" className="scroll-mt-24 min-h-screen bg-gradient-to-br from-rose-50 via-white to-amber-50">
             <div className="p-6 lg:p-8">
               <GalleryPage data={facultyData.gallery} />
+            </div>
+          </section>
+        )}
+        {facultyData.resources && facultyData.resources.length > 0 && (
+          <section id="resources" className="scroll-mt-24 min-h-screen bg-gradient-to-br from-teal-50 via-white to-sky-50">
+            <div className="p-6 lg:p-8">
+              <ResourcesPage data={facultyData.resources} />
             </div>
           </section>
         )}
