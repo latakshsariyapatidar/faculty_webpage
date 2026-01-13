@@ -1,4 +1,4 @@
-// [file name]: App.jsx (FINAL FIXED WITH FOOTER ALIGNMENT)
+// [file name]: App.jsx (FIXED - Smooth scrolling without snapping)
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Navigation from './components/Navigation/Navigation';
@@ -21,6 +21,7 @@ function App({ facultyId }) {
   const { data: facultyData, loading, error } = useFacultyData(facultyId);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isUserScrolling, setIsUserScrolling] = useState(false);
   
   // Check mobile on mount and resize
   useEffect(() => {
@@ -56,13 +57,15 @@ function App({ facultyId }) {
     return false;
   });
 
-  // Use scroll-spy hook to track active section
+  // Use scroll-spy hook to track active section (passive - only for highlighting)
   const activeSection = useScrollSpy(sectionIds, 100);
 
-  // Handle smooth scrolling when section is clicked from navigation
+  // Handle smooth scrolling ONLY when section is clicked from navigation
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
+      setIsUserScrolling(true); // Mark that we're programmatically scrolling
+      
       const offset = 100;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
@@ -72,6 +75,11 @@ function App({ facultyId }) {
         behavior: 'smooth'
       });
       
+      // Reset user scrolling flag after scroll completes
+      setTimeout(() => {
+        setIsUserScrolling(false);
+      }, 1000);
+      
       if (window.history.replaceState) {
         const newHash = sectionId === 'home' ? '' : `#${sectionId}`;
         const newUrl = window.location.pathname + newHash;
@@ -80,7 +88,7 @@ function App({ facultyId }) {
     }
   };
 
-  // Handle initial hash on page load
+  // Handle initial hash on page load ONLY
   useEffect(() => {
     const handleInitialHash = () => {
       const hash = window.location.hash.substring(1);
@@ -92,14 +100,16 @@ function App({ facultyId }) {
     };
 
     handleInitialHash();
-  }, [sectionIds]);
+    
+    // Only run once on mount
+  }, []);
 
   if (loading) return <LoadingSpinner />;
   if (error) return <ErrorMessage error={error} />;
   if (!facultyData) return null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50 overflow-x-hidden">
       <Header />
       
       {/* Navigation Sidebar - Fixed Position */}
@@ -111,17 +121,18 @@ function App({ facultyId }) {
         toggleCollapse={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
       />
 
-      {/* Main Content - With proper margin for sidebar */}
+      {/* Main Content - With proper padding for sidebar */}
       <main 
         className={`
+          w-full
           min-h-screen
           pt-16
           transition-all duration-300
           ${isMobile 
-            ? 'ml-0 pb-24' 
+            ? 'pl-0 pb-24' 
             : isSidebarCollapsed 
-              ? 'ml-20 pb-8' 
-              : 'ml-64 pb-8'
+              ? 'pl-20 pb-8' 
+              : 'pl-64 pb-8'
           }
         `}
       >
@@ -190,7 +201,6 @@ function App({ facultyId }) {
           </section>
         )}
 
-        {/* Resources Section */}
         
 
         {/* Gallery Section */}
@@ -201,6 +211,8 @@ function App({ facultyId }) {
             </div>
           </section>
         )}
+
+        {/* Resources Section */}
         {facultyData.resources && facultyData.resources.length > 0 && (
           <section id="resources" className="scroll-mt-24 min-h-screen bg-gradient-to-br from-teal-50 via-white to-sky-50">
             <div className="p-6 lg:p-8">

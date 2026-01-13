@@ -54,8 +54,8 @@ function HomePage({ facultyData }) {
   const statistics = facultyData.statistics || [];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
-      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-7">
+    <div className=" min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
+      <div className=" w-full mx-auto px-4 sm:px-6 lg:px-8 py-7">
         {/* Top Profile Section */}
         <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-8 border border-gray-200">
           <div className="md:flex">

@@ -6,8 +6,23 @@ function Footer({ setActiveTab, facultyData = {}, isSidebarCollapsed = false, is
   const professor = facultyData?.personalInfo || {};
   
   const handleTabClick = (tab) => {
+    // Update the active tab state
     setActiveTab(tab);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Scroll to the section after a small delay to ensure state update
+    setTimeout(() => {
+      const element = document.getElementById(tab);
+      if (element) {
+        const offset = 80; // Adjust based on your header height
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 50);
   };
 
   const facultyName = professor.name || 'Faculty Member';
@@ -134,7 +149,7 @@ function Footer({ setActiveTab, facultyData = {}, isSidebarCollapsed = false, is
               </a>
               
               <a
-                href="https://www.iitdh.ac.in/academics"
+                href="https://www.iitdh.ac.in"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-gray-400 hover:text-white transition-colors text-sm"
@@ -143,7 +158,7 @@ function Footer({ setActiveTab, facultyData = {}, isSidebarCollapsed = false, is
               </a>
               
               <a
-                href="https://www.iitdh.ac.in/research"
+                href="https://www.iitdh.ac.in"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-gray-400 hover:text-white transition-colors text-sm"
@@ -152,7 +167,7 @@ function Footer({ setActiveTab, facultyData = {}, isSidebarCollapsed = false, is
               </a>
               
               <a
-                href="https://www.iitdh.ac.in/admissions"
+                href="https://www.iitdh.ac.in"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-gray-400 hover:text-white transition-colors text-sm"
