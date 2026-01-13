@@ -64,7 +64,7 @@ function ResearchPage({ data }) {
             <div className="bg-white rounded-lg shadow border border-gray-200">
               <div className="p-4 border-b border-gray-200">
                 <div className="flex items-center gap-2">
-                  <Target className="h-5 w-5 text-purple-600" />
+                  <Target className="h-5 w-5 text-purple-600"/>
                   <h2 className="font-bold text-gray-900">Research Interests</h2>
                   {researchInterests.length > 0 && (
                     <span className="text-xs text-gray-500">
@@ -132,7 +132,7 @@ function ResearchPage({ data }) {
                                     <img 
                                       src={image} 
                                       alt={title}
-                                      className="w-full h-40 object-cover rounded-md border border-gray-300"
+                                      className="w-full h-auto object-cover rounded-md border border-gray-300"
                                       onError={(e) => {
                                         e.target.style.display = 'none';
                                       }}

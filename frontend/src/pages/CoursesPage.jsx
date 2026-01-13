@@ -149,7 +149,7 @@ function CoursesPage({ data }) {
 
   return (
     <div className=" w-full min-h-screen bg-gradient-to-br from-gray-50 via-white to-purple-50/20">
-      <div className="w-full mx-auto p-4 md:p-5 max-w-7xl">
+      <div className="w-full mx-auto p-4 md:p-5">
         {/* Main Header with Integrated Tabs */}
         <div className="mb-6">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-4">

@@ -18,6 +18,7 @@ import {
   X,
   Menu
 } from 'lucide-react';
+import { FolderOpen } from 'lucide-react';
 
 const Navigation = ({ activeTab, onTabChange, facultyData, isCollapsed, toggleCollapse }) => {
   const professor = facultyData?.personalInfo || {};
@@ -35,16 +36,18 @@ const Navigation = ({ activeTab, onTabChange, facultyData, isCollapsed, toggleCo
   }, []);
 
   // All possible navigation items
-  const allNavigationItems = [
-    { id: 'home', label: 'Home', icon: UserCircle },
-    { id: 'biography', label: 'Biography', icon: Briefcase },
-    { id: 'courses', label: 'Courses', icon: BookOpen },
-    { id: 'research', label: 'Research', icon: Microscope },
-    { id: 'publications', label: 'Publications', icon: FileText },
-    { id: 'students', label: 'Students', icon: GraduationCap },
-    { id: 'news', label: 'News', icon: Bell },
-    { id: 'gallery', label: 'Gallery', icon: Image },
-  ];
+  // In your Navigation.jsx, modify the allNavigationItems array:
+const allNavigationItems = [
+  { id: 'home', label: 'Home', icon: UserCircle },
+  { id: 'biography', label: 'Biography', icon: Briefcase },
+  { id: 'courses', label: 'Courses', icon: BookOpen },
+  { id: 'research', label: 'Research', icon: Microscope },
+  { id: 'publications', label: 'Publications', icon: FileText },
+  { id: 'students', label: 'Students', icon: GraduationCap },
+  { id: 'news', label: 'News', icon: Bell },
+  { id: 'gallery', label: 'Gallery', icon: Image },
+  { id: 'resources', label: 'Resources', icon: FolderOpen }, // Add this line
+];
 
   // Filter navigation items based on available data
   const navigationItems = useMemo(() => {
@@ -91,6 +94,10 @@ const Navigation = ({ activeTab, onTabChange, facultyData, isCollapsed, toggleCo
       if (item.id === 'gallery') {
         return facultyData?.gallery && facultyData.gallery.length > 0;
       }
+      // Add this condition in the useMemo filter (around line 68-112):
+if (item.id === 'resources') {
+  return facultyData?.resources && facultyData.resources.length > 0;
+}
       
       return false;
     });
