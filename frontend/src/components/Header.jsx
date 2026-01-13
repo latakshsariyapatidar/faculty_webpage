@@ -17,7 +17,7 @@ function Header() {
   return (
     <header className={`
       fixed top-0 left-0 right-0 
-      bg-gradient-to-r from-purple-900 via-purple-800 to-purple-900 
+      bg-purple-900 
       text-white shadow-xl z-50 /* Increased z-index */
       transition-all duration-300
       ${isScrolled ? 'py-1.5' : 'py-2 sm:py-2.7'}
@@ -27,7 +27,6 @@ function Header() {
           {/* Logo and Institute Name */}
           <div className="flex items-center gap-2 sm:gap-3 lg:gap-4">
             <div className="relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-amber-400 to-purple-500 rounded-xl blur opacity-25"></div>
               <div className="relative bg-white p-1.5 sm:p-2 rounded-lg sm:rounded-xl shadow-xl">
                 <img 
                   src="college-logo.png" 
@@ -38,7 +37,7 @@ function Header() {
             </div>
 
             <div className="max-w-[180px] sm:max-w-none">
-              <h1 className="text-sm sm:text-lg lg:text-xl xl:text-2xl font-bold bg-gradient-to-r from-amber-300 to-yellow-300 bg-clip-text text-transparent leading-tight sm:leading-normal">
+              <h1 className="text-sm sm:text-lg lg:text-xl xl:text-2xl font-bold text-amber-300 leading-tight sm:leading-normal">
                 Indian Institute of Technology Dharwad
               </h1>
               {/* Optional Hindi text - uncomment if needed
@@ -61,7 +60,7 @@ function Header() {
               rounded-lg lg:rounded-xl 
               font-medium lg:font-semibold 
               hover:scale-105 transition-transform duration-200
-              bg-gradient-to-r from-amber-500 to-amber-600
+              bg-amber-500
               shadow-lg hover:shadow-xl
             "
           >
@@ -92,7 +91,7 @@ function Header() {
                 w-full px-4 py-3 
                 rounded-xl 
                 font-semibold 
-                bg-gradient-to-r from-amber-500 to-amber-600
+                bg-amber-500
                 shadow-lg hover:shadow-xl
                 transition-all duration-200
               "

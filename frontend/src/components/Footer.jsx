@@ -33,7 +33,7 @@ function Footer({ setActiveTab, facultyData = {}, isSidebarCollapsed = false, is
   return (
     <footer 
       className={`
-        w-full bg-gradient-to-br from-purple-900 via-gray-900 to-purple-900 
+        w-full bg-purple-900 
         text-white border-t border-gray-800
         transition-all duration-300
         ${isMobile 
@@ -51,7 +51,7 @@ function Footer({ setActiveTab, facultyData = {}, isSidebarCollapsed = false, is
           {/* Institute Information */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 rounded-lg bg-amber-500 flex items-center justify-center flex-shrink-0">
                 <Building className="w-5 h-5 text-white" />
               </div>
               <div>
@@ -108,9 +108,9 @@ function Footer({ setActiveTab, facultyData = {}, isSidebarCollapsed = false, is
 
           {/* Faculty Contact */}
           <div className="space-y-4">
-            <h4 className="font-bold text-white">Contact Faculty</h4>
+            <h4 className="font-bold text-amber-400">Contact Faculty</h4>
             
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-lg p-4 border border-gray-800">
+            <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
               <div className="mb-3">
                 <p className="font-medium text-white text-sm break-words">{facultyName}</p>
                 {facultyDept && (
@@ -124,7 +124,7 @@ function Footer({ setActiveTab, facultyData = {}, isSidebarCollapsed = false, is
               {facultyEmail && (
                 <a
                   href={`mailto:${facultyEmail}`}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white rounded-lg text-sm font-medium transition-all duration-200"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm font-medium transition-all duration-200"
                 >
                   <Mail className="w-4 h-4 flex-shrink-0" />
                   <span>Email Professor</span>
@@ -179,16 +179,16 @@ function Footer({ setActiveTab, facultyData = {}, isSidebarCollapsed = false, is
         </div>
 
         {/* Divider */}
-        <div className="my-8 h-px bg-gradient-to-r from-transparent via-gray-800 to-transparent"></div>
+        <div className="my-8 h-px bg-gray-800"></div>
 
         {/* Footer Bottom */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-gray-300">
             <p>© {new Date().getFullYear()} Indian Institute of Technology Dharwad</p>
-            <p className="mt-1 text-gray-600 text-xs">This faculty profile is part of the official IIT Dharwad website</p>
+            <p className="mt-1 text-gray-400 text-xs">This faculty profile is part of the official IIT Dharwad website</p>
           </div>
           
-          <div className="flex items-center gap-4 text-xs text-gray-600">
+          <div className="flex items-center gap-4 text-xs text-gray-400">
             <a
               href="https://www.iitdh.ac.in/privacy"
               target="_blank"

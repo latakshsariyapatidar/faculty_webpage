@@ -34,7 +34,7 @@ function BiographyPage({ data }) {
           {experience.length > 0 && (
             <div className="bg-white rounded-xl shadow-md border border-gray-200 p-6">
               <div className="flex items-center gap-3 mb-6 pb-4 border-b-2 border-purple-200">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600 to-amber-600 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-lg bg-purple-600 flex items-center justify-center">
                   <Briefcase className="h-5 w-5 text-white" />
                 </div>
                 <div>
@@ -46,9 +46,9 @@ function BiographyPage({ data }) {
               <div className="space-y-2">
                 {experience.map((exp, idx) => (
                   <div key={idx} className="relative pl-6 pb-6 border-l-2 border-purple-200 last:border-l-0 last:pb-0">
-                    <div className="absolute -left-2 top-0 w-4 h-4 rounded-full bg-gradient-to-br from-purple-600 to-amber-600 border-2 border-white"></div>
+                    <div className="absolute -left-2 top-0 w-4 h-4 rounded-full bg-purple-600 border-2 border-white"></div>
                     
-                    <div className="bg-gradient-to-br from-purple-50 to-amber-50 rounded-lg p-4 border border-purple-100">
+                    <div className="bg-purple-50 rounded-lg p-4 border border-purple-100">
                       {/* Position and Period side by side */}
                       <div className="flex items-start justify-between gap-3 mb-2">
                         <h3 className="font-bold text-gray-900 flex-1">{exp.position}</h3>
@@ -77,7 +77,7 @@ function BiographyPage({ data }) {
           {education.length > 0 && (
             <div className="bg-white rounded-xl shadow-md border border-gray-200 p-6">
               <div className="flex items-center gap-3 mb-6 pb-4 border-b-2 border-amber-200">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-600 to-purple-600 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-lg bg-amber-600 flex items-center justify-center">
                   <GraduationCap className="h-5 w-5 text-white" />
                 </div>
                 <div>
@@ -89,9 +89,9 @@ function BiographyPage({ data }) {
               <div className="space-y-4">
                 {education.map((edu, idx) => (
                   <div key={idx} className="relative pl-6 pb-6 border-l-2 border-amber-200 last:border-l-0 last:pb-0">
-                    <div className="absolute -left-2 top-0 w-4 h-4 rounded-full bg-gradient-to-br from-amber-600 to-purple-600 border-2 border-white"></div>
+                    <div className="absolute -left-2 top-0 w-4 h-4 rounded-full bg-amber-600 border-2 border-white"></div>
                     
-                    <div className="bg-gradient-to-br from-amber-50 to-purple-50 rounded-lg p-4 border border-amber-100">
+                    <div className="bg-amber-50 rounded-lg p-4 border border-amber-100">
                       <div className="flex items-start justify-between gap-3 mb-2">
                         <h3 className="font-bold text-gray-900 flex-1">{edu.degree}</h3>
                         <div className="flex items-center gap-1.5 px-3 py-1 bg-amber-600 text-white text-xs font-bold rounded-full">

@@ -20,11 +20,11 @@ import React from 'react';
 // ErrorMessage.jsx
 const ErrorMessage = ({ message, onRetry, title = 'Error' }) => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-white to-amber-50/30 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <div className="max-w-md w-full">
         <div className="bg-white rounded-3xl shadow-xl border border-purple-200 p-8">
           <div className="flex flex-col items-center text-center">
-            <div className="w-20 h-20 bg-gradient-to-br from-purple-600 to-purple-700 rounded-full flex items-center justify-center mb-6 shadow-lg">
+            <div className="w-20 h-20 bg-purple-600 rounded-full flex items-center justify-center mb-6 shadow-lg">
               <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -39,7 +39,7 @@ const ErrorMessage = ({ message, onRetry, title = 'Error' }) => {
             </p>
           
             {onRetry && (
-              <button onClick={onRetry} className="px-8 py-3.5 bg-gradient-to-r from-purple-600 to-purple-700 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-purple-800 transition-all duration-300 shadow-lg shadow-purple-200/50 hover:shadow-xl hover:scale-105">
+              <button onClick={onRetry} className="px-8 py-3.5 bg-purple-600 text-white font-semibold rounded-xl hover:bg-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
                 Try Again
               </button>
             )}

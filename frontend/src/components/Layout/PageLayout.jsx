@@ -9,7 +9,7 @@ const PageLayout = ({ children, activeTab, onTabChange, facultyData }) => {
   const mainRef = useRef(null);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50 overflow-x-hidden">
+    <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <Header />
 
       <div className="flex pt-16">

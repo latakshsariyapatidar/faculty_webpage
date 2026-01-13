@@ -41,7 +41,7 @@ function ResourceCard({ resource }) {
       <div className="p-4 flex flex-col h-full overflow-hidden">
         {/* Header */}
         <div className="flex gap-3 mb-3">
-          <div className="w-11 h-11 rounded-lg bg-gradient-to-br from-purple-100 to-amber-100 flex items-center justify-center shrink-0">
+          <div className="w-11 h-11 rounded-lg bg-purple-100 flex items-center justify-center shrink-0">
             <Icon className="w-5 h-5 text-purple-600" />
           </div>
 
@@ -90,7 +90,7 @@ function ResourceCard({ resource }) {
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center justify-center gap-2 px-3 py-2 text-xs font-semibold text-white rounded-md bg-gradient-to-r from-purple-600 to-amber-500 hover:shadow-md transition"
+            className="mt-4 inline-flex items-center justify-center gap-2 px-3 py-2 text-xs font-semibold text-white rounded-md bg-purple-600 hover:bg-purple-700 transition"
           >
             <ExternalLink size={14} />
             Access Resource
@@ -109,9 +109,9 @@ function ResourcesPage({ data = [] }) {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-amber-50">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 to-amber-500 sticky top-0 z-20 shadow">
+      <div className="bg-purple-600 sticky top-0 z-20 shadow">
         <div className="max-w-[1600px] mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center">
@@ -127,14 +127,6 @@ function ResourcesPage({ data = [] }) {
             </div>
           </div>
 
-          <div className="text-right bg-white/20 px-3 py-1.5 rounded-lg">
-            <div className="text-xl font-bold text-white">
-              {data.length}
-            </div>
-            <div className="text-xs text-purple-100">
-              Available
-            </div>
-          </div>
         </div>
       </div>
 
@@ -147,12 +139,7 @@ function ResourcesPage({ data = [] }) {
         </div>
       </div>
 
-      {/* Footer */}
-      <div className="max-w-[1600px] mx-auto px-6 py-4">
-        <div className="bg-white border rounded-lg p-3 text-center text-xs text-gray-600">
-          Updated {today} • Contact faculty for assistance
-        </div>
-      </div>
+
     </div>
   );
 }

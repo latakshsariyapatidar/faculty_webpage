@@ -36,8 +36,8 @@ function CoursesPage({ data }) {
         {/* Top accent bar */}
         <div className={`h-1 ${
           isCurrent 
-            ? 'bg-gradient-to-r from-purple-600 via-purple-500 to-amber-500' 
-            : 'bg-gradient-to-r from-gray-600 via-gray-500 to-gray-400'
+            ? 'bg-purple-600' 
+            : 'bg-gray-600'
         } rounded-t-lg`}></div>
         
         <div className="flex flex-col flex-1 p-3">
@@ -121,7 +121,7 @@ function CoursesPage({ data }) {
               
               <div className="flex-shrink-0 ml-2">
                 {isCurrent ? (
-                  <span className="inline-flex items-center px-2 py-0.5 bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 text-xs font-semibold rounded border border-green-200">
+                  <span className="inline-flex items-center px-2 py-0.5 bg-green-100 text-green-800 text-xs font-semibold rounded border border-green-200">
                     Active
                   </span>
                 ) : (
@@ -148,19 +148,19 @@ function CoursesPage({ data }) {
   });
 
   return (
-    <div className=" w-full min-h-screen bg-gradient-to-br from-gray-50 via-white to-purple-50/20">
+    <div className=" w-full min-h-screen bg-gray-50">
       <div className="w-full mx-auto p-4 md:p-5">
         {/* Main Header with Integrated Tabs */}
         <div className="mb-6">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600 to-amber-500 flex items-center justify-center shadow-sm">
+              <div className="w-10 h-10 rounded-lg bg-purple-600 flex items-center justify-center shadow-sm">
                 <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                 </svg>
               </div>
               <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-900 via-purple-700 to-amber-600 bg-clip-text text-transparent">
+                <h1 className="text-2xl font-bold text-purple-900">
                   Courses
                 </h1>
               </div>
@@ -172,7 +172,7 @@ function CoursesPage({ data }) {
                 onClick={() => setActiveTab('current')}
                 className={`flex items-center gap-2 px-4 py-2.5 rounded-lg transition-all duration-200 min-w-[120px] justify-center ${
                   activeTab === 'current'
-                    ? 'bg-gradient-to-r from-purple-50 to-purple-100 text-purple-700 border border-purple-200 shadow-sm'
+                    ? 'bg-purple-50 text-purple-700 border border-purple-200 shadow-sm'
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                 }`}
               >
@@ -197,7 +197,7 @@ function CoursesPage({ data }) {
                 onClick={() => setActiveTab('past')}
                 className={`flex items-center gap-2 px-4 py-2.5 rounded-lg transition-all duration-200 min-w-[120px] justify-center ${
                   activeTab === 'past'
-                    ? 'bg-gradient-to-r from-gray-50 to-gray-100 text-gray-700 border border-gray-300 shadow-sm'
+                    ? 'bg-gray-50 text-gray-700 border border-gray-300 shadow-sm'
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                 }`}
               >
@@ -225,7 +225,7 @@ function CoursesPage({ data }) {
           {activeTab === 'current' && (
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <div className="w-1.5 h-6 bg-gradient-to-b from-purple-500 to-amber-500 rounded-full"></div>
+                <div className="w-1.5 h-6 bg-purple-500 rounded-full"></div>
                 <div>
                   <h2 className="text-lg font-bold text-gray-900">Current Courses</h2>
                 </div>
@@ -238,8 +238,8 @@ function CoursesPage({ data }) {
                   ))}
                 </div>
               ) : (
-                <div className="bg-gradient-to-br from-white to-purple-50 rounded-xl border-2 border-dashed border-purple-200 p-8 text-center">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-100 to-amber-100 flex items-center justify-center">
+                <div className="bg-purple-50 rounded-xl border-2 border-dashed border-purple-200 p-8 text-center">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-purple-100 flex items-center justify-center">
                     <svg className="w-8 h-8 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
@@ -257,7 +257,7 @@ function CoursesPage({ data }) {
           {activeTab === 'past' && (
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <div className="w-1.5 h-6 bg-gradient-to-b from-gray-500 to-gray-400 rounded-full"></div>
+                <div className="w-1.5 h-6 bg-gray-500 rounded-full"></div>
                 <div>
                   <h2 className="text-lg font-bold text-gray-900">Course History</h2>
                 </div>
@@ -270,8 +270,8 @@ function CoursesPage({ data }) {
                   ))}
                 </div>
               ) : (
-                <div className="bg-gradient-to-br from-white to-gray-50 rounded-xl border-2 border-dashed border-gray-200 p-8 text-center">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                <div className="bg-gray-50 rounded-xl border-2 border-dashed border-gray-200 p-8 text-center">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
                     <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
@@ -289,7 +289,7 @@ function CoursesPage({ data }) {
         {/* Enhanced Footer - Only visible when there are courses */}
         {data.length > 0 && (
           <div className="mt-8 pt-6 border-t border-gray-200">
-            <div className="bg-gradient-to-r from-purple-50/50 via-white to-amber-50/50 rounded-xl border border-gray-200 p-5 shadow-sm">
+            <div className="bg-purple-50 rounded-xl border border-gray-200 p-5 shadow-sm">
               <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                 <div className="text-center md:text-left">
                   <h4 className="text-sm font-semibold text-gray-900 mb-1">Course Portfolio Summary</h4>

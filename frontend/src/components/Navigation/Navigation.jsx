@@ -114,7 +114,7 @@ if (item.id === 'resources') {
     return (
       <>
         {/* Mobile Navigation Bar - Bottom Tab Bar */}
-        <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-gradient-to-r from-purple-900 via-purple-800 to-purple-900 text-white shadow-2xl z-40 border-t border-amber-500/30">
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-purple-900 text-white shadow-2xl z-40 border-t border-amber-500/30">
           <div className="flex items-center justify-around px-2 py-3">
             {navigationItems.slice(0, 4).map(({ id, label, icon: Icon }) => (
               <button
@@ -154,7 +154,7 @@ if (item.id === 'resources') {
         {/* Mobile Modal */}
         {showModal && navigationItems.length > 4 && (
           <div className="lg:hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-            <div className="bg-gradient-to-b from-purple-900 via-purple-800 to-purple-900 rounded-2xl w-full max-w-sm shadow-2xl">
+            <div className="bg-purple-900 rounded-2xl w-full max-w-sm shadow-2xl">
               <div className="p-6 border-b border-purple-700/50">
                 <div className="flex items-center justify-between">
                   <h3 className="text-lg font-bold text-white">Navigation</h3>
@@ -234,7 +234,7 @@ if (item.id === 'resources') {
         h-[calc(100vh-4rem)]
         transition-all duration-300 ease-in-out
         ${isCollapsed ? 'w-20' : 'w-64'}
-        bg-gradient-to-b from-purple-900 via-purple-800 to-purple-900
+        bg-purple-900
         text-purple-100 shadow-2xl
         z-30
         overflow-y-auto

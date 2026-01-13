@@ -386,7 +386,7 @@ function PublicationsPage({ data, facultyData = {} }) {
               <h2 className="text-lg font-bold text-gray-900">{title}</h2>
             </div>
           </div>
-          <span className={`px-3 py-1 ${colors.light} ${colors.text} text-sm font-semibold rounded-lg`}>
+          <span className={`px-3 py-1 ${colors.light} ${colors.text} text-sm font-semibold rounded-lg border ${colors.border} `}>
             {sectionData.length}
           </span>
         </div>
@@ -452,7 +452,7 @@ function PublicationsPage({ data, facultyData = {} }) {
       
       // Return gradient for 'all', solid color for others
       if (filterId === 'all') {
-        return 'bg-gradient-to-r from-purple-600 to-amber-500 text-white shadow-sm';
+        return 'bg-purple-600 text-white shadow-sm';
       }
       
       // Fixed colors for specific filters
@@ -650,7 +650,7 @@ function PublicationsPage({ data, facultyData = {} }) {
         <div className="mb-8">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600 to-amber-500 flex items-center justify-center shadow-md">
+              <div className="w-12 h-12 rounded-xl bg-purple-600 flex items-center justify-center shadow-md">
                 <FileText className="w-6 h-6 text-white" />
               </div>
               <div>

@@ -33,6 +33,7 @@ function StudentsPage({ data }) {
   const getStudentTopic = (student) => student.topic || student.thesis_title || student.thesis || '';
   const getStudentPlacement = (student) => student.placement || '';
   const getStudentName = (student) => student.name || 'Student';
+  const getStudentSocialLink = (student) => student.social_link || '';
 
   // Determine if PhD student
   const isPhDStudent = (student) => {
@@ -47,6 +48,7 @@ function StudentsPage({ data }) {
     const topic = getStudentTopic(student);
     const placement = getStudentPlacement(student);
     const name = getStudentName(student);
+    const socialLink = getStudentSocialLink(student);
     const isPhD = isPhDStudent(student);
     
     // Determine colors based on program type
@@ -89,9 +91,21 @@ function StudentsPage({ data }) {
                   {/* Name and Program - Side by side */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <h3 className="text-base font-semibold text-gray-900 truncate">
-                        {name}
-                      </h3>
+                      {socialLink ? (
+                        <a
+                          href={socialLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-base font-semibold text-purple-600 hover:text-purple-700 hover:underline truncate flex items-center gap-1"
+                        >
+                          {name}
+                          <ExternalLink className="w-3.5 h-3.5 flex-shrink-0" />
+                        </a>
+                      ) : (
+                        <h3 className="text-base font-semibold text-gray-900 truncate">
+                          {name}
+                        </h3>
+                      )}
                       {program && (
                         <span className={`px-2 py-0.5 text-xs font-medium rounded-md truncate max-w-[120px] ${programColors.bg} ${programColors.text} ${programColors.border} border`}>
                           {program}
@@ -163,10 +177,10 @@ const InstructionsSection = () => {
 
   return (
     <div className="mb-5">
-      <div className="relative overflow-hidden rounded-lg border border-gray-200 bg-gradient-to-r from-purple-50 to-amber-50 p-4">
+      <div className="relative overflow-hidden rounded-lg border border-gray-200 bg-purple-50 p-4">
         <div className="relative">
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-purple-500 to-amber-500 flex items-center justify-center">
+            <div className="w-9 h-9 rounded-lg bg-purple-600 flex items-center justify-center">
               <Mail className="w-4.5 h-4.5 text-white" />
             </div>
             <div>
@@ -320,12 +334,12 @@ const InstructionsSection = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <div className="min-h-screen bg-gray-50">
       <div className="mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {/* Header */}
         <div className="mb-6">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-purple-500 to-amber-500 flex items-center justify-center">
+            <div className="w-11 h-11 rounded-xl bg-purple-600 flex items-center justify-center">
               <GraduationCap className="w-6 h-6 text-white" />
             </div>
             <div>
@@ -343,7 +357,7 @@ const InstructionsSection = () => {
             onClick={() => setActiveTab('current')}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all flex-1 justify-center ${
               activeTab === 'current'
-                ? 'bg-gradient-to-r from-purple-500 to-amber-500 text-white shadow-md'
+                ? 'bg-purple-600 text-white shadow-md'
                 : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
             }`}
           >
@@ -363,7 +377,7 @@ const InstructionsSection = () => {
             onClick={() => setActiveTab('graduated')}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all flex-1 justify-center ${
               activeTab === 'graduated'
-                ? 'bg-gradient-to-r from-purple-500 to-amber-500 text-white shadow-md'
+                ? 'bg-purple-600 text-white shadow-md'
                 : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
             }`}
           >

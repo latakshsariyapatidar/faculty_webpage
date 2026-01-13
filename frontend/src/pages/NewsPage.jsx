@@ -72,10 +72,10 @@ function NewsPage({ data }) {
 
   if (!data || data.length === 0) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-white to-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="relative inline-block mb-4">
-            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-amber-50 to-purple-50 flex items-center justify-center mx-auto shadow-sm">
+            <div className="w-20 h-20 rounded-full bg-amber-50 flex items-center justify-center mx-auto shadow-sm">
               <Newspaper className="w-10 h-10 text-amber-500" />
             </div>
             <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center shadow-md">
@@ -94,14 +94,14 @@ function NewsPage({ data }) {
   const currentNews = getCurrentNews();
 
   return (
-    <div className=" w-full min-h-screen bg-gradient-to-br from-white to-gray-50">
+    <div className=" w-full min-h-screen bg-gray-50">
       {/* Enhanced Header */}
       <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200 shadow-sm">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <div className="w-8 h-1 bg-gradient-to-r from-amber-500 to-purple-500 rounded-full"></div>
+                <div className="w-8 h-1 bg-amber-500 rounded-full"></div>
                 <span className="text-xs font-medium text-amber-700 uppercase tracking-wider">Latest Updates</span>
               </div>
               <h1 className="text-2xl font-bold text-gray-900">News & Announcements</h1>
@@ -113,7 +113,7 @@ function NewsPage({ data }) {
                   Page {currentIndex + 1} of {totalPages}
                 </div>
                 {isAutoScroll && (
-                  <div className="px-2.5 py-0.5 bg-gradient-to-r from-amber-100 to-amber-50 rounded-md text-sm text-amber-800 border border-amber-200 animate-pulse">
+                  <div className="px-2.5 py-0.5 bg-amber-100 rounded-md text-sm text-amber-800 border border-amber-200 animate-pulse">
                     Auto-scrolling
                   </div>
                 )}
@@ -125,7 +125,7 @@ function NewsPage({ data }) {
               {/* Auto-scroll Toggle */}
               <button
                 onClick={toggleAutoScroll}
-                className={`relative w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 shadow-sm ${isAutoScroll ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-amber-200' : 'bg-white border border-gray-300 text-gray-600 hover:border-amber-300 hover:shadow-md'}`}
+                className={`relative w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 shadow-sm ${isAutoScroll ? 'bg-amber-500 text-white shadow-amber-200' : 'bg-white border border-gray-300 text-gray-600 hover:border-amber-300 hover:shadow-md'}`}
                 title={isAutoScroll ? 'Pause auto-scroll' : 'Enable auto-scroll'}
               >
                 {isAutoScroll ? (
@@ -146,7 +146,7 @@ function NewsPage({ data }) {
                     <button
                       onClick={handlePrev}
                       disabled={isTransitioning}
-                      className="w-9 h-9 rounded-lg bg-white border border-gray-300 hover:border-amber-400 hover:bg-gradient-to-r hover:from-white hover:to-amber-50 flex items-center justify-center transition-all duration-300 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-9 h-9 rounded-lg bg-white border border-gray-300 hover:border-amber-400 hover:bg-amber-50 flex items-center justify-center transition-all duration-300 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <ChevronLeft className="w-4 h-4 text-gray-600" />
                     </button>
@@ -157,7 +157,7 @@ function NewsPage({ data }) {
                           key={index}
                           onClick={() => goToPage(index)}
                           disabled={isTransitioning}
-                          className={`w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-300 shadow-sm ${currentIndex === index ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-white scale-110' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'} ${isTransitioning ? 'opacity-50' : ''}`}
+                          className={`w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-300 shadow-sm ${currentIndex === index ? 'bg-amber-500 text-white scale-110' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'} ${isTransitioning ? 'opacity-50' : ''}`}
                           aria-label={`Go to page ${index + 1}`}
                         >
                           <span className="text-xs font-medium">{index + 1}</span>
@@ -168,7 +168,7 @@ function NewsPage({ data }) {
                     <button
                       onClick={handleNext}
                       disabled={isTransitioning}
-                      className="w-9 h-9 rounded-lg bg-white border border-gray-300 hover:border-amber-400 hover:bg-gradient-to-r hover:from-white hover:to-amber-50 flex items-center justify-center transition-all duration-300 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-9 h-9 rounded-lg bg-white border border-gray-300 hover:border-amber-400 hover:bg-amber-50 flex items-center justify-center transition-all duration-300 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <ChevronRight className="w-4 h-4 text-gray-600" />
                     </button>
@@ -193,9 +193,9 @@ function NewsPage({ data }) {
               <span>•</span>
               <span>Hover to pause</span>
             </div>
-            <div className="h-1 bg-gradient-to-r from-gray-200 via-gray-200 to-gray-200 rounded-full overflow-hidden">
+            <div className="h-1 bg-gray-200 rounded-full overflow-hidden">
               <div 
-                className="h-full bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 rounded-full transition-all duration-2000"
+                className="h-full bg-amber-500 rounded-full transition-all duration-2000"
                 style={{ 
                   width: isHovering ? '0%' : '100%',
                   animation: isHovering ? 'none' : 'progress 2s ease-in-out infinite'
@@ -218,7 +218,7 @@ function NewsPage({ data }) {
               className={`group relative bg-white rounded-xl border border-gray-200 hover:border-amber-300 hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden flex flex-col h-full transform ${isTransitioning ? 'scale-[0.98]' : 'scale-100'}`}
             >
               {/* Card accent */}
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-400 to-purple-500"></div>
+              <div className="absolute top-0 left-0 w-full h-1 bg-amber-500"></div>
               
               {/* Content */}
               <div className="p-5 flex-1 flex flex-col">
@@ -233,7 +233,7 @@ function NewsPage({ data }) {
                 )}
                 
                 {/* Title with gradient effect */}
-                <h3 className="text-lg font-semibold text-gray-900 mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-amber-600 group-hover:to-purple-600 transition-all duration-300 leading-tight line-clamp-2">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3 group-hover:text-amber-600 transition-all duration-300 leading-tight line-clamp-2">
                   {news.title}
                 </h3>
                 
@@ -252,7 +252,7 @@ function NewsPage({ data }) {
                     <span className="text-xs font-medium text-gray-500 group-hover:text-amber-600 transition-colors">
                       View full announcement
                     </span>
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-r from-gray-100 to-gray-50 group-hover:from-amber-100 group-hover:to-amber-50 flex items-center justify-center transition-all duration-300 group-hover:scale-110">
+                    <div className="w-8 h-8 rounded-full bg-gray-100 group-hover:bg-amber-100 flex items-center justify-center transition-all duration-300 group-hover:scale-110">
                       <ExternalLink className="w-3.5 h-3.5 text-gray-400 group-hover:text-amber-600 transition-colors" />
                     </div>
                   </div>
@@ -279,13 +279,13 @@ function NewsPage({ data }) {
                 <button
                   onClick={handlePrev}
                   disabled={isTransitioning}
-                  className="px-5 py-2.5 text-sm border border-gray-300 rounded-lg hover:border-amber-400 hover:bg-gradient-to-r hover:from-white hover:to-amber-50 flex items-center gap-2 transition-all duration-300 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-5 py-2.5 text-sm border border-gray-300 rounded-lg hover:border-amber-400 hover:bg-amber-50 flex items-center gap-2 transition-all duration-300 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <ChevronLeft className="w-4 h-4" />
                   <span className="font-medium">Previous</span>
                 </button>
                 
-                <div className="px-4 py-2 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
+                <div className="px-4 py-2 bg-gray-100 rounded-lg">
                   <div className="text-sm font-medium text-gray-700">
                     <span className="text-amber-600">{currentIndex + 1}</span>
                     <span className="text-gray-400 mx-1">/</span>
@@ -296,7 +296,7 @@ function NewsPage({ data }) {
                 <button
                   onClick={handleNext}
                   disabled={isTransitioning}
-                  className="px-5 py-2.5 text-sm border border-gray-300 rounded-lg hover:border-amber-400 hover:bg-gradient-to-r hover:from-white hover:to-amber-50 flex items-center gap-2 transition-all duration-300 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-5 py-2.5 text-sm border border-gray-300 rounded-lg hover:border-amber-400 hover:bg-amber-50 flex items-center gap-2 transition-all duration-300 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <span className="font-medium">Next</span>
                   <ChevronRight className="w-4 h-4" />

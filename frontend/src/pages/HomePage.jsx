@@ -54,13 +54,13 @@ function HomePage({ facultyData }) {
   const statistics = facultyData.statistics || [];
 
   return (
-    <div className=" min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
+    <div className=" min-h-screen bg-gray-50">
       <div className=" w-full mx-auto px-4 sm:px-6 lg:px-8 py-7">
         {/* Top Profile Section */}
         <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-8 border border-gray-200">
           <div className="md:flex">
             {/* Left Column - Photo */}
-            <div className="md:w-1/3 lg:w-1/4 p-8 flex flex-col items-center justify-center bg-gradient-to-br from-purple-50 to-amber-50">
+            <div className="md:w-1/3 lg:w-1/4 p-8 flex flex-col items-center justify-center bg-gray-50">
               <div className="w-4/5 h-7/9 rounded-2 overflow-hidden border-4 border-white shadow-lg mb-4">
                 {personalInfo.profileImage ? (
                   <img
@@ -69,7 +69,7 @@ function HomePage({ facultyData }) {
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <div className="w-full h-full bg-gradient-to-r from-purple-600 to-amber-600 flex items-center justify-center">
+                  <div className="w-full h-full bg-purple-600 flex items-center justify-center">
                     <span className="text-4xl font-bold text-white">
                       {personalInfo.name?.charAt(0) || 'P'}
                     </span>
@@ -166,9 +166,9 @@ function HomePage({ facultyData }) {
                     {statistics.map((stat, index) => (
                       <div 
                         key={index} 
-                        className="bg-gradient-to-b from-gray-50 to-white rounded-lg p-4 border border-gray-200 text-center hover:border-purple-300 hover:shadow-md transition-all duration-300"
+                        className="bg-white rounded-lg p-4 border border-gray-200 text-center hover:border-purple-300 hover:shadow-md transition-all duration-300"
                       >
-                        <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-amber-600 mb-2">
+                        <div className="text-3xl font-bold text-purple-600 mb-2">
                           {/* This WILL count from 0 now */}
                           <AnimatedCounter value={stat.value} />
                         </div>
@@ -190,7 +190,7 @@ function HomePage({ facultyData }) {
         {/* About Section */}
         <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-5 mb-5">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-purple-600 to-amber-600 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-lg bg-purple-600 flex items-center justify-center">
               <BookOpen className="h-4 w-4 text-white" />
             </div>
             <div>
@@ -236,9 +236,9 @@ function HomePage({ facultyData }) {
           )}
 
           {about.researchPositions && about.researchPositions.length > 0 && (
-            <div className="bg-gradient-to-r from-amber-50 to-amber-100 rounded-xl border border-amber-200 p-6">
+            <div className="bg-amber-50 rounded-xl border border-amber-200 p-6">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-lg bg-amber-500 flex items-center justify-center">
                   <Users className="h-5 w-5 text-white" />
                 </div>
                 <div>

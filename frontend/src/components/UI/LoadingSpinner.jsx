@@ -31,7 +31,7 @@ const LoadingSpinner = ({ message = 'Loading...', size = 'large' }) => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-white to-amber-50/30">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="text-center">
         <div className={`${sizeClasses[size]} mx-auto mb-6 border-4 border-purple-200 border-t-purple-600 rounded-full animate-spin`}></div>
         <p className={`${textSizeClasses[size]} text-purple-700 font-medium`}>

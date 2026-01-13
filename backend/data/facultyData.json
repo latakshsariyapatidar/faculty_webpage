@@ -284,7 +284,8 @@
           "photo": "",
           "thesis_title": "Stability Analysis of Grid Forming Inverters",
           "start_date": "",
-          "end_date": ""
+          "end_date": "",
+          "social_link": "www.linkedin.com"
         },
         {
           "faculty_id": "FAC001",
@@ -296,7 +297,8 @@
           "photo": "",
           "thesis_title": "Controller Design for Green Hydrogen",
           "start_date": "",
-          "end_date": ""
+          "end_date": "",
+          "social_link": "www.linkedin.com"
         },
         {
           "faculty_id": "FAC001",
@@ -308,7 +310,8 @@
           "photo": "",
           "thesis_title": "Modelling of Green Hydrogen",
           "start_date": "",
-          "end_date": ""
+          "end_date": "",
+          "social_link": "www.linkedin.com"
         }
       ],
       "graduated": [
@@ -323,7 +326,8 @@
           "photo": "",
           "thesis_title": "Development of Line Power Flow Controllers",
           "start_date": "",
-          "end_date": "Aug 2019- Aug 2023"
+          "end_date": "Aug 2019- Aug 2023",
+          "social_link": "www.linkedin.com"
         },
         {
           "faculty_id": "FAC001",
@@ -336,7 +340,8 @@
           "photo": "",
           "thesis_title": "Cyber Attack Detection and MItigation in Wide Area Damping Control",
           "start_date": "",
-          "end_date": "Jan 2021- April 2025"
+          "end_date": "Jan 2021- April 2025",
+          "social_link": "www.linkedin.com"
         },
         {
           "faculty_id": "FAC001",
@@ -349,7 +354,8 @@
           "photo": "",
           "thesis_title": "Game Theorectic Solutions for Ancillary Services from EVs",
           "start_date": "",
-          "end_date": "Aug 2020- Feb 2023"
+          "end_date": "Aug 2020- Feb 2023",
+          "social_link": "www.linkedin.com"
         },
         {
           "faculty_id": "FAC001",
@@ -362,7 +368,8 @@
           "photo": "",
           "thesis_title": "Fault Current Limitations in Grid Forming Inverters",
           "start_date": "",
-          "end_date": "Aug 2022- Feb 2025"
+          "end_date": "Aug 2022- Feb 2025",
+          "social_link": "www.linkedin.com"
         },
         {
           "faculty_id": "FAC001",
@@ -375,7 +382,8 @@
           "photo": "",
           "thesis_title": "Development of Power Extraction Module from Transmission Lines for Line Crawling Robots",
           "start_date": "",
-          "end_date": "Jan 2022- Sept 2025"
+          "end_date": "Jan 2022- Sept 2025",
+          "social_link": "www.linkedin.com"
         }
       ]
     },

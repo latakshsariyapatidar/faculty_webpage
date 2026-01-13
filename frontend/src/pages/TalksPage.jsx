@@ -31,7 +31,7 @@ function TalksPage({ data }) {
               {talk.title}
             </h3>
             
-            <p className="text-lg text-purple-700 font-semibold mb-4 bg-gradient-to-r from-purple-50 to-amber-50 inline-block px-4 py-2.5 rounded-xl border border-purple-200">
+            <p className="text-lg text-purple-700 font-semibold mb-4 bg-purple-50 inline-block px-4 py-2.5 rounded-xl border border-purple-200">
               {talk.event}
             </p>
             

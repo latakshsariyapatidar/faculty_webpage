@@ -44,10 +44,10 @@ function ResearchPage({ data }) {
   return (
     <div className="w-full min-h-screen bg-gray-50">
       {/* Compact Header */}
-      <div className="bg-gradient-to-r from-purple-700 to-amber-600 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div className="bg-purple-700 text-white">
+        <div className=" mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center gap-3">
-            {/* <Target className="h-5 w-5" /> */}
+            <Target className="h-5 w-5" />
             <div>
               <h1 className="text-lg font-bold">Research</h1>
             </div>
@@ -94,7 +94,7 @@ function ResearchPage({ data }) {
                           <div className="p-3">
                             <div className="flex items-center justify-between">
                               <div className="flex items-center gap-3">
-                                <div className={`w-6 h-6 rounded ${isExpanded ? 'bg-gradient-to-r from-purple-600 to-amber-600' : 'bg-gray-200'} flex items-center justify-center flex-shrink-0`}>
+                                <div className={`w-6 h-6 rounded ${isExpanded ? 'bg-purple-600' : 'bg-gray-200'} flex items-center justify-center flex-shrink-0`}>
                                   <span className={`text-xs font-bold ${isExpanded ? 'text-white' : 'text-gray-700'}`}>
                                     {index + 1}
                                   </span>
@@ -319,7 +319,7 @@ function ResearchPage({ data }) {
             </div>
 
             {/* Contact Card */}
-            <div className="bg-gradient-to-r from-purple-600 to-amber-600 rounded-lg p-4 text-white shadow">
+            <div className="bg-purple-600 rounded-lg p-4 text-white shadow">
               <div className="flex items-center gap-2 mb-2">
                 <Mail className="h-4 w-4" />
                 <h3 className="font-bold text-sm">Contact for Research</h3>

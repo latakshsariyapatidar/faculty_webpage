@@ -109,7 +109,7 @@ function App({ facultyId }) {
   if (!facultyData) return null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50 overflow-x-hidden">
+    <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <Header />
       
       {/* Navigation Sidebar - Fixed Position */}
@@ -145,7 +145,7 @@ function App({ facultyId }) {
 
         {/* Biography Section */}
         {facultyData.biography && (
-          <section id="biography" className="scroll-mt-24 min-h-screen bg-gradient-to-br from-purple-50 via-white to-amber-50">
+          <section id="biography" className="scroll-mt-24 min-h-screen bg-gray-50">
             <div className="p-6 lg:p-8">
               <BiographyPage data={facultyData.biography} />
             </div>
@@ -154,7 +154,7 @@ function App({ facultyId }) {
 
         {/* Courses Section */}
         {facultyData.courses && facultyData.courses.length > 0 && (
-          <section id="courses" className="scroll-mt-24 min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+          <section id="courses" className="scroll-mt-24 min-h-screen bg-gray-50">
             <div className="p-6 lg:p-8">
               <CoursesPage data={facultyData.courses} />
             </div>
@@ -163,7 +163,7 @@ function App({ facultyId }) {
 
         {/* Research Section */}
         {facultyData.research && (
-          <section id="research" className="scroll-mt-24 min-h-screen bg-gradient-to-br from-indigo-50 via-white to-cyan-50">
+          <section id="research" className="scroll-mt-24 min-h-screen bg-gray-50">
             <div className="p-6 lg:p-8">
               <ResearchPage data={{
                 ...facultyData.research,
@@ -176,7 +176,7 @@ function App({ facultyId }) {
 
         {/* Publications Section */}
         {facultyData.publications && (
-          <section id="publications" className="scroll-mt-24 min-h-screen bg-gradient-to-br from-red-50 via-white to-orange-50">
+          <section id="publications" className="scroll-mt-24 min-h-screen bg-gray-50">
             <div className="p-6 lg:p-8">
               <PublicationsPage data={facultyData.publications} />
             </div>
@@ -185,7 +185,7 @@ function App({ facultyId }) {
 
         {/* Students Section */}
         {facultyData.students && (
-          <section id="students" className="scroll-mt-24 min-h-screen bg-gradient-to-br from-emerald-50 via-white to-lime-50">
+          <section id="students" className="scroll-mt-24 min-h-screen bg-gray-50">
             <div className="p-6 lg:p-8">
               <StudentsPage data={facultyData.students} />
             </div>
@@ -194,7 +194,7 @@ function App({ facultyId }) {
 
         {/* News Section */}
         {facultyData.news && facultyData.news.length > 0 && (
-          <section id="news" className="scroll-mt-24 min-h-screen bg-gradient-to-br from-violet-50 via-white to-pink-50">
+          <section id="news" className="scroll-mt-24 min-h-screen bg-gray-50">
             <div className="p-6 lg:p-8">
               <NewsPage data={facultyData.news} />
             </div>
@@ -205,7 +205,7 @@ function App({ facultyId }) {
 
         {/* Gallery Section */}
         {facultyData.gallery && facultyData.gallery.length > 0 && (
-          <section id="gallery" className="scroll-mt-24 min-h-screen bg-gradient-to-br from-rose-50 via-white to-amber-50">
+          <section id="gallery" className="scroll-mt-24 min-h-screen bg-gray-50">
             <div className="p-6 lg:p-8">
               <GalleryPage data={facultyData.gallery} />
             </div>
@@ -214,7 +214,7 @@ function App({ facultyId }) {
 
         {/* Resources Section */}
         {facultyData.resources && facultyData.resources.length > 0 && (
-          <section id="resources" className="scroll-mt-24 min-h-screen bg-gradient-to-br from-teal-50 via-white to-sky-50">
+          <section id="resources" className="scroll-mt-24 min-h-screen bg-gray-50">
             <div className="p-6 lg:p-8">
               <ResourcesPage data={facultyData.resources} />
             </div>
